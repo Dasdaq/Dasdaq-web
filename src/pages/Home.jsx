@@ -1,4 +1,5 @@
 import React from "react"
+import config from "../config";
 
 const logo = 'https://i.loli.net/2018/07/14/5b495a8628987.jpg'
 
@@ -23,7 +24,8 @@ export default function Home() {
     return (<div className="index-page">
         <div className="banner" style={bannerStyle}>
             <h1 style={ titleStyle }>
-                MarketData</h1>
+                {config.sitename}
+            </h1>
             <p style={{
                 opacity: 1, transform: `translate(0px, 0px)`, fontSize: `20px`,
                 lineHeight: `40px`,
