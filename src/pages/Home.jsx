@@ -6,7 +6,7 @@ const bannerStyle = {
     padding: `6rem`,
     color: `#fafafa`,
     width: "100%", minHeight: "48rem",
-    background: `url(${logo})`, backgroundPosition: '50% 50%'
+    background: `url(${logo})`, backgroundSize: 'cover'
 }
 
 const titleStyle = {
