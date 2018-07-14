@@ -31,6 +31,7 @@ export default function Home() {
                 lineHeight: `40px`,
             }}>
                 币本位查看法币涨跌</p>
+            <p> </p>
         </div>
         {/* <img src={logo} alt="给你比心" style={{ maxWidth: "100%" }} /> */}
     </div>)
