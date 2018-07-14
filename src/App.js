@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom"
 import { About } from "./components/about";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import Market from "./pages/Market";
 import Construction from "./pages/Construction";
 import config from './config'
 import './App.css';
@@ -16,13 +17,10 @@ class App extends Component {
         <Router basename="/">
             <div className="container">
               <Header />
-              <div className="router-view" 
-              // style={{ margin: "2rem 1rem" }}
-              >
+              <div className="router-view" >
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={About} />
-                <Route path="/my"
-                  component={() => Construction({ pageName: '我的爱心' })} />
+                <Route path="/market" component={Market} />
               </div>
 
 
