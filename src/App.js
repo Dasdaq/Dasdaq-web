@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import { About } from "./components/about";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import Construction from "./pages/Construction";
+import config from './config'
 import './App.css';
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 class App extends Component {
   render() {
@@ -13,20 +15,7 @@ class App extends Component {
       <div className="App">
         <Router basename="/">
             <div className="container">
-              <Header>
-                <div className="logo" />
-                <Menu
-                  theme="dark"
-                  mode="horizontal"
-                  defaultSelectedKeys={['2']}
-                  style={{ lineHeight: '64px' }}
-                >
-                  <Menu.Item key="1">nav 1</Menu.Item>
-                  <Menu.Item key="2">nav 2</Menu.Item>
-                  <Menu.Item key="3">nav 3</Menu.Item>
-                </Menu>
-              </Header>
-
+              <Header />
               <div className="router-view" 
               // style={{ margin: "2rem 1rem" }}
               >
@@ -40,7 +29,7 @@ class App extends Component {
             </div>
         </Router>
         <Footer style={{ textAlign: 'center' }}>
-          Market ©2018
+          {config.sitename} ©2018
         </Footer>
       </div>
     );
