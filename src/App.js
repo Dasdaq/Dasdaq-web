@@ -3,9 +3,9 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import { About } from "./components/about";
 import Header from "./components/Header";
+import VisiableHeader from "./containers/VisiableHeader";
 import Home from "./pages/Home";
 import Market from "./pages/Market";
-import Construction from "./pages/Construction";
 import config from './config'
 import './App.css';
 const { Content, Footer } = Layout;
@@ -16,7 +16,8 @@ class App extends Component {
       <div className="App">
         <Router basename="/">
             <div className="container">
-              <Header />
+              {/* <Header /> */}
+              <VisiableHeader />
               <div className="router-view" >
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={About} />

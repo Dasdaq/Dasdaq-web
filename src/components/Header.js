@@ -1,9 +1,9 @@
 
 import React from "react";
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink,  } from 'react-router-dom';
 import { Layout, Menu, Icon } from "antd";
 const { Header } = Layout;
-const {SubMenu} = Menu
+const { SubMenu } = Menu
 
 const navigationMenus = [
     {
@@ -45,7 +45,7 @@ function RightMenu() {
     )
 }
 
-function HeaderComponent({ location }) {
+const HeaderComponent = ({ location, lang = 'null', setLanguage}) => {
     return (<Header>
         <div className="logo" />
         <Menu
@@ -60,11 +60,13 @@ function HeaderComponent({ location }) {
             <Menu.Item style={{ float: 'right' }}>
                 当前货币：BTC
             </Menu.Item>
-            <SubMenu key="sub4" title={<span><Icon type="setting" /><span>语言</span></span>}>
-                <Menu.Item key="9">Option 9</Menu.Item>
-                <Menu.Item key="10">Option 10</Menu.Item>
-                <Menu.Item key="11">Option 11</Menu.Item>
-                <Menu.Item key="12">Option 12</Menu.Item>
+            <SubMenu 
+            style={{ float: 'right' }} 
+            title={<span><Icon type="global" /><span>语言 {lang}</span></span>}>
+                <Menu.Item onClick={() => setLanguage('SWITCH_TO_CHINESE')}>中文</Menu.Item>
+                <Menu.Item onClick={() => setLanguage('SWITCH_TO_ENGLISH')}>English</Menu.Item>
+                <Menu.Item onClick={() => setLanguage('SWITCH_TO_JAPANESE')}>日本語</Menu.Item>
+                <Menu.Item onClick={() => setLanguage('SWITCH_TO_KOREAN')}>한국말</Menu.Item>
             </SubMenu>
             <Menu.Item style={{ float: 'right' }}>
                 黑白
@@ -73,4 +75,4 @@ function HeaderComponent({ location }) {
     </Header>)
 }
 
-export default withRouter(HeaderComponent)
+export default HeaderComponent
