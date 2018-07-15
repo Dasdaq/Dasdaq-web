@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Chart, Geom, Axis, Tooltip, Coord, Label, Legend, View } from "bizcharts";
+import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
 import axios from "axios";
-import DataSet, { DataView } from "@antv/data-set";
+import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
 

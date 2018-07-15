@@ -31,19 +31,6 @@ const MenuItem = ({ path, name, icon }) =>
         </NavLink>
     </Menu.Item>
 
-const DockToRightMenuItem = ({ desc, action }) => (
-    <Menu.Item onClick={action} style={{ float: 'right' }}>
-        {desc}
-    </Menu.Item>
-)
-
-function RightMenu() {
-    return (
-        <Menu.Item style={{ float: 'right' }}>
-            语言
-        </Menu.Item>
-    )
-}
 
 const HeaderComponent = ({ location, lang = 'null', setLanguage}) => {
     return (<Header>
