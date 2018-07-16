@@ -1,6 +1,6 @@
 
 import React from "react";
-import { NavLink,  } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Layout, Menu, Icon } from "antd";
 const { Header } = Layout;
 const { SubMenu } = Menu
@@ -32,7 +32,7 @@ const MenuItem = ({ path, name, icon }) =>
     </Menu.Item>
 
 
-const HeaderComponent = ({ location, lang = 'null', setLanguage}) => {
+const HeaderComponent = ({ location, lang, setLanguage}) => {
     return (<Header>
         <div className="logo" />
         <Menu
