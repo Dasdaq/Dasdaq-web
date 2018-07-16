@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Sending Feedback](#sending-feedback)
 - [Folder Structure](#folder-structure)
 - [快速上手](#快速上手)
-- [可用 NPM 脚本](#available-scripts)
+- [可用 NPM 脚本](#可用脚本)
   - [yarn start](#yarn-start)
   - [yarn test](#yarn-test)
   - [yarn run build](#yarn-run-build)
@@ -149,7 +149,20 @@ They will not be included in the production build so you can use them for things
 
 ## 快速上手
 
-首先请安装依赖包，Frank 推荐你使用带有缓存机制的 `yarn`，但是 `npm` 应该也没什么问题
+### 选择包管理器
+
+首先我们需要安装项目依赖库
+
+Frank 推荐你使用带有缓存机制且可靠的 [`Yarn`](https://yarnpkg.com/zh-Hans/
+) 作为你的包管理器
+
+当然你使用 node 自带的 `npm` 也没什么问题
+
+### 为什么我应该使用 Yarn
+
+Yarn 和 NPM 两者都是读取 `package.json`，但是与 NPM 不同，Yarn 会默认自动保存每个安装的依赖包的准确的版本号，这能够帮助 Yarn 在所有机器上安装完全相同的依赖树，无论它是你同事的笔记本还是持续集成（CI）服务器。
+
+### 安装依赖库
 
 > yarn
 
@@ -157,10 +170,12 @@ They will not be included in the production build so you can use them for things
 
 > npm install
 
-然后执行 `npm(yarn) run start` 进入开发模式，一般情况下浏览器会自动进入 `localhost:3000`
+### 进入开发模式
+
+执行 `npm(yarn) run start` 进入开发模式，一般情况下浏览器会自动进入 `localhost:3000`
 
 
-## Available Scripts
+## 可用脚本
 
 In the project directory, you can run:
 
