@@ -1,7 +1,8 @@
 
 import React from "react";
 import { NavLink } from 'react-router-dom';
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu, Icon, Row, Col } from "antd";
+import Brand from "../Brand.svg";
 const { Header } = Layout;
 const { SubMenu } = Menu
 
@@ -32,11 +33,19 @@ const MenuItem = ({ path, name, icon }) =>
     </Menu.Item>
 
 
-const HeaderComponent = ({ location, lang, setLanguage}) => {
-    return (<Header>
-        <div className="logo" />
+const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme }) => {
+    const headerBackgroundColor = theme === 'light' ? "#FFF" : "#001529"
+    return (<Header className="header" style={{ background: headerBackgroundColor }}>
+            <Row>
+                <Col xxl={4} xl={5} lg={5} sm={24} xs={24}>
+                    <div className="logo" >
+                        <img src={Brand} alt="Dasdaq Brand" 
+                        style={{maxHeight: '3rem'}}></img>
+                    </div>
+                </Col>
+                <Col xxl={20} xl={19} lg={19} sm={24} xs={24}>
         <Menu
-            theme="dark"
+            theme={theme}
             mode="horizontal"
             defaultSelectedKeys={['/']}
             selectedKeys={[location.pathname]}
@@ -49,16 +58,21 @@ const HeaderComponent = ({ location, lang, setLanguage}) => {
             </Menu.Item>
             <SubMenu 
             style={{ float: 'right' }} 
+            title={<span>主题色</span>}>
+                <Menu.Item onClick={() => setTheme('SWITCH_TO_DARK')}> DARK </Menu.Item>
+                <Menu.Item onClick={() => setTheme('SWITCH_TO_LIGHT')}> LIGHT </Menu.Item>
+            </SubMenu>
+            <SubMenu 
+            style={{ float: 'right' }} 
             title={<span><Icon type="global" /><span>语言 {lang}</span></span>}>
                 <Menu.Item onClick={() => setLanguage('SWITCH_TO_CHINESE')}>中文</Menu.Item>
                 <Menu.Item onClick={() => setLanguage('SWITCH_TO_ENGLISH')}>English</Menu.Item>
                 <Menu.Item onClick={() => setLanguage('SWITCH_TO_JAPANESE')}>日本語</Menu.Item>
                 <Menu.Item onClick={() => setLanguage('SWITCH_TO_KOREAN')}>한국말</Menu.Item>
             </SubMenu>
-            <Menu.Item style={{ float: 'right' }}>
-                黑白
-            </Menu.Item>
         </Menu>
+        </Col>
+        </Row>
     </Header>)
 }
 
