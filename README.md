@@ -1,33 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# Dasdaq
 
-## 目 录   Table of Contents
+[![Join our Telegram](https://icon-icons.com/icons2/555/PNG/32/telegram_icon-icons.com_53603.png)](https://t.me/CryptoHero_Official)
+[![Join our Discord](https://www.shareicon.net/data/32x32/2016/12/30/866945_game_512x512.png)](https://discord.gg/nMXUYGQ)
 
-- [快速上手](#get-start)
-- [什么是 Dasdaq](#what-is-dasdaq)
-- [贡献者守则](#code-of-contributor)
-- [参考资料](#reference)
+[English](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README.md) | [Chinese](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README-zh.md) | [Japanese](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README-jp.md)
 
+## Table of Contents
 
-## 快速上手 | Get Start 
+- [Get Start](#get-start)
+- [What is Dasdaq](#what-is-dasdaq)
+- [Code of Contributor](#code-of-contributor)
+- [Reference](#reference)
+
+## Get Start 
 ```
 yawn 
 yawn start
 ```
 
+## What Is Dasdaq
+Dasdaq, a.k.a., Decentralized Association of Securities Dealers Automated Quotations, is a decentralized exchange, crowd funding platform and collaboration community. 
 
-## 什么是 Dasdaq | What Is Dasdaq
-Dasdaq(Decentralized Association of Securities Dealers Automated Quotations) 是一个使用智能合约进行管理的面向开发者以及投资者的全新的项目协作社区。她同时也是一个长尾代币的交易所和区块链众筹平台。
+## Code of Contributor
 
+1. 👮‍ Be a good commitizen! Please read [conventional commit guide](https://github.com/marionebl/commitlint/tree/master/%40commitlint/config-conventional) 。
 
-## 贡献者守则 | Code of Contributor
+1. 😎 Be a JavaScript hipster! Please use [ECMAScript6](http://es6.ruanyifeng.com/)，as this is 2018 now.
 
-1. 👮‍ Be a good commitizen! Commit 前请查看并遵守 [conventional commit guide](https://github.com/marionebl/commitlint/tree/master/%40commitlint/config-conventional) 。请不要写无规范、无意义的提交信息，包括但不限于: `api fixed`，`修复bug`，可写中文，重点是描述清楚本次提交主要做了什么。
+1. `components`：for common components，`pages`：for view components.
 
-1. 😎 Be a JavaScript hipster! 都 2018 年了，如无特殊原因，请使用 [ECMAScript6 最新语法特性](http://es6.ruanyifeng.com/)，并遵守 ESlint 的指示。异步操作请自觉使用 `async` `await`，拒绝回调金字塔！
-
-1. `components`：存放通用组件，`pages`：存放页面组件
-
-## 参考资料 | Reference
-- ['Yarn 包管理器'](https://yarnpkg.com/zh-Hans/)
-- ['React 官方文档'](https://github.com/facebook/create-react-app)
-- ['React 例子'](https://github.com/enaqx/awesome-react#example-apps)
+## Reference
+- ['Yarn'](https://yarnpkg.com/zh-Hans/)
+- ['React Documents'](https://github.com/facebook/create-react-app)
+- ['Awesome React'](https://github.com/enaqx/awesome-react#example-apps)
