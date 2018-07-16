@@ -105,6 +105,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 1. 😎 Be a JavaScript hipster! 都2018年了，如无特殊原因，请使用 [ECMAScript6 最新语法特性](http://es6.ruanyifeng.com/)，并遵守 ESlint 的指示。异步操作请自觉使用 `async` `await`，拒绝回调金字塔！
 
+1. ‍😄 👮  Linter is your best friend! 持续集成将会把 ESlint 的 Warning 视为 Error，请确保每次提交前你的 Linter 没有 Warning 和 Error。
+
 1. `components`：存放通用组件，`pages`：存放页面组件
 
 
