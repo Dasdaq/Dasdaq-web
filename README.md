@@ -13,8 +13,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 > 如果你还没安装 Yarn 包管理器， 请查看 [Yarn 官方安装指南](https://yarnpkg.com/zh-Hans/docs/install)
 
 ```bash
-yawn 
-yawn start
+yarn 
+yarn start
 ```
 
 
