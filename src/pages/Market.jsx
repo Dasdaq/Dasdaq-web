@@ -1,10 +1,23 @@
 import React, { Component } from "react";
-import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
+import { Chart, Geom, Axis, Tooltip, Coord, Label, Legend, View } from "bizcharts";
 import axios from "axios";
-import DataSet from "@antv/data-set";
+import DataSet, { DataView } from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
-
+const CoinPrices = [
+    {name:"Bit",USD:"3333783.0000",CNY:"33335533.0000",JPY:"333333273.0000"},
+    {name:"Eth",USD:"3334433.0000",CNY:"33773333.0000",JPY:"333354533.0000"},
+    {name:"EOS",USD:"3223333.0000",CNY:"33354333.0000",JPY:"3333353434.0000"},
+]
+const ListStyle = {
+    listStyle: 'none',
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: "96%",
+    borderBottom: '1px',
+    borderBottomStyle: 'solid',
+    marginLeft: '2%'
+};
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
@@ -141,6 +154,27 @@ class MarketPage extends Component {
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
+
+                           <div>
+                        <ul style ={ListStyle}>
+                            <li>name</li>
+                            <li>USD</li>
+                            <li>JPY</li>
+                            <li>CNY</li>
+                        </ul>
+                        {CoinPrices.map((Prices) => {
+                        return (
+                            <ul style ={ListStyle}>
+                              <li>{Prices.name}</li>
+                              <li>{Prices.USD}</li>
+                              <li>{Prices.JPY}</li>
+                              <li>{Prices.CNY}</li>
+                           </ul>
+          )
+        })}
+
+                    </div>
+
                 </div>
             </div>
         )
