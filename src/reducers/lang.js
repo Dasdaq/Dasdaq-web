@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-function languageDetection() {
+function localeDetection() {
     const langs = window.navigator.languages
     const listOfLangs = langs.map(obj => obj.slice(0, 2))
     for (let lang of listOfLangs) {
@@ -12,27 +12,27 @@ function languageDetection() {
     }
 }
 
-const userLanguageDetection = () => (Cookies.get('userLanguage') || languageDetection())
+// Express them in One Line of code 😄
+ 
+const getUserLocale = () => (Cookies.get('userLanguage') || localeDetection())
+const saveLocale = (localeCode) => Cookies.set('userLanguage', localeCode)
 
-
-const setLanguageCookie = (localeCode) => Cookies.set('userLanguage', localeCode)
-
-const lang = (state = userLanguageDetection(), action) => {
+const lang = (state = getUserLocale(), action) => {
     switch (action.type) {
         case 'SWITCH_TO_CHINESE': {
-            setLanguageCookie('zh_CN')
+            saveLocale('zh_CN')
             return 'zh_CN'
         }
         case 'SWITCH_TO_JAPANESE': {
-            setLanguageCookie('ja-JP')
+            saveLocale('ja-JP')
             return 'ja-JP'
         }
         case 'SWITCH_TO_KOREAN': {
-            setLanguageCookie('ko-KR')
+            saveLocale('ko-KR')
             return 'ko-KR'
         }
         case 'SWITCH_TO_ENGLISH': {
-            setLanguageCookie('en-US')
+            saveLocale('en-US')
             return 'en-US'
         }
         default: return state
