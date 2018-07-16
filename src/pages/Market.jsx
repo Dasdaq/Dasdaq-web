@@ -4,11 +4,31 @@ import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
+import { Table } from 'antd';
+
 const CoinPrices = [
-    {name:"Bit",USD:"3333783.0000",CNY:"33335533.0000",JPY:"333333273.0000"},
-    {name:"Eth",USD:"3334433.0000",CNY:"33773333.0000",JPY:"333354533.0000"},
-    {name:"EOS",USD:"3223333.0000",CNY:"33354333.0000",JPY:"3333353434.0000"},
+    {key: "1", name:"Bit", USD:"3333783.0000", CNY:"33335533.0000", JPY:"333333273.0000"},
+    {key: "2", name:"Eth", USD:"3334433.0000", CNY:"33773333.0000", JPY:"333354533.0000"},
+    {key: "3", name:"EOS", USD:"3223333.0000", CNY:"33354333.0000", JPY:"3333353434.0000"},
 ]
+const columns = [{
+    title: '名称',
+    dataIndex: 'name',
+    key: 'name',
+  }, {
+    title: '兑换为USD',
+    dataIndex: 'USD',
+    key: 'USD',
+  }, {
+    title: '兑换为CNY',
+    dataIndex: 'CNY',
+    key: 'CNY',
+  }, {
+    title: '兑换为JPY',
+    dataIndex: 'JPY',
+    key: 'JPY',
+  }];
+  
 const ListStyle = {
     listStyle: 'none',
     display: 'flex',
@@ -154,25 +174,24 @@ class MarketPage extends Component {
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
-
                            <div>
-                        <ul style ={ListStyle}>
+                           <Table dataSource={CoinPrices} columns={columns} />
+                        {/* <ul style ={ListStyle}>
                             <li>name</li>
                             <li>USD</li>
                             <li>JPY</li>
                             <li>CNY</li>
                         </ul>
                         {CoinPrices.map((Prices) => {
-                        return (
-                            <ul style ={ListStyle}>
-                              <li>{Prices.name}</li>
-                              <li>{Prices.USD}</li>
-                              <li>{Prices.JPY}</li>
-                              <li>{Prices.CNY}</li>
-                           </ul>
-          )
-        })}
-
+                            return (
+                                <ul style ={ListStyle}>
+                                    <li>{Prices.name}</li>
+                                    <li>{Prices.USD}</li>
+                                    <li>{Prices.JPY}</li>
+                                    <li>{Prices.CNY}</li>
+                                </ul>
+                            )
+                        })} */}
                     </div>
 
                 </div>
