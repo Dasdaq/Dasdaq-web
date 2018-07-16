@@ -3,7 +3,7 @@
 [![Join our Telegram](https://icon-icons.com/icons2/555/PNG/32/telegram_icon-icons.com_53603.png)](https://t.me/CryptoHero_Official)
 [![Join our Discord](https://www.shareicon.net/data/32x32/2016/12/30/866945_game_512x512.png)](https://discord.gg/nMXUYGQ)
 
-[English](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README.md) | [Chinese](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README-zh.md) | [Japanese](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README-jp.md)
+[English](https://github.com/Dasdaq/Dasdaq-web/blob/master/doc/README-en.md) | [Chinese](https://github.com/Dasdaq/Dasdaq-web/blob/master/doc/README-zh.md) | [Japanese](https://github.com/Dasdaq/Dasdaq-web/blob/master/doc/README-jp.md)
 
 ## Table of Contents
 - [Get Start](#get-start)
@@ -37,21 +37,3 @@ Dasdaq, a.k.a., Decentralized Association of Securities Dealers Automated Quotat
 - ['React Documents'](https://github.com/facebook/create-react-app)
 - [React China Official Documents](https://doc.react-china.org/docs/hello-world.html)
 - ['Awesome React'](https://github.com/enaqx/awesome-react#example-apps)
-
-
-
-
-
-# Dasdaq
-
-[![Join our Telegram](https://icon-icons.com/icons2/555/PNG/32/telegram_icon-icons.com_53603.png)](https://t.me/CryptoHero_Official)
-[![Join our Discord](https://www.shareicon.net/data/32x32/2016/12/30/866945_game_512x512.png)](https://discord.gg/nMXUYGQ)
-
-[English](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README.md) | [Chinese](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README-zh.md) | [Japanese](https://github.com/Andoromeda-Foundation/cryptohero-frontend/blob/master/README-jp.md)
-
-## Table of Contents
-
-- [Get Start](#get-start)
-- [What is Dasdaq](#what-is-dasdaq)
-- [Code of Contributor](#code-of-contributor)
-- [Reference](#reference)
