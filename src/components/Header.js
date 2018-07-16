@@ -19,6 +19,10 @@ const navigationMenus = [
         name: '市场'
     },
     {
+        path: '/dapp',
+        name: '应用'
+    },
+    {
         path: '/about',
         name: '关于'
     },

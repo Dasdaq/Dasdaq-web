@@ -7,26 +7,32 @@ import Slider from "bizcharts-plugin-slider";
 import { Table } from 'antd';
 
 const CoinPrices = [
-    {key: "1", name:"Bit", USD:"3333783.0000", CNY:"33335533.0000", JPY:"333333273.0000"},
-    {key: "2", name:"Eth", USD:"3334433.0000", CNY:"33773333.0000", JPY:"333354533.0000"},
-    {key: "3", name:"EOS", USD:"3223333.0000", CNY:"33354333.0000", JPY:"3333353434.0000"},
+    {key: "1", name:"USD", BTC:"3333783.0000", ETH:"33335533.0000", EOS:"333333273.0000"},
+    {key: "2", name:"CNY", BTC:"3334433.0000", ETH:"33773333.0000", EOS:"333354533.0000"},
+    {key: "3", name:"JPY", BTC:"3223333.0000", ETH:"33354333.0000", EOS:"3333353434.0000"},
 ]
 const columns = [{
     title: '名称',
     dataIndex: 'name',
     key: 'name',
   }, {
-    title: '兑换为USD',
-    dataIndex: 'USD',
-    key: 'USD',
+    title: '兑换为BTC',
+    dataIndex: 'BTC',
+    key: 'BTC',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => parseInt(a.BTC) - parseInt(b.BTC),
   }, {
-    title: '兑换为CNY',
-    dataIndex: 'CNY',
-    key: 'CNY',
+    title: '兑换为ETH',
+    dataIndex: 'ETH',
+    key: 'ETH',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => parseInt(a.ETH) - parseInt(b.ETH),
   }, {
-    title: '兑换为JPY',
-    dataIndex: 'JPY',
-    key: 'JPY',
+    title: '兑换为EOS',
+    dataIndex: 'EOS',
+    key: 'EOS',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => parseInt(a.EOS) - parseInt(b.EOS),
   }];
   
 const ListStyle = {
@@ -81,7 +87,7 @@ class MarketPage extends Component {
         const { data } = await axios.get(api, {
             params: {
                 fsym: 'BTC',
-                tsym: 'CNY',
+                tsym: 'ETH',
                 limit: 1440,
                 aggregate: 15,
                 extraParams: "Cryptocurrency_Market"
@@ -176,22 +182,6 @@ class MarketPage extends Component {
                     />
                            <div>
                            <Table dataSource={CoinPrices} columns={columns} />
-                        {/* <ul style ={ListStyle}>
-                            <li>name</li>
-                            <li>USD</li>
-                            <li>JPY</li>
-                            <li>CNY</li>
-                        </ul>
-                        {CoinPrices.map((Prices) => {
-                            return (
-                                <ul style ={ListStyle}>
-                                    <li>{Prices.name}</li>
-                                    <li>{Prices.USD}</li>
-                                    <li>{Prices.JPY}</li>
-                                    <li>{Prices.CNY}</li>
-                                </ul>
-                            )
-                        })} */}
                     </div>
 
                 </div>
