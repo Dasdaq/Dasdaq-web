@@ -5,6 +5,7 @@ import { About } from "./components/about";
 import VisiableHeader from "./containers/VisiableHeader";
 import Home from "./pages/Home";
 import Market from "./pages/Market";
+import Dapp from "./pages/Dapp";
 import config from './config'
 import './App.css';
 const { Footer } = Layout;
