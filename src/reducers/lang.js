@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 function languageDetection() {
     const langs = window.navigator.languages
     const listOfLangs = langs.map(obj => obj.slice(0, 2))
@@ -11,18 +12,30 @@ function languageDetection() {
     }
 }
 
-const lang = (state = languageDetection(), action) => {
+const userLanguageDetection = () => (Cookies.get('userLanguage') || languageDetection())
+
+
+const setLanguageCookie = (localeCode) => Cookies.set('userLanguage', localeCode)
+
+const lang = (state = userLanguageDetection(), action) => {
     switch (action.type) {
-        case 'SWITCH_TO_CHINESE':
+        case 'SWITCH_TO_CHINESE': {
+            setLanguageCookie('zh_CN')
             return 'zh_CN'
-        case 'SWITCH_TO_JAPANESE':
+        }
+        case 'SWITCH_TO_JAPANESE': {
+            setLanguageCookie('ja-JP')
             return 'ja-JP'
-        case 'SWITCH_TO_KOREAN':
+        }
+        case 'SWITCH_TO_KOREAN': {
+            setLanguageCookie('ko-KR')
             return 'ko-KR'
-        case 'SWITCH_TO_ENGLISH':
+        }
+        case 'SWITCH_TO_ENGLISH': {
+            setLanguageCookie('en-US')
             return 'en-US'
-        default:
-            return state
+        }
+        default: return state
     }
 }
 
