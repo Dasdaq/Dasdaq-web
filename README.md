@@ -6,6 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [更新](#updating-to-new-releases)
 - [Sending Feedback](#sending-feedback)
 - [Folder Structure](#folder-structure)
+- [快速上手](#快速上手)
 - [可用 NPM 脚本](#available-scripts)
   - [yarn start](#yarn-start)
   - [yarn test](#yarn-test)
@@ -145,6 +146,19 @@ Read instructions below for using assets from JavaScript and HTML.
 
 You can, however, create more top-level directories.<br>
 They will not be included in the production build so you can use them for things like documentation.
+
+## 快速上手
+
+首先请安装依赖包，Frank 推荐你使用带有缓存机制的 `yarn`，但是 `npm` 应该也没什么问题
+
+> yarn
+
+或
+
+> npm install
+
+然后执行 `npm(yarn) run start` 进入开发模式，一般情况下浏览器会自动进入 `localhost:3000`
+
 
 ## Available Scripts
 
