@@ -1,4 +1,17 @@
-const lang = (state = 'en-US', action) => {
+function languageDetection() {
+    const langs = window.navigator.languages
+    const listOfLangs = langs.map(obj => obj.slice(0, 2))
+    for (let lang of listOfLangs) {
+        switch (lang) {
+            case 'zh': return 'zh_CN'
+            case 'ja': return 'ja-JP'
+            case 'ko': return 'ko-KR'
+            default: return 'en-US'
+        }
+    }
+}
+
+const lang = (state = languageDetection(), action) => {
     switch (action.type) {
         case 'SWITCH_TO_CHINESE':
             return 'zh_CN'
