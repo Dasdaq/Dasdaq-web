@@ -13,15 +13,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 > 如果你还没安装 Yarn 包管理器， 请查看 [Yarn 官方安装指南](https://yarnpkg.com/zh-Hans/docs/install)
 
 ```bash
-yarn 
-yarn start
+yarn # 安装依赖
+yarn start # 进入开发模式
 ```
-
-
-## 什么是 Dasdaq
-
-Dasdaq(Decentralized Association of Securities Dealers Automated Quotations) 是一个使用智能合约进行管理的面向开发者以及投资者的全新的项目协作社区。她同时也是一个长尾代币的交易所和区块链众筹平台。
-
 
 ## 贡献者守则
 
@@ -32,6 +26,10 @@ Dasdaq(Decentralized Association of Securities Dealers Automated Quotations) 是
 1. ❌ No `.then(⛰️)` 如无特殊原因，异步操作请自觉使用 `async` `await`，拒绝层层镶嵌的 callback 金字塔！
 
 1. `components`：存放通用组件，`pages`：存放页面组件，`containers` 存放与 Redux connect 后的页面组件
+
+## 什么是 Dasdaq
+
+Dasdaq(Decentralized Association of Securities Dealers Automated Quotations) 是一个使用智能合约进行管理的面向开发者以及投资者的全新的项目协作社区。她同时也是一个长尾代币的交易所和区块链众筹平台。
 
 ## 参考资料
 - [Yarn 包管理器](https://yarnpkg.com/zh-Hans/)
