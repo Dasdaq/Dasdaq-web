@@ -2,7 +2,8 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import { Layout, Menu, Icon, Row, Col } from "antd";
-import Brand from "../Brand.svg";
+import BrandLight from "../Brand-Light.svg";
+import BrandDark from "../Brand-Dark.svg";
 const { Header } = Layout;
 const { SubMenu } = Menu
 
@@ -34,7 +35,8 @@ const MenuItem = ({ path, name, icon }) =>
 
 
 const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme }) => {
-    const headerBackgroundColor = theme === 'light' ? "#FFF" : "#001529"
+    const headerBackgroundColor = theme === 'light' ? "#FFF" : "#000"
+    const Brand = theme === 'light'? BrandDark : BrandLight
     return (<Header className="header" style={{ background: headerBackgroundColor }}>
             <Row>
                 <Col xxl={4} xl={5} lg={5} sm={24} xs={24}>
@@ -49,7 +51,7 @@ const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme }) => {
             mode="horizontal"
             defaultSelectedKeys={['/']}
             selectedKeys={[location.pathname]}
-            style={{ lineHeight: '64px' }}>
+            style={{ lineHeight: '64px', background: headerBackgroundColor }}>
             {
                 navigationMenus.map(MenuItem)
             }
