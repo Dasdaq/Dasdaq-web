@@ -22,7 +22,7 @@ const bannerStyle = {
 // }
 
 export default function Home() {
-    return (<div className="index-page">
+    return (<div className="index-page" style={{ marginTop: "-64px" }}>
         <div className="banner" style={bannerStyle}>
             <img src={Brand} alt="Dasdaq" style={{ maxWidth: "24rem" }} >
 
