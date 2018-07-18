@@ -20,30 +20,30 @@ const columns = [{
     dataIndex: 'BTC',
     key: 'BTC',
     defaultSortOrder: 'descend',
-    sorter: (a, b) => parseInt(a.BTC) - parseInt(b.BTC),
+    sorter: (a, b) => parseInt(a.BTC, 10) - parseInt(b.BTC, 10),
   }, {
     title: '兑换为ETH',
     dataIndex: 'ETH',
     key: 'ETH',
     defaultSortOrder: 'descend',
-    sorter: (a, b) => parseInt(a.ETH) - parseInt(b.ETH),
+    sorter: (a, b) => parseInt(a.ETH, 10) - parseInt(b.ETH, 10),
   }, {
     title: '兑换为EOS',
     dataIndex: 'EOS',
     key: 'EOS',
     defaultSortOrder: 'descend',
-    sorter: (a, b) => parseInt(a.EOS) - parseInt(b.EOS),
+    sorter: (a, b) => parseInt(a.EOS, 10) - parseInt(b.EOS, 10),
   }];
   
-const ListStyle = {
-    listStyle: 'none',
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: "96%",
-    borderBottom: '1px',
-    borderBottomStyle: 'solid',
-    marginLeft: '2%'
-};
+// const ListStyle = {
+//     listStyle: 'none',
+//     display: 'flex',
+//     justifyContent: 'space-around',
+//     width: "96%",
+//     borderBottom: '1px',
+//     borderBottomStyle: 'solid',
+//     marginLeft: '2%'
+// };
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
