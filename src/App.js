@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { About } from "./components/about";
+import SimpleMarket from "./components/crypto/SimpleMarketView";
 import VisiableHeader from "./containers/VisiableHeader";
 import Home from "./pages/Home";
 import Market from "./pages/Market";
@@ -22,6 +23,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={About} />
                 <Route path="/market" component={Market} />
+                <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/dapp" component={Dapp} />
               </div>
 
