@@ -29,15 +29,15 @@ const columns = [{
     key: 'JPY',
   }];
   
-const ListStyle = {
-    listStyle: 'none',
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: "96%",
-    borderBottom: '1px',
-    borderBottomStyle: 'solid',
-    marginLeft: '2%'
-};
+// const ListStyle = {
+//     listStyle: 'none',
+//     display: 'flex',
+//     justifyContent: 'space-around',
+//     width: "96%",
+//     borderBottom: '1px',
+//     borderBottomStyle: 'solid',
+//     marginLeft: '2%'
+// };
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
