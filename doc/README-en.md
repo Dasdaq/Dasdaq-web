@@ -27,6 +27,7 @@ yarn start # Developer Mode
 1. ❌ No `.then(⛰️)`，please use `async` `await`!
 
 1. `components`：for common components，`pages`：for view components.
+## Get Start 
 
 ## What Is Dasdaq
 Dasdaq, a.k.a., Decentralized Association of Securities Dealers Automated Quotations, is a decentralized exchange, crowd funding platform and collaboration community. 

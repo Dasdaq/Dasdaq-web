@@ -24,8 +24,13 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
+    "chai": "^4.1.2",
     "react-app-rewire-less": "^2.1.2",
     "react-app-rewired": "^1.5.2",
     "redux-devtools": "^3.4.1"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Dasdaq/Dasdaq-web.git",
+  "author": "xiaodao <lychees67@gmail.com>",
+  "license": "MIT"
 }
