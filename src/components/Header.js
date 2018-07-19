@@ -22,11 +22,7 @@ const navigationMenus = [
         path: '/dapp',
         icon: 'appstore',
         name: '应用'
-    },
-    {
-        path: '/about',
-        name: '关于'
-    },
+    }
 ]
 
 
@@ -49,7 +45,7 @@ function smartNavbarColor({ location, theme }) {
 }
 
 
-const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme }) => {
+const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme, crypto, setCrypto }) => {
     const { headerBackgroundColor, otherColor } = smartNavbarColor({ location, theme })
     // headerBackgroundColor = isHomePage === true ?  : headerBackgroundColor 
     const Brand = theme === 'light' ? BrandDark : BrandLight
@@ -79,9 +75,7 @@ const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme }) => {
                     {
                         navigationMenus.map(MenuItem)
                     }
-                    <Menu.Item style={{ float: 'right' }}>
-                        当前货币：BTC
-            </Menu.Item>
+
                     <SubMenu
                         style={{ float: 'right' }}
                         title={<span>主题色</span>}>
@@ -96,6 +90,16 @@ const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme }) => {
                         <Menu.Item onClick={() => setLanguage('SWITCH_TO_JAPANESE')}>日本語</Menu.Item>
                         <Menu.Item onClick={() => setLanguage('SWITCH_TO_KOREAN')}>한국말</Menu.Item>
                     </SubMenu>
+                    <SubMenu
+                        style={{ float: 'right' }}
+                        title={<span><Icon type="bank" /><span> 货币：{crypto}</span></span>}>
+                        <Menu.Item onClick={() => setCrypto('BTC')}>Bitcoin</Menu.Item>
+                        <Menu.Item onClick={() => setCrypto('ETH')}>Ethereum</Menu.Item>
+                        <Menu.Item onClick={() => setCrypto('EOS')}>EOS</Menu.Item>
+                    </SubMenu>
+                    <Menu.Item style={{ float: 'right' }}>
+                        
+            </Menu.Item>
                 </Menu>
             </Col>
         </Row>
