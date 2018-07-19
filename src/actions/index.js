@@ -2,6 +2,8 @@ export const setLanguage = (locale_code) => ({
     type: locale_code
 })
 
-export const setTheme = (type) => ({
-    type
-})
+const defaultSetterAction = (type) => ({type})
+
+export const setTheme = defaultSetterAction
+
+export const setCrypto = defaultSetterAction
