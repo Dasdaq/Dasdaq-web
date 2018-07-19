@@ -20,6 +20,7 @@ const navigationMenus = [
     },
     {
         path: '/dapp',
+        icon: 'appstore',
         name: '应用'
     },
     {
