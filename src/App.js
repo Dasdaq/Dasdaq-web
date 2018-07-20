@@ -9,18 +9,22 @@ import Market from "./pages/Market";
 import Dapp from "./pages/Dapp";
 import config from './config'
 import './App.css';
+import AccountView from "./pages/User";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 const { Footer } = Layout;
 
-const AccountView = ({match}) => (
-  <div className="account"> {JSON.stringify(match)} </div>
-)
+// const AccountView = ({match}) => (
+//   <div className="account"> {JSON.stringify(match)} </div>
+// )
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router basename="/">
-            <div className="container">
+            <div className="container" style={{ minHeight: 'calc(100vh - 70px)' }}>
               {/* <Header /> */}
               <VisiableHeader />
               <div className="router-view" >
@@ -29,10 +33,11 @@ class App extends Component {
                 <Route path="/market" component={Market} />
                 
                 {/* Routes Account Part */}
-                <Route path="/account">
+                <Route path="/account" >
                   <Switch>
-                    <Route path="/account/login" component={AccountView} />
-                    <Route path="/account/register" component={AccountView} />
+                    <Route path="/account/userinfo" component={AccountView} />
+                    <Route path="/account/login" component={Login} />
+                    <Route path="/account/register" component={Register} />
                     <Route component={PageNotFound} />
                   </Switch>
                 </Route>

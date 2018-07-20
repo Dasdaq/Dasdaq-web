@@ -9,6 +9,7 @@
     "bizcharts": "^3.1.10",
     "bizcharts-plugin-slider": "^2.0.3",
     "js-cookie": "^2.2.0",
+    "material-ui": "^0.20.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-intl-universal": "^1.11.4",

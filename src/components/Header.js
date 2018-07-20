@@ -22,6 +22,11 @@ const navigationMenus = [
         path: '/dapp',
         icon: 'appstore',
         name: '应用'
+    },
+    {
+        path: '/account',
+        icon: 'appstore',
+        name: '我的'
     }
 ]
 
