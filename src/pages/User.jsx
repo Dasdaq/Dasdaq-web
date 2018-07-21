@@ -25,7 +25,7 @@ class User extends React.Component {
     }
 
     renderInfo() {
-        if(this.state.menuindex == 0) {
+        if(this.state.menuindex === 0) {
         return  <Paper style={style.papercontainer} zDepth={0}>
                     <h2>个人信息</h2>
                     <TextField
@@ -48,7 +48,7 @@ class User extends React.Component {
     }
 
     renderPassword() {
-        if(this.state.menuindex == 1) {
+        if(this.state.menuindex === 1) {
         return  <Paper style={style.papercontainer} zDepth={0}>
                     <h2>修改密码</h2>
                     <TextField
@@ -74,7 +74,7 @@ class User extends React.Component {
     }
 
     renderWallet() {
-        if(this.state.menuindex == 2) {
+        if(this.state.menuindex === 2) {
         return  <Paper style={style.papercontainer} zDepth={0}>
                     <h2>绑定钱包</h2>
                 </Paper>
