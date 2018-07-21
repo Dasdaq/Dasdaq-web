@@ -33,7 +33,8 @@ export default function Home() {
                 opacity: 1, transform: `translate(0px, 0px)`, fontSize: `20px`,
                 lineHeight: `40px`,
             }}>
-                {intl.get('welcome')}</p>
+                {intl.get('homepage.welcome')}
+                </p>
             <p> </p>
         </div>
         {/* <img src={logo} alt="给你比心" style={{ maxWidth: "100%" }} /> */}

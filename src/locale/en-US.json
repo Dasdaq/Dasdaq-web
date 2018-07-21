@@ -1,6 +1,50 @@
 {
-    "welcome": "Welcome to the future",
-    "market": "Market",
-    "app store": "DApp Store",
-    "theme": "Theme"
+    "homepage": {
+        "welcome": "Welcome to the decentralized future"
+    },
+    "user": {
+        "register": {
+            "title": "Register New Account",
+            "email": "Email Address",
+            "username": "Username",
+            "password": "Password",
+            "confirm password": "Confirm Password",
+            "register": "Register"
+        },
+        "login": {
+            "user login": "User Login",
+            "remember me": "Remember me",
+            "forgot password": "Forgot password",
+            "login": "Login",
+            "register new account": "Register new account",
+            "or": "or",
+            "username": "Username",
+            "password": "Password"
+        }
+    },
+    "navbar": {
+        "market": "Market",
+        "app store": "DApp Store",
+        "theme": "Theme",
+        "home": "Home",
+        "my account": "My Account",
+        "unit": "Unit"
+    },
+    "theme": {
+        "dark": "Dark",
+        "light": "Light"
+    },
+    "404": {
+        "title": "Oops, something went wrong.",
+        "code": "Code",
+        "The page you requested": "The page you requested",
+        "is not exist": "is not exist.",
+        "report-to-us": "If you were directed to here, please let us know!",
+        "Go Back": "Go Back",
+        "Go Home": "Go to Home Page" 
+    },
+    "Construction": {
+        "in custruction": "Is in custruction",
+        "checkout later": "Please Checkout Later"
+    }
 }
