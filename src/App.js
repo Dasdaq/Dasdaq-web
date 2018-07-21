@@ -34,7 +34,7 @@ class App extends Component {
                 {/* Routes Account Part */}
                 <Route path="/account" >
                   <Switch>
-                    <Route path="/account/userinfo" component={AccountView} />
+                    <Route path="/account/info" component={AccountView} />
                     <Route path="/account/login" component={Login} />
                     <Route path="/account/register" component={Register} />
                     <Route component={PageNotFound} />

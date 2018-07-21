@@ -1,15 +1,9 @@
 import React from "react"
-import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Paper from 'material-ui/Paper';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
-import PersonAdd from 'material-ui/svg-icons/social/person-add';
-import ContentLink from 'material-ui/svg-icons/content/link';
-import Divider from 'material-ui/Divider';
-import Delete from 'material-ui/svg-icons/action/delete';
-import TextField from 'material-ui/TextField';
+import { Form, Icon, Input, Button, Checkbox, Menu, Row, Col } from 'antd';
+
+const FormItem = Form.Item;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 class User extends React.Component {
 
@@ -20,102 +14,102 @@ class User extends React.Component {
         }
     }
 
-    menuClicked(event,menuItem,index) {
-        this.setState( {menuindex: index} );
+    menuClicked(e) {
+      const index = parseInt(e['key']);
+      this.setState( {menuindex: index} );
     }
 
     renderInfo() {
         if(this.state.menuindex === 0) {
-        return  <Paper style={style.papercontainer} zDepth={0}>
-                    <h2>个人信息</h2>
-                    <TextField
-                      hintText="default name"
-                      floatingLabelText="昵称"
-                      floatingLabelFixed={true}
-                    />
-                    <br />
-                    <TextField
-                      hintText="default email"
-                      floatingLabelText="邮箱"
-                      floatingLabelFixed={true}
-                    />
-                    <br />
-                    <br />
-                    <br />
-                    <RaisedButton label="确认修改" primary={true} />
-                </Paper>
+        return <Form style={ style.container }>
+                <h2>个人信息</h2>
+                <br />
+                <FormItem>
+                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
+                </FormItem>
+                <FormItem>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="邮箱" />
+                </FormItem>
+                <FormItem>
+                  <Button type="primary" htmlType="submit" className="login-form-button">
+                    确认修改
+                  </Button>
+                </FormItem>
+              </Form>
             }
     }
 
     renderPassword() {
         if(this.state.menuindex === 1) {
-        return  <Paper style={style.papercontainer} zDepth={0}>
-                    <h2>修改密码</h2>
-                    <TextField
-                      floatingLabelText="旧密码"
-                      floatingLabelFixed={true}
-                    />
-                    <br />
-                    <TextField
-                      floatingLabelText="新密码"
-                      floatingLabelFixed={true}
-                    />
-                    <br />
-                    <TextField
-                      floatingLabelText="确认新密码"
-                      floatingLabelFixed={true}
-                    />
-                    <br />
-                    <br />
-                    <br />
-                    <RaisedButton label="确认修改" primary={true} />
-                </Paper>
+        return <Form style={ style.container }>
+                <h2>修改密码</h2>
+                <br />
+                <FormItem>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="旧密码" />
+                </FormItem>
+                <FormItem>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="新密码" />
+                </FormItem>
+                <FormItem>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="确认新密码" />
+                </FormItem>
+                <FormItem>
+                  <Button type="primary" htmlType="submit" className="login-form-button">
+                    确认修改
+                  </Button>
+                </FormItem>
+              </Form>
             }
     }
 
     renderWallet() {
         if(this.state.menuindex === 2) {
-        return  <Paper style={style.papercontainer} zDepth={0}>
+        return  <Form style={ style.container }>
                     <h2>绑定钱包</h2>
-                </Paper>
+                </Form>
             }
     }
 
     render() {
         return (
-            <MuiThemeProvider>
             <div>
-                <Paper style={style.paper}>
-                  <Menu onItemClick={this.menuClicked.bind(this)}>
-                    <MenuItem primaryText="个人信息" leftIcon={<PersonAdd />}/>
-                    <MenuItem primaryText="修改密码" leftIcon={<RemoveRedEye />} />
-                    <MenuItem primaryText="绑定第三方钱包" leftIcon={<ContentLink />} />
-                    <MenuItem primaryText="绑定第三方账户" leftIcon={<ContentLink />} />
-                    <Divider />
-                    <MenuItem primaryText="退出登录" leftIcon={<Delete />} />
+              <Row>
+                <Col span={4}>
+                  <Menu
+                    onClick={this.menuClicked.bind(this)}
+                    style={{ width: 256 }}
+                    defaultSelectedKeys={['0']}
+                    defaultOpenKeys={['sub1']}
+                    mode="inline"
+                  >
+                      <MenuItemGroup key="g1">
+                        <Menu.Item key="0">个人信息</Menu.Item>
+                        <Menu.Item key="1">修改密码</Menu.Item>
+                        <Menu.Item key="2">绑定第三方钱包</Menu.Item>
+                        <Menu.Item key="3">绑定第三方账户</Menu.Item>
+                      </MenuItemGroup>
+                      <MenuItemGroup key="g2">
+                        <Menu.Item key="5">退出登录</Menu.Item>
+                      </MenuItemGroup>
                   </Menu>
-                </Paper>
-                { this.renderInfo() }
-                { this.renderPassword() }
-                { this.renderWallet() }
+                </Col>
+                <Col span={20}>
+                  { this.renderInfo() }
+                  { this.renderPassword() }
+                  { this.renderWallet() }
+                </Col>
+              </Row>
             </div>
-            </MuiThemeProvider>
         )
     }
 }
 
 const style = {
-  paper: {
-    display: 'inline-block',
-    float: 'left',
-  },
-  papercontainer: {
+  container: {
+    maxWidth: '300px',
     padding: '30px',
-    marginLeft: '200px'
-  },
-  rightIcon: {
-    textAlign: 'center',
-    lineHeight: '24px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 };
 
