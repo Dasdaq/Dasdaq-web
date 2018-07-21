@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
+import intl from 'react-intl-universal';
+
+// Connecting store's state as props in the export process at the bottom
+import { connect } from "react-redux";
+
+// React-router stuff
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import locales from "./locale";
+
+// Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
 import VisiableHeader from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
@@ -18,9 +28,51 @@ const { Footer } = Layout;
 //   <div className="account"> {JSON.stringify(match)} </div>
 // )
 
+const SUPPORT_LOCALES = [
+  {
+    name: "English",
+    value: "en-US"
+  },
+  {
+    name: "中文",
+    value: "zh-CN"
+  },
+  {
+    name: "韩语",
+    value: "ko-KR"
+  },
+  {
+    name: "日本语",
+    value: "ja-JP"
+  }
+];
+// const locales = {
+//   "en-US": require('./locale/en-US.json'),
+//   "zh-CN": require('./locale/zh-CN.json'),
+//   "ko-KR": require('./locale/ko-KR.json'),
+//   "ja-JP": require('./locale/ja-JP.json'),
+// };
+
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      i18nLoaded: false
+    }
+  }
+  async componentDidMount() {
+    const { lang } = this.props
+    console.info(`用户语言为: ${lang}`)
+    // i18n 的黑魔法，不 await 阻塞会引起部分i18n文字为空白
+    await intl.init({
+      currentLocale: lang,
+      locales,
+    })
+    this.setState({ i18nLoaded: true })
+    console.log(intl.get('welcome'))
+  }
   render() {
-    return (
+    return this.state.i18nLoaded && (
       <div className="App">
         <Router basename="/">
           <div className="container" style={{ minHeight: 'calc(100vh - 70px)' }}>
@@ -58,4 +110,7 @@ class App extends Component {
   }
 }
 
-export default App;
+
+export default connect(
+  (state) => ({ lang: state.lang })
+)(App);
