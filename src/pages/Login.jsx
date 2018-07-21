@@ -4,11 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 
 class Login extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <MuiThemeProvider>
