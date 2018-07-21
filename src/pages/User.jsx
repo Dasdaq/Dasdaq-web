@@ -1,9 +1,13 @@
 import React from "react"
-import { Form, Icon, Input, Button, Checkbox, Menu, Row, Col } from 'antd';
+import { Form, Icon, Input, Button, Col , Menu, Row,
+  // Checkbox
+  } from 'antd';
 
 const FormItem = Form.Item;
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+const {
+  MenuItemGroup,
+  // SubMenu
+} = Menu
 
 class User extends React.Component {
 
@@ -15,7 +19,7 @@ class User extends React.Component {
     }
 
     menuClicked(e) {
-      const index = parseInt(e['key']);
+      const index = parseInt(e['key'], 10);
       this.setState( {menuindex: index} );
     }
 

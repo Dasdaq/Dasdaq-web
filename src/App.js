@@ -28,31 +28,6 @@ const { Footer } = Layout;
 //   <div className="account"> {JSON.stringify(match)} </div>
 // )
 
-const SUPPORT_LOCALES = [
-  {
-    name: "English",
-    value: "en-US"
-  },
-  {
-    name: "中文",
-    value: "zh-CN"
-  },
-  {
-    name: "韩语",
-    value: "ko-KR"
-  },
-  {
-    name: "日本语",
-    value: "ja-JP"
-  }
-];
-// const locales = {
-//   "en-US": require('./locale/en-US.json'),
-//   "zh-CN": require('./locale/zh-CN.json'),
-//   "ko-KR": require('./locale/ko-KR.json'),
-//   "ja-JP": require('./locale/ja-JP.json'),
-// };
-
 class App extends Component {
   constructor() {
     super()
