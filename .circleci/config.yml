@@ -80,6 +80,7 @@ jobs:
           command: |
             sudo npm i -g surge          
             cd ./build/build/
+            mv index.html 200.html # workaround for spa router
             # echo "testing.cryptohero.pro" >> CNAME # add custom domain
             surge --project ./ --domain preview.dasdaq.io
 
