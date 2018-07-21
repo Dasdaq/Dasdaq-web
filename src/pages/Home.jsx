@@ -1,4 +1,5 @@
 import React from "react"
+import intl from "react-intl-universal";
 // import config from "../config";
 import Brand from "../Brand-Outline.svg";
 
@@ -32,7 +33,7 @@ export default function Home() {
                 opacity: 1, transform: `translate(0px, 0px)`, fontSize: `20px`,
                 lineHeight: `40px`,
             }}>
-                Welcome to the future</p>
+                {intl.get('welcome')}</p>
             <p> </p>
         </div>
         {/* <img src={logo} alt="给你比心" style={{ maxWidth: "100%" }} /> */}

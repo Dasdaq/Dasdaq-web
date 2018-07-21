@@ -1,34 +1,14 @@
 
 import React from "react";
 import { NavLink } from 'react-router-dom';
+import intl from "react-intl-universal";
 import { Layout, Menu, Icon, Row, Col } from "antd";
 import BrandLight from "../Brand-Light.svg";
 import BrandDark from "../Brand-Dark.svg";
 const { Header } = Layout;
 const { SubMenu } = Menu
 
-const navigationMenus = [
-    {
-        path: '/',
-        icon: 'home',
-        name: '首页'
-    },
-    {
-        path: '/market',
-        icon: 'area-chart',
-        name: '市场'
-    },
-    {
-        path: '/dapp',
-        icon: 'appstore',
-        name: '应用'
-    },
-    {
-        path: '/account',
-        icon: 'appstore',
-        name: '我的'
-    }
-]
+
 
 
 const MenuItem = ({ path, name, icon }) =>
@@ -51,6 +31,28 @@ function smartNavbarColor({ location, theme }) {
 
 
 const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme, crypto, setCrypto }) => {
+    const navigationMenus = [
+        {
+            path: '/',
+            icon: 'home',
+            name: intl.get('home')
+        },
+        {
+            path: '/market',
+            icon: 'area-chart',
+            name: intl.get('market')
+        },
+        {
+            path: '/dapp',
+            icon: 'appstore',
+            name: intl.get('app store')
+        },
+        {
+            path: '/account',
+            icon: 'appstore',
+            name: '我的'
+        }
+    ]
     const { headerBackgroundColor, otherColor } = smartNavbarColor({ location, theme })
     // headerBackgroundColor = isHomePage === true ?  : headerBackgroundColor 
     const Brand = theme === 'light' ? BrandDark : BrandLight

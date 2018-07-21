@@ -1,10 +1,13 @@
 import Cookies from "js-cookie";
+import intl from "react-intl-universal";
+import locales from "../locale";
+
 function localeDetection() {
     const langs = window.navigator.languages
     const listOfLangs = langs.map(obj => obj.slice(0, 2))
     for (let lang of listOfLangs) {
         switch (lang) {
-            case 'zh': return 'zh_CN'
+            case 'zh': return 'zh-CN'
             case 'ja': return 'ja-JP'
             case 'ko': return 'ko-KR'
             default: return 'en-US'
@@ -13,27 +16,31 @@ function localeDetection() {
 }
 
 // Express them in One Line of code 😄
- 
+
 const getUserLocale = () => (Cookies.get('userLanguage') || localeDetection())
 const saveLocale = (localeCode) => Cookies.set('userLanguage', localeCode)
+
+const initLang = (currentLocale) => intl.init({ currentLocale, locales })
+
+const switchToLang = (code) => {
+    saveLocale(code)
+    initLang(code)
+    return code
+}
 
 const lang = (state = getUserLocale(), action) => {
     switch (action.type) {
         case 'SWITCH_TO_CHINESE': {
-            saveLocale('zh_CN')
-            return 'zh_CN'
+            return switchToLang('zh-CN')
         }
         case 'SWITCH_TO_JAPANESE': {
-            saveLocale('ja-JP')
-            return 'ja-JP'
+            return switchToLang('ja-JP')
         }
         case 'SWITCH_TO_KOREAN': {
-            saveLocale('ko-KR')
-            return 'ko-KR'
+            return switchToLang('ko-KR')
         }
         case 'SWITCH_TO_ENGLISH': {
-            saveLocale('en-US')
-            return 'en-US'
+            return switchToLang('en-US')
         }
         default: return state
     }
