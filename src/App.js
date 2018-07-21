@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SimpleMarket from "./components/crypto/SimpleMarketView";
 import VisiableHeader from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
-import Home from "./pages/Home";
-import Market from "./pages/Market";
+import { Market, Home } from "./pages/asyncRenderWrapper";
 import Dapp from "./pages/Dapp";
 import config from './config'
 import './App.css';
@@ -24,14 +23,14 @@ class App extends Component {
     return (
       <div className="App">
         <Router basename="/">
-            <div className="container" style={{ minHeight: 'calc(100vh - 70px)' }}>
-              {/* <Header /> */}
-              <VisiableHeader />
-              <div className="router-view" >
+          <div className="container" style={{ minHeight: 'calc(100vh - 70px)' }}>
+            {/* <Header /> */}
+            <VisiableHeader />
+            <div className="router-view" >
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/market" component={Market} />
-                
+
                 {/* Routes Account Part */}
                 <Route path="/account" >
                   <Switch>
@@ -45,11 +44,11 @@ class App extends Component {
                 <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/dapp" component={Dapp} />
                 <Route component={PageNotFound} />
-                </Switch>
-              </div>
-
-
+              </Switch>
             </div>
+
+
+          </div>
         </Router>
         <Footer style={{ textAlign: 'center' }}>
           {config.sitename} ©2018
