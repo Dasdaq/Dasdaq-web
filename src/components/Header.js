@@ -2,8 +2,10 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import { Layout, Menu, Icon, Row, Col } from "antd";
-import BrandLight from "../Brand-Light.svg";
-import BrandDark from "../Brand-Dark.svg";
+// import BrandLight from "../Brand-Light.svg";
+// import BrandDark from "../Brand-Dark.svg";
+import BrandLight from "../Brand-Light1.svg";
+import BrandDark from "../Brand-Dark1.svg";
 const { Header } = Layout;
 const { SubMenu } = Menu
 
@@ -59,7 +61,7 @@ const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme, crypto,
             {
                 background: otherColor,
             }}>
-            <Col xxl={4} xl={5} lg={5} sm={24} xs={24}>
+            <Col xxl={4} xl={5} lg={3} sm={24} xs={24}>
                 <div className="logo" >
                     <img src={Brand} alt="Dasdaq Brand"
                         style={{ maxHeight: '3rem' }}></img>
