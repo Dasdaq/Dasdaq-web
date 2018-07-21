@@ -31,28 +31,36 @@ function smartNavbarColor({ location, theme }) {
     return { headerBackgroundColor, isTransparent, otherColor }
 }
 
+const langList = {
+    "zh-CN": "中文",
+    "en-US": "English",
+    "ja-JP": "日本語",
+    "ko-KR":"한국말"
+}
+
+const navbarI18n = (name) => intl.get(`navbar.${name}`)
 
 const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme, crypto, setCrypto }) => {
     const navigationMenus = [
         {
             path: '/',
             icon: 'home',
-            name: intl.get('home')
+            name: navbarI18n('home')
         },
         {
             path: '/market',
             icon: 'area-chart',
-            name: intl.get('market')
+            name: navbarI18n('market')
         },
         {
             path: '/dapp',
             icon: 'appstore',
-            name: intl.get('app store')
+            name: navbarI18n('app store')
         },
         {
             path: '/account',
-            icon: 'appstore',
-            name: '我的'
+            icon: 'user',
+            name: navbarI18n('my account')
         }
     ]
     const { headerBackgroundColor, otherColor } = smartNavbarColor({ location, theme })
@@ -87,13 +95,13 @@ const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme, crypto,
 
                     <SubMenu
                         style={{ float: 'right' }}
-                        title={<span>主题色</span>}>
+                        title={<span> {theme} </span>}>
                         <Menu.Item onClick={() => setTheme('SWITCH_TO_DARK')}> DARK </Menu.Item>
                         <Menu.Item onClick={() => setTheme('SWITCH_TO_LIGHT')}> LIGHT </Menu.Item>
                     </SubMenu>
                     <SubMenu
                         style={{ float: 'right' }}
-                        title={<span><Icon type="global" /><span>语言 {lang}</span></span>}>
+                        title={<span><Icon type="global" /><span> {langList[lang]} </span></span>}>
                         <Menu.Item onClick={() => setLanguage('SWITCH_TO_CHINESE')}>中文</Menu.Item>
                         <Menu.Item onClick={() => setLanguage('SWITCH_TO_ENGLISH')}>English</Menu.Item>
                         <Menu.Item onClick={() => setLanguage('SWITCH_TO_JAPANESE')}>日本語</Menu.Item>
@@ -101,7 +109,7 @@ const HeaderComponent = ({ location, lang, setLanguage, theme, setTheme, crypto,
                     </SubMenu>
                     <SubMenu
                         style={{ float: 'right' }}
-                        title={<span><Icon type="bank" /><span> 货币：{crypto}</span></span>}>
+                        title={<span><Icon type="bank" /><span> {navbarI18n('unit')}: {crypto}</span></span>}>
                         <Menu.Item onClick={() => setCrypto('BTC')}>Bitcoin</Menu.Item>
                         <Menu.Item onClick={() => setCrypto('ETH')}>Ethereum</Menu.Item>
                         <Menu.Item onClick={() => setCrypto('EOS')}>EOS</Menu.Item>

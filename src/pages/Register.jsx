@@ -2,30 +2,35 @@ import React from "react"
 import { Form, Icon, Input, Button, 
   // Checkbox 
 } from 'antd';
+import intl from "react-intl-universal";
+const i18n = (name) => intl.get(`user.register.${name}`)
+
 
 const FormItem = Form.Item;
+
+const IconPrefixFactory = (type) => <Icon type={type} style={{ color: 'rgba(0,0,0,.25)' }} />
 
 class Register extends React.Component {
     render() {
         return (
       <Form onSubmit={this.handleSubmit} className="login-form" style={ style.container }>
-        <h2>用户注册</h2>
+        <h2> { i18n('title') } </h2>
         <br />
         <FormItem>
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
+            <Input prefix={IconPrefixFactory("user")} placeholder={i18n('username')} />
         </FormItem>
         <FormItem>
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="邮箱" />
+            <Input prefix={IconPrefixFactory("mail")} placeholder={i18n('email')}  />
         </FormItem>
         <FormItem>
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
+            <Input prefix={IconPrefixFactory("lock")} type="password" placeholder={i18n("password")}  />
         </FormItem>
         <FormItem>
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="确认密码" />
+            <Input prefix={IconPrefixFactory("lock")} type="password" placeholder={i18n("confirm password")}  />
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            确认注册
+           { i18n('register') }
           </Button>
         </FormItem>
       </Form>
