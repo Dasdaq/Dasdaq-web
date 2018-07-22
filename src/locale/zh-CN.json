@@ -1,15 +1,50 @@
 {
-    "welcome": "欢迎来到未来",
-    "market": "市场",
-    "app store": "应用",
-    "theme": "主题",
-    "title": "あらー, なにがあった.",
-    "code": "コード",
-    "The page you requested": "您的请求页面",
-    "is not exist": "不存在.",
-    "report-to-us": "如果你被带到这里，请告诉我们！",
-    "Go Back": "返回上一页",
-    "Go Home": "回到首页" ,
-    "in custruction": "正在建造",
-    "checkout later": "请稍后结帐"
+    "homepage": {
+        "welcome": "未来欢迎您！"
+    },
+    "user": {
+        "register": {
+            "title": "注册新帐号",
+            "email": "邮箱地址",
+            "username": "账号",
+            "password": "密码",
+            "confirm password": "密码在输入",
+            "register": "注册"
+        },
+        "login": {
+            "user login": "会员登入",
+            "remember me": "记住我",
+            "forgot password": "忘记密码",
+            "login": "登入",
+            "register new account": "注册新账号",
+            "or": "or",
+            "username": "账户",
+            "password": "密码"
+        }
+    },
+    "navbar": {
+        "market": "市场",
+        "app store": "DApp 商店",
+        "theme": "主题",
+        "home": "首页",
+        "my account": "我的账户",
+        "unit": "単位"
+    },
+    "theme": {
+        "dark": "黑色",
+        "light": "白色"
+    },
+    "404": {
+        "title": "哎呀，出了什么错.",
+        "code": "コード",
+        "The page you requested": "您请求的页面",
+        "is not exist": "不存在.",
+        "report-to-us": "如果你被带到这里，请联系我们",
+        "Go Back": "返回",
+        "Go Home": "回到首页" 
+    },
+    "Construction": {
+        "in custruction": "页面构筑",
+        "checkout later": "Please Checkout Later"
+    }
 }

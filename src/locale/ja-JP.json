@@ -1,6 +1,6 @@
 {
     "homepage": {
-        "welcome": "未来へようこそ"
+        "welcome": "未来へようこそ！"
     },
     "user": {
         "register": {
@@ -9,7 +9,7 @@
             "username": "ID番号",
             "password": "パスワード",
             "confirm password": "パスワードを再入力",
-            "register": "Register"
+            "register": "新規登録"
         },
         "login": {
             "user login": "会員ログイン",
@@ -37,9 +37,9 @@
     "404": {
         "title": "あらー, なにがあった.",
         "code": "コード",
-        "The page you requested": "The page you requested",
-        "is not exist": "is not exist.",
-        "report-to-us": "If you were directed to here, please let us know!",
+        "The page you requested": "このページ",
+        "is not exist": "ございません.",
+        "report-to-us": "もしここにいらしゃるなら、私達に連絡してください",
         "Go Back": "前に戻り",
         "Go Home": "トップに戻り" 
     },
