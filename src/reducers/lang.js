@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import { getter, setter } from "./cookieHandler";
 import intl from "react-intl-universal";
 import locales from "../locale";
 
@@ -16,9 +16,9 @@ function localeDetection() {
 }
 
 // Express them in One Line of code 😄
-
-const getUserLocale = () => (Cookies.get('userLanguage') || localeDetection())
-const saveLocale = (localeCode) => Cookies.set('userLanguage', localeCode)
+const name = "userLanguage"
+const getUserLocale = getter({ name, defaultValue: localeDetection() })
+const saveLocale = setter(name)
 
 const initLang = (currentLocale) => intl.init({ currentLocale, locales })
 
@@ -28,7 +28,7 @@ const switchToLang = (code) => {
     return code
 }
 
-const lang = (state = getUserLocale(), action) => {
+const lang = (state = getUserLocale, action) => {
     switch (action.type) {
         case 'SWITCH_TO_CHINESE': {
             return switchToLang('zh-CN')

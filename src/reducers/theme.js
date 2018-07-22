@@ -1,11 +1,12 @@
-import Cookies from "js-cookie";
+import { getter, setter } from "./cookieHandler";
 
 // Express them in One Line of code 😄
- 
-const getUserTheme = () => (Cookies.get('theme') || 'light')
-const saveTheme = (themeCode) => Cookies.set('theme', themeCode)
+const name = 'theme'
 
-const theme = (state = getUserTheme(), action) => {
+const getUserTheme = getter({ name, defaultValue: 'light' })
+const saveTheme = setter(name)
+
+const theme = (state = getUserTheme, action) => {
     switch (action.type) {
         case 'SWITCH_TO_DARK': {
             saveTheme('dark')
