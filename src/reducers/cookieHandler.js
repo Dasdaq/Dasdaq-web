@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-export const getter = ({ name, defaultValue = undefined }) => (Cookies.get(name) || defaultValue)
+export const getter = ({ name, defaultValue = null }) => (Cookies.get(name) || defaultValue)
 
 export const setter = (name) => (data) => Cookies.set(name, data)
 
