@@ -2,8 +2,13 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
+const apiServer = `http://api.dasdaq.io`
+
+const getAPIPath = (pathname) => `${apiServer}/${pathname}/`
+
 export async function register({ username, password, inviter = '' }) {
-    const result = await axios.post('http://api.dasdaq.io/register/', {
+    const path = getAPIPath('register')
+    const result = await axios.post(path, {
         username, password, inviter
     })
     if (result.data.err_code !== 0) {
@@ -15,7 +20,8 @@ export async function register({ username, password, inviter = '' }) {
 }
 
 export async function login({ username, password }) {
-    const result = await axios.post('http://api.dasdaq.io/login/', {
+    const path = getAPIPath('login/')
+    const result = await axios.post(path, {
         username, password
     })
     if (result.data.err_code !== 0) {
@@ -26,5 +32,15 @@ export async function login({ username, password }) {
 }
 
 export function logout() {
-    return axios.get('http://api.dasdaq.io/logout/')
+    return axios.get(getAPIPath('logout'))
+}
+
+export async function getMyInfo() {
+    const { data } = await axios.get(getAPIPath('get_my_info'))
+    if (data.err_code !== 0) {
+        const { err_msg } = result.data;
+        return new Error(err_msg)
+    } else {
+        return data.user_info
+    }
 }
