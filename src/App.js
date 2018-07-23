@@ -21,6 +21,7 @@ import './App.css';
 import AccountView from "./pages/User";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Detail from "./pages/DappDetail";
 
 const { Footer } = Layout;
 
@@ -70,6 +71,7 @@ class App extends Component {
 
                 <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/dapp" component={Dapp} />
+                <Route path="/detail" component={Detail} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>
