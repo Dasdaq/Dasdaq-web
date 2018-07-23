@@ -36,7 +36,7 @@ jobs:
       # run builds!
       - run: 
           name: Build
-          command: yarn run build
+          command: CI=false yarn run build
 
       - store_artifacts:
           path: ~/repo/build
