@@ -33,7 +33,7 @@ jobs:
           paths:
             - node_modules/
 
-      - Disable-ENV:
+      - run:
           name: Disable ENV CI
           command: unset CI
         
