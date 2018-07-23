@@ -32,6 +32,10 @@ jobs:
           key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules/
+
+      - Disable-ENV:
+          name: Disable ENV CI
+          command: unset CI
         
       # run builds!
       - run: 
