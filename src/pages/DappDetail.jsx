@@ -1,5 +1,5 @@
 import React from "react"
-import { Form, Icon, Input, Button, Col , Menu, Row, Tabs } from 'antd';
+import { Button, Col , Row, Tabs } from 'antd';
 import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
