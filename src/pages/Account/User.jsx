@@ -5,8 +5,7 @@ import { Form, Icon, Input, Button, Col , Menu, Row,
 
 const FormItem = Form.Item;
 const {
-  MenuItemGroup,
-  // SubMenu
+  ItemGroup,
 } = Menu
 
 class User extends React.Component {
@@ -86,15 +85,15 @@ class User extends React.Component {
                     defaultOpenKeys={['sub1']}
                     mode="inline"
                   >
-                      <MenuItemGroup key="g1">
+                      <ItemGroup key="g1">
                         <Menu.Item key="0">个人信息</Menu.Item>
                         <Menu.Item key="1">修改密码</Menu.Item>
                         <Menu.Item key="2">绑定第三方钱包</Menu.Item>
                         <Menu.Item key="3">绑定第三方账户</Menu.Item>
-                      </MenuItemGroup>
-                      <MenuItemGroup key="g2">
+                      </ItemGroup>
+                      <ItemGroup key="g2">
                         <Menu.Item key="5">退出登录</Menu.Item>
-                      </MenuItemGroup>
+                      </ItemGroup>
                   </Menu>
                 </Col>
                 <Col span={20}>

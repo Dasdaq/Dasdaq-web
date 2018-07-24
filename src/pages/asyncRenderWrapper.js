@@ -4,7 +4,7 @@ import Loadable from 'react-loadable';
 const LoadingMessage = (name) => (<div> Loading {name} modules, Please wait</div>)
 
 export const Market = Loadable({
-  loader: () => import('./Market'),
+  loader: () => import('./Market/Market'),
   loading: () => LoadingMessage('Market')
 });
 

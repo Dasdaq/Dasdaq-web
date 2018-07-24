@@ -2,7 +2,7 @@ import intl from "react-intl-universal";
 
 const i18n = (name) => intl.get(`navbar.${name}`)
 
-export const menus = () => ([
+export const menus = ({logined}) => ([
     {
         path: '/',
         icon: 'home',
@@ -19,19 +19,30 @@ export const menus = () => ([
         name: i18n('app store')
     },
     {
-        path: '/account',
+        path: '/account/info',
         icon: 'user',
         name: i18n('my account'),
-        float: 'right'
+        float: 'right',
+        isDisplay: logined
     },
     {
         path: '/account/login',
         name: intl.get('user.login.login'),
-        float: 'right'
+        float: 'right',
+        isDisplay: !logined
     },
     {
         path: '/account/register',
         name: intl.get('user.register.register'),
-        float: 'right'
+        float: 'right',
+        isDisplay: !logined
     }
 ])
+
+const setMenuDefaultDisplay = menu => (menu.isDisplay === undefined ? Object.assign(menu, { isDisplay: true }) : menu)
+
+export default (props) => 
+    menus(props)
+        .map(setMenuDefaultDisplay)
+        .filter(menu => menu.isDisplay)
+

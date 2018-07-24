@@ -13,20 +13,20 @@ export async function register({ username, password, inviter = '' }) {
     })
     if (result.data.err_code !== 0) {
         const { err_msg } = result.data;
-        return new Error(err_msg)
+        throw new Error(err_msg)
     } else {
         return result
     }
 }
 
 export async function login({ username, password }) {
-    const path = getAPIPath('login/')
+    const path = getAPIPath('login')
     const result = await axios.post(path, {
         username, password
     })
     if (result.data.err_code !== 0) {
         const { err_msg } = result.data;
-        return new Error(err_msg)
+        throw new Error(err_msg)
     }
     return result
 }
@@ -37,9 +37,10 @@ export function logout() {
 
 export async function getMyInfo() {
     const { data } = await axios.get(getAPIPath('get_my_info'))
-    if (data.err_code !== 0) {
-        const { err_msg } = result.data;
-        return new Error(err_msg)
+    console.log(data)
+    if (data.err_code) {
+        const { err_msg } = data;
+        throw new Error(err_msg)
     } else {
         return data.user_info
     }

@@ -10,24 +10,23 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import locales from "./locale";
 
+// Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
+import { Login, Register, User } from "./containers/Account";
+import { Market, Home } from "./pages/asyncRenderWrapper";
+
 // Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
-import VisiableHeader from "./containers/VisiableHeader";
+import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
-import { Market, Home } from "./pages/asyncRenderWrapper";
-import Dapp from "./pages/Dapp";
+// Dapp Store
+import Dapp from "./pages/DappStore/Dapp";
+import Detail from "./pages/DappStore/DappDetail";
+
+
 import config from './config'
 import './App.css';
-import AccountView from "./pages/User";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Detail from "./pages/DappDetail";
-
 const { Footer } = Layout;
 
-// const AccountView = ({match}) => (
-//   <div className="account"> {JSON.stringify(match)} </div>
-// )
 
 class App extends Component {
   constructor() {
@@ -45,38 +44,34 @@ class App extends Component {
       locales,
     })
     this.setState({ i18nLoaded: true })
-    console.log(intl.get('welcome'))
   }
   render() {
     return this.state.i18nLoaded && (
       <div className="App">
         <Router basename="/">
           <div className="container" style={{ minHeight: 'calc(100vh - 70px)' }}>
-            {/* <Header /> */}
-            <VisiableHeader />
+            <Header />
             <div className="router-view" >
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/market" component={Market} />
-
                 {/* Routes Account Part */}
                 <Route path="/account" >
                   <Switch>
-                    <Route path="/account/info" component={AccountView} />
+                    <Route path="/account/info" component={User} />
                     <Route path="/account/login" component={Login} />
                     <Route path="/account/register" component={Register} />
                     <Route component={PageNotFound} />
                   </Switch>
                 </Route>
-
-                <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
+                {/* Routes Dapp Store Part */}
                 <Route path="/dapp" component={Dapp} />
+                {/* Routes Market Data Part */}
+                <Route path="/market" component={Market} />
+                <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/detail" component={Detail} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>
-
-
           </div>
         </Router>
         <Footer style={{ textAlign: 'center' }}>

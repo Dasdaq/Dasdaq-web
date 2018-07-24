@@ -2,7 +2,7 @@ import React from "react";
 import intl from "react-intl-universal";
 import { NavLink } from 'react-router-dom';
 import { Menu, Icon } from "antd";
-import { menus } from "./menus";
+import menus from "./menus";
 import smartNavbarColor from "./smartColor";
 
 
@@ -20,8 +20,8 @@ const navbarI18n = (name) => intl.get(`navbar.${name}`)
 const MenuItem = ({ path, name, icon, float = 'left' }) => (
     <Menu.Item key={path} style={{ float }} >
         <NavLink to={path}>
-            {   icon
-                ? <Icon type={icon} /> 
+            {icon
+                ? <Icon type={icon} />
                 : <div />
             }
             <span>{name}</span>
@@ -30,10 +30,12 @@ const MenuItem = ({ path, name, icon, float = 'left' }) => (
 )
 
 export default function Navbar(props) {
-    const { location, lang, theme, crypto } = props
+    const { location, lang, theme, crypto, user } = props
     const { setCrypto, setLanguage, setTheme } = props
     // Each Time Render read the menus and the navbar color
-    const navigationMenus = menus()
+    const logined = user !== null
+    const navigationMenus = menus({ logined })
+    console.log(navigationMenus)
     const { otherColor } = smartNavbarColor({ location, theme })
     const menuStyle = {
         lineHeight: '64px',
