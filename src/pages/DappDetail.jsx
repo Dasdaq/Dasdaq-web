@@ -214,7 +214,8 @@ class DappDetail extends React.Component {
               </Row>
               <Row>
                 <Col span={6} style={style.content}>
-                  <img src="https://tva2.sinaimg.cn/crop.0.0.613.613.180/48a8af64jw8eyfl22ibj2j20h10h1ju3.jpg" style={style.avatar}></img>
+                  <img src="https://tva2.sinaimg.cn/crop.0.0.613.613.180/48a8af64jw8eyfl22ibj2j20h10h1ju3.jpg" 
+                  alt="User Avatar" style={style.avatar}></img>
                   <br />
                   <br />
                   <br />
