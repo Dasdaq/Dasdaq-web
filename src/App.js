@@ -10,14 +10,18 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import locales from "./locale";
 
+// Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
+import { Login, Register, User } from "./containers/Account";
+import { Market, Home } from "./pages/asyncRenderWrapper";
+
 // Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
 import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
-import { Market, Home } from "./pages/asyncRenderWrapper";
-import Dapp from "./pages/Dapp";
-import { Login, Register, User } from "./containers/Account";
-import Detail from "./pages/DappDetail";
+// Dapp Store
+import Dapp from "./pages/DappStore/Dapp";
+import Detail from "./pages/DappStore/DappDetail";
+
 
 import config from './config'
 import './App.css';
