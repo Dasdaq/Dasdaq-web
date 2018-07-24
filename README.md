@@ -5,13 +5,15 @@
 
 [English](https://github.com/Dasdaq/Dasdaq-web/blob/master/doc/README-en.md) | [Chinese](https://github.com/Dasdaq/Dasdaq-web/blob/master/doc/README-zh.md) | [Japanese](https://github.com/Dasdaq/Dasdaq-web/blob/master/doc/README-jp.md)
 
+[开发文档](ForDev.md)
+
 ## Table of Contents
-- [Get Start](#get-start)
+- [Get Start](#get-started)
 - [Code of Contributor](#code-of-contributor)
 - [What is Dasdaq](#what-is-dasdaq)
 - [Reference](#reference)
 
-## Get Start
+## Get Started
 
 ```bash
 yarn # Install Dependency
