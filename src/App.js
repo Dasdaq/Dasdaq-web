@@ -18,9 +18,10 @@ import { Market, Home } from "./pages/asyncRenderWrapper";
 import Dapp from "./pages/Dapp";
 import config from './config'
 import './App.css';
-import AccountView from "./pages/User";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import AccountView from "./containers/Account/User";
+import Login from "./containers/Account/Login";
+import Register from "./containers/Account/Register";
+// import Register from "./pages/Account/Register";
 import Detail from "./pages/DappDetail";
 
 const { Footer } = Layout;
@@ -45,7 +46,6 @@ class App extends Component {
       locales,
     })
     this.setState({ i18nLoaded: true })
-    console.log(intl.get('welcome'))
   }
   render() {
     return this.state.i18nLoaded && (
