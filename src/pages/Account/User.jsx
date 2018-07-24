@@ -6,7 +6,6 @@ import { Form, Icon, Input, Button, Col , Menu, Row,
 const FormItem = Form.Item;
 const {
   ItemGroup,
-  Item
 } = Menu
 
 class User extends React.Component {

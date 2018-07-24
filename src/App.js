@@ -12,23 +12,17 @@ import locales from "./locale";
 
 // Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
-import VisiableHeader from "./containers/VisiableHeader";
+import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
 import { Market, Home } from "./pages/asyncRenderWrapper";
 import Dapp from "./pages/Dapp";
-import config from './config'
-import './App.css';
-import AccountView from "./containers/Account/User";
-import Login from "./containers/Account/Login";
-import Register from "./containers/Account/Register";
-// import Register from "./pages/Account/Register";
+import { Login, Register, User } from "./containers/Account";
 import Detail from "./pages/DappDetail";
 
+import config from './config'
+import './App.css';
 const { Footer } = Layout;
 
-// const AccountView = ({match}) => (
-//   <div className="account"> {JSON.stringify(match)} </div>
-// )
 
 class App extends Component {
   constructor() {
@@ -52,31 +46,28 @@ class App extends Component {
       <div className="App">
         <Router basename="/">
           <div className="container" style={{ minHeight: 'calc(100vh - 70px)' }}>
-            {/* <Header /> */}
-            <VisiableHeader />
+            <Header />
             <div className="router-view" >
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/market" component={Market} />
-
                 {/* Routes Account Part */}
                 <Route path="/account" >
                   <Switch>
-                    <Route path="/account/info" component={AccountView} />
+                    <Route path="/account/info" component={User} />
                     <Route path="/account/login" component={Login} />
                     <Route path="/account/register" component={Register} />
                     <Route component={PageNotFound} />
                   </Switch>
                 </Route>
-
-                <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
+                {/* Routes Dapp Store Part */}
                 <Route path="/dapp" component={Dapp} />
+                {/* Routes Market Data Part */}
+                <Route path="/market" component={Market} />
+                <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/detail" component={Detail} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>
-
-
           </div>
         </Router>
         <Footer style={{ textAlign: 'center' }}>
