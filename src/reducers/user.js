@@ -1,15 +1,12 @@
 import { getter, setter, deleter } from "./cookieHandler";
 // Express them in One Line of code 😄
 
-const name = 'session_token'
-const getUserToken = getter({ name })
+const name = 'user'
 
 // Currying setter, saveToken require another function parameter
 const saveToken = setter(name)
 
-const removeToken = deleter(name)
-
-const token = (state = getUserToken, action) => {
+const user = (state = getter({name}), action) => {
     switch (action.type) {
         case 'LOGIN': {
             const { token } = action
@@ -17,11 +14,11 @@ const token = (state = getUserToken, action) => {
             return token
         }
         case 'LOGOUT': {
-            removeToken()
-            return undefined
+            deleter(name)
+            return null
         }
         default: return state
     }
 }
 
-export default token
+export default user
