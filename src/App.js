@@ -16,10 +16,12 @@ import { Market, Home } from "./pages/asyncRenderWrapper";
 
 // Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
+import Loading from "./components/Loading";
 import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
 // Dapp Store
 import Dapp from "./pages/DappStore/Dapp";
+import withContent from "./pages/ContentWrapper";
 import Detail from "./pages/DappStore/DappDetail";
 
 
@@ -64,11 +66,12 @@ class App extends Component {
                   </Switch>
                 </Route>
                 {/* Routes Dapp Store Part */}
-                <Route path="/dapp" component={Dapp} />
+                <Route path="/dapp" component={withContent(Dapp)} />
                 {/* Routes Market Data Part */}
-                <Route path="/market" component={Market} />
+                <Route path="/market" component={withContent(Market)} />
                 <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/detail" component={Detail} />
+                <Route path="/loadingTest" component={Loading} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>
