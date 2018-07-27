@@ -7,34 +7,34 @@ import Slider from "bizcharts-plugin-slider";
 import { Table } from 'antd';
 
 const CoinPrices = [
-    {key: "1", name:"USD", BTC:"3333783.0000", ETH:"33335533.0000", EOS:"333333273.0000"},
-    {key: "2", name:"CNY", BTC:"3334433.0000", ETH:"33773333.0000", EOS:"333354533.0000"},
-    {key: "3", name:"JPY", BTC:"3223333.0000", ETH:"33354333.0000", EOS:"3333353434.0000"},
+    { key: "1", name: "USD", BTC: "3333783.0000", ETH: "33335533.0000", EOS: "333333273.0000" },
+    { key: "2", name: "CNY", BTC: "3334433.0000", ETH: "33773333.0000", EOS: "333354533.0000" },
+    { key: "3", name: "JPY", BTC: "3223333.0000", ETH: "33354333.0000", EOS: "3333353434.0000" },
 ]
 const columns = [{
     title: '名称',
     dataIndex: 'name',
     key: 'name',
-  }, {
+}, {
     title: '兑换为BTC',
     dataIndex: 'BTC',
     key: 'BTC',
     defaultSortOrder: 'descend',
     sorter: (a, b) => parseInt(a.BTC, 10) - parseInt(b.BTC, 10),
-  }, {
+}, {
     title: '兑换为ETH',
     dataIndex: 'ETH',
     key: 'ETH',
     defaultSortOrder: 'descend',
     sorter: (a, b) => parseInt(a.ETH, 10) - parseInt(b.ETH, 10),
-  }, {
+}, {
     title: '兑换为EOS',
     dataIndex: 'EOS',
     key: 'EOS',
     defaultSortOrder: 'descend',
     sorter: (a, b) => parseInt(a.EOS, 10) - parseInt(b.EOS, 10),
-  }];
-  
+}];
+
 // const ListStyle = {
 //     listStyle: 'none',
 //     display: 'flex',
@@ -69,6 +69,7 @@ dv.source(data)
     });
 
 class MarketPage extends Component {
+
     constructor() {
         super()
         this.state = {
@@ -115,7 +116,7 @@ class MarketPage extends Component {
             'range': { alias: '股票价格' }
         }
         return (
-            <div>
+            <div className="market">
                 <Chart height={window.innerHeight / 2 - 50} animate={false} padding={[10, 40, 40, 40]} data={dv} scale={cols} forceFit>
                     <Legend offset={20} />
                     <Tooltip showTitle={false} itemTpl='<li data-index={index}><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}{value}</li>' />
@@ -180,8 +181,8 @@ class MarketPage extends Component {
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
-                           <div>
-                           <Table dataSource={CoinPrices} columns={columns} />
+                    <div>
+                        <Table dataSource={CoinPrices} columns={columns} />
                     </div>
 
                 </div>
