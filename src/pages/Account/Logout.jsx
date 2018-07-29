@@ -2,7 +2,7 @@ import React from "react"
 import { Icon, Button } from 'antd';
 import { NavLink } from "react-router-dom";
 import intl from "react-intl-universal";
-import { logout } from "../../api/auth";
+import { logout, getMyInfo } from "../../api/auth";
 
 const i18n = (name) => intl.get(`user.logout.${name}`)
 
@@ -21,10 +21,6 @@ const WarningStyle = {
     color: "#fadb14",
 }
 
-const buttonStyle = {
-    margin: "0.5rem"
-}
-
 
 class Logout extends React.Component {
     constructor() {
@@ -35,11 +31,15 @@ class Logout extends React.Component {
     }
 
     async componentDidMount() {
+        const { userLogout } = this.props
         try {
             await logout()
+            getMyInfo().then(res => {
+                userLogout(res)
+            })
             this.setState({ isLogout: true })
         } catch (error) {
-        
+
         }
     }
 
@@ -55,8 +55,6 @@ class Logout extends React.Component {
                         你已经安全地退出了账户
                 </h2>
                     <Button size="large"><NavLink to="/account/login"> 重新登录 </NavLink></Button>
-                    <Button type="primary" size="large" style={buttonStyle}> {i18n('Go Back')}</Button>
-                    <Button type="primary" size="large" style={buttonStyle}> {i18n('Go Home')} </Button>
                 </div>
             )
         } else {
@@ -64,7 +62,7 @@ class Logout extends React.Component {
                 <div id="notification">
                     <Icon type="loading" style={WarningStyle} />
                     <h1 className="title">{i18n('title')} 正在退出 </h1>
-               </div>
+                </div>
             )
         }
 

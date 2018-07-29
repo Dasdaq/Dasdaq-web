@@ -26,19 +26,19 @@ export const Logout = Loadable({
 
 export default [
   {
-    path: '/account-test/info',
+    path: '/account/info',
     component: User
   },
   {
-    path: '/account-test/register',
+    path: '/account/register',
     component: Register
   },
   {
-    path: '/account-test/login',
+    path: '/account/login',
     component: Login
   },
   {
-    path: '/account-test/logout',
+    path: '/account/logout',
     component: Logout
   }
 ]
