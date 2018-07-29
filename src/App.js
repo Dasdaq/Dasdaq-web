@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import locales from "./locale";
 
 // Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
-import acctTestRoutes, { Login, Register, User } from "./containers/Account";
+import acctTestRoutes from "./containers/Account";
 import { Market, Home } from "./pages/asyncRenderWrapper";
 
 // Pages
@@ -61,16 +61,16 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 {/* Routes Account Part */}
-                <Route path="/account" >
+                {/* <Route path="/account" >
                   <Switch>
                     <Route path="/account/info" component={User} />
                     <Route path="/account/login" component={Login} />
                     <Route path="/account/register" component={Register} />
                     <Route component={PageNotFound} />
                   </Switch>
-                </Route>
+                </Route> */}
                 {/* Test here */}
-                <Route path="/account-test" >
+                <Route path="/account" >
                   <Switch>
                     { acctTestRoutes.map(route => <Route key={route.path} {...route} />) }
                   </Switch>
