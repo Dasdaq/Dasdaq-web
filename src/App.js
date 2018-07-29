@@ -13,12 +13,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import locales from "./locale";
 
 // Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
-import { Login, Register, User } from "./containers/Account";
+import acctTestRoutes, { Login, Register, User } from "./containers/Account";
 import { Market, Home } from "./pages/asyncRenderWrapper";
 
 // Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
-import Loading from "./components/Loading";
 import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
 // Dapp Store
@@ -70,13 +69,18 @@ class App extends Component {
                     <Route component={PageNotFound} />
                   </Switch>
                 </Route>
+                {/* Test here */}
+                <Route path="/account-test" >
+                  <Switch>
+                    { acctTestRoutes.map(route => <Route key={route.path} {...route} />) }
+                  </Switch>
+                </Route>
                 {/* Routes Dapp Store Part */}
                 <Route path="/dapp" component={withContent(Dapp)} />
                 {/* Routes Market Data Part */}
                 <Route path="/market" component={withContent(Market)} />
                 <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/detail" component={Detail} />
-                <Route path="/loadingTest" component={Loading} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>

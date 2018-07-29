@@ -18,3 +18,27 @@ export const Register = Loadable({
   loader: () => import('./Register'),
   loading: () => LoadingMessage('Register')
 });
+
+export const Logout = Loadable({
+  loader: () => import('./Logout'),
+  loading: () => LoadingMessage('Logout')
+});
+
+export default [
+  {
+    path: '/account-test/info',
+    component: User
+  },
+  {
+    path: '/account-test/register',
+    component: Register
+  },
+  {
+    path: '/account-test/login',
+    component: Login
+  },
+  {
+    path: '/account-test/logout',
+    component: Logout
+  }
+]

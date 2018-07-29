@@ -28,7 +28,7 @@ class Login extends React.Component {
     console.info(username, password)
     e.preventDefault();
     try {
-      const loginResult = await login({ username, password })
+      await login({ username, password })
       const result = await getMyInfo()
       saveUser(result)
       notification.success({
