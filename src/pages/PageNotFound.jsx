@@ -26,6 +26,7 @@ const PageNotFound = ({ location }) =>
                 {`${navbarI18n('The page you requested')} ${location.pathname} ${navbarI18n('is not exist')}`}
             </h2>
             <p className="description"> {navbarI18n('report-to-us')} If you were directed to here, please let us know! </p>
+            {/* todo */}
             <Button type="primary" size="large" style={buttonStyle}> {navbarI18n('Go Back')}</Button>
             <Button type="primary" size="large" style={buttonStyle}> {navbarI18n('Go Home')} </Button>
         </div>
