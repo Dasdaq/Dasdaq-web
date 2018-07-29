@@ -17,17 +17,17 @@ const langList = {
 const { SubMenu } = Menu
 const navbarI18n = (name) => intl.get(`navbar.${name}`)
 
-const MenuItem = ({ path, name, icon, float = 'left' }) => (
-    <Menu.Item key={path} style={{ float }} >
-        <NavLink to={path}>
-            {icon
-                ? <Icon type={icon} />
-                : <div />
-            }
-            <span>{name}</span>
-        </NavLink>
-    </Menu.Item>
-)
+const MenuItem = ({ path, name, icon, float = 'left' }) => {
+    const smartIconStyle = name ?  {} : { marginRight: 0 }
+    return (
+        <Menu.Item key={path} style={{ float }} >
+            <NavLink to={path}>
+                {icon && <Icon type={icon} style={smartIconStyle} />}
+                {name && <span>{name}</span>}
+            </NavLink>
+        </Menu.Item>
+    )
+}
 
 export default function Navbar(props) {
     const { location, lang, theme, crypto, user } = props
@@ -35,7 +35,6 @@ export default function Navbar(props) {
     // Each Time Render read the menus and the navbar color
     const logined = user !== null
     const navigationMenus = menus({ logined })
-    console.log(navigationMenus)
     const { otherColor } = smartNavbarColor({ location, theme })
     const menuStyle = {
         lineHeight: '64px',

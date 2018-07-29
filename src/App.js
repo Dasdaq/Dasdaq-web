@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
+import { getMyInfo } from "./api/auth";
+import { userLogin } from "./actions";
 import intl from 'react-intl-universal';
 
 // Connecting store's state as props in the export process at the bottom
@@ -11,12 +13,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import locales from "./locale";
 
 // Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
-import { Login, Register, User } from "./containers/Account";
+import acctTestRoutes, { Login, Register, User } from "./containers/Account";
 import { Market, Home } from "./pages/asyncRenderWrapper";
 
 // Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
-import Loading from "./components/Loading";
 import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
 // Dapp Store
@@ -38,7 +39,7 @@ class App extends Component {
     }
   }
   async componentDidMount() {
-    const { lang } = this.props
+    const { lang, saveUserData } = this.props
     console.info(`用户语言为: ${lang}`)
     // i18n 的黑魔法，不 await 阻塞会引起部分i18n文字为空白
     await intl.init({
@@ -46,6 +47,9 @@ class App extends Component {
       locales,
     })
     this.setState({ i18nLoaded: true })
+    getMyInfo().then(res => {
+      saveUserData(res)
+    })
   }
   render() {
     return this.state.i18nLoaded && (
@@ -65,13 +69,18 @@ class App extends Component {
                     <Route component={PageNotFound} />
                   </Switch>
                 </Route>
+                {/* Test here */}
+                <Route path="/account-test" >
+                  <Switch>
+                    { acctTestRoutes.map(route => <Route key={route.path} {...route} />) }
+                  </Switch>
+                </Route>
                 {/* Routes Dapp Store Part */}
                 <Route path="/dapp" component={withContent(Dapp)} />
                 {/* Routes Market Data Part */}
                 <Route path="/market" component={withContent(Market)} />
                 <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                 <Route path="/detail" component={Detail} />
-                <Route path="/loadingTest" component={Loading} />
                 <Route component={PageNotFound} />
               </Switch>
             </div>
@@ -87,5 +96,8 @@ class App extends Component {
 
 
 export default connect(
-  (state) => ({ lang: state.lang })
+  (state) => ({ lang: state.lang }),
+  (dispatch) => ({
+    saveUserData: code => dispatch(userLogin(code)),
+  })
 )(App);

@@ -1,6 +1,6 @@
 import intl from "react-intl-universal";
 
-const i18n = (name) => intl.get(`navbar.${name}`)
+const i18n = (name) => intl.get(`navbar.${name}`).d(name)
 
 export const menus = ({logined}) => ([
     {
@@ -26,7 +26,14 @@ export const menus = ({logined}) => ([
         isDisplay: logined
     },
     {
+        path: '/account/logout',
+        icon: 'logout',
+        float: 'right',
+        isDisplay: logined
+    },
+    {
         path: '/account/login',
+        icon: 'login',
         name: intl.get('user.login.login'),
         float: 'right',
         isDisplay: !logined

@@ -39,8 +39,7 @@ export async function getMyInfo() {
     const { data } = await axios.get(getAPIPath('get_my_info'))
     console.log(data)
     if (data.err_code) {
-        const { err_msg } = data;
-        throw new Error(err_msg)
+        return null
     } else {
         return data.user_info
     }

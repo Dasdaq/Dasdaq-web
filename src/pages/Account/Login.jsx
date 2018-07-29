@@ -28,11 +28,9 @@ class Login extends React.Component {
     console.info(username, password)
     e.preventDefault();
     try {
-      const loginResult = await login({ username, password })
+      await login({ username, password })
       const result = await getMyInfo()
-      console.log(loginResult)
-      console.log(result)
-      saveUser(result.username)
+      saveUser(result)
       notification.success({
         message: 'Login successfully',
         description: 'We will redirect to previous page in no time.'
