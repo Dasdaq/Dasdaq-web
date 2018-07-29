@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
+import { getMyInfo } from "./api/auth";
+import { userLogin } from "./actions";
 import intl from 'react-intl-universal';
 
 // Connecting store's state as props in the export process at the bottom
@@ -38,7 +40,7 @@ class App extends Component {
     }
   }
   async componentDidMount() {
-    const { lang } = this.props
+    const { lang, saveUserData } = this.props
     console.info(`用户语言为: ${lang}`)
     // i18n 的黑魔法，不 await 阻塞会引起部分i18n文字为空白
     await intl.init({
@@ -46,6 +48,9 @@ class App extends Component {
       locales,
     })
     this.setState({ i18nLoaded: true })
+    getMyInfo().then(res => {
+      saveUserData(res)
+    })
   }
   render() {
     return this.state.i18nLoaded && (
@@ -87,5 +92,8 @@ class App extends Component {
 
 
 export default connect(
-  (state) => ({ lang: state.lang })
+  (state) => ({ lang: state.lang }),
+  (dispatch) => ({
+    saveUserData: code => dispatch(userLogin(code)),
+  })
 )(App);
