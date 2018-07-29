@@ -1,4 +1,4 @@
-import { setter, deleter } from "./cookieHandler";
+import { deleter } from "./cookieHandler";
 // Express them in One Line of code 😄
 
 const name = 'user'

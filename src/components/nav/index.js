@@ -35,7 +35,6 @@ export default function Navbar(props) {
     // Each Time Render read the menus and the navbar color
     const logined = user !== null
     const navigationMenus = menus({ logined })
-    console.log(navigationMenus)
     const { otherColor } = smartNavbarColor({ location, theme })
     const menuStyle = {
         lineHeight: '64px',
