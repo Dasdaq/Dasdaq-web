@@ -1,5 +1,5 @@
 import React from "react"
-import { Form, Icon, Input, Button, Checkbox, Modal, notification, Card } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Modal, notification, Card, Row, Col, Alert } from 'antd';
 import { NavLink } from "react-router-dom";
 import intl from "react-intl-universal";
 import { login, getMyInfo } from "../../api/auth";
@@ -61,35 +61,54 @@ class Login extends React.Component {
       )
     } else {
       return (
-        <Form onSubmit={this.handleSubmit} className="login-form" style={style.container}>
-          <h2> {i18n('user login')}</h2>
-          <br />
-          <FormItem label={i18n('username')}>
-            <Input prefix={IconFactory('user')}
-              onChange={(e) => this.handleChange(e, 'username')}
-              onBlur={(e) => this.handleChange(e, 'username')}
-              placeholder={i18n('username')} />
-          </FormItem>
-          <FormItem label={i18n('password')}>
-            <Input prefix={IconFactory("lock")}
-              onChange={(e) => this.handleChange(e, 'password')}
-              onBlur={(e) => this.handleChange(e, 'password')}
-              type="password" placeholder={i18n('password')} />
-          </FormItem>
-          <FormItem>
-            <Checkbox>{i18n('remember me')}</Checkbox>
-            <a className="login-form-forgot" href="">{i18n('forgot password')}</a>
-          </FormItem>
-          <FormItem>
-            <Button type="primary" htmlType="submit" className="login-form-button" size="large">
-              {i18n('login')}
-            </Button>
-          </FormItem>
-          <FormItem>
-            {i18n('or')}
-            <NavLink to="/account/register">{i18n('register new account')}</NavLink>
-          </FormItem>
-        </Form>
+        <Row>
+          <Col span={12}>
+            <Card title="使用钱包签名快速登录">
+              <Alert
+                  message="使用 MetaMask 或 Scatter 钱包签名登录"
+                  description="无需输入账户密码，体验安全快捷、无需密码的登录方式！"
+                  type="info"
+                  iconType="key"
+                  showIcon
+                />
+              <Button.Group>
+                <Button icon="download" size="large">使用 MetaMask 签名登录</Button>
+                <Button icon="download" size="large">使用 Scatter 签名登录</Button>
+              </Button.Group>
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Form onSubmit={this.handleSubmit} className="login-form" style={style.container}>
+              <h2> {i18n('user login')}</h2>
+              <br />
+              <FormItem label={i18n('username')}>
+                <Input prefix={IconFactory('user')}
+                  onChange={(e) => this.handleChange(e, 'username')}
+                  onBlur={(e) => this.handleChange(e, 'username')}
+                  placeholder={i18n('username')} />
+              </FormItem>
+              <FormItem label={i18n('password')}>
+                <Input prefix={IconFactory("lock")}
+                  onChange={(e) => this.handleChange(e, 'password')}
+                  onBlur={(e) => this.handleChange(e, 'password')}
+                  type="password" placeholder={i18n('password')} />
+              </FormItem>
+              <FormItem>
+                <Checkbox>{i18n('remember me')}</Checkbox>
+                <a className="login-form-forgot" href="">{i18n('forgot password')}</a>
+              </FormItem>
+              <FormItem>
+                <Button type="primary" htmlType="submit" className="login-form-button" size="large">
+                  {i18n('login')}
+                </Button>
+              </FormItem>
+              <FormItem>
+                {i18n('or')}
+                <NavLink to="/account/register">{i18n('register new account')}</NavLink>
+              </FormItem>
+            </Form>
+            </Col>
+        </Row>
       );
     }
     
