@@ -3,6 +3,8 @@ import { Form, Icon, Input, Button, Checkbox, Modal, notification, Card, Row, Co
 import { NavLink } from "react-router-dom";
 import intl from "react-intl-universal";
 import { login, getMyInfo } from "../../api/auth";
+import IconFont from "../../components/IconFont";
+import withContent from "../ContentWrapper";
 const i18n = (name) => intl.get(`user.login.${name}`)
 
 
@@ -63,18 +65,18 @@ class Login extends React.Component {
       return (
         <Row>
           <Col span={12}>
-            <Card title="使用钱包签名快速登录">
+            <Card title="使用钱包签名快速登录" style={{ margin: "1rem" }}>
               <Alert
-                  message="使用 MetaMask 或 Scatter 钱包签名登录"
-                  description="无需输入账户密码，体验安全快捷、无需密码的登录方式！"
-                  type="info"
-                  iconType="key"
-                  showIcon
-                  style={{marginBottom: "1rem"}}
-                />
+                message="使用 MetaMask 或 Scatter 钱包签名登录"
+                description="无需输入账户密码，体验安全快捷、无需密码的登录方式！"
+                type="info"
+                iconType="key"
+                showIcon
+                style={{ marginBottom: "1rem" }}
+              />
               <Button.Group>
-                <Button size="large"><i className="iconfont icon-metamask" /> 使用 MetaMask 签名登录</Button>
-                <Button size="large"><i className="iconfont icon-scatter" />  使用 Scatter 签名登录</Button>
+                <Button size="large"> <IconFont name="metamask" /> MetaMask 签名登录</Button>
+                <Button size="large"> <IconFont name="scatter" /> Scatter 签名登录</Button>
               </Button.Group>
             </Card>
           </Col>
@@ -108,11 +110,11 @@ class Login extends React.Component {
                 <NavLink to="/account/register">{i18n('register new account')}</NavLink>
               </FormItem>
             </Form>
-            </Col>
+          </Col>
         </Row>
       );
     }
-    
+
   }
 }
 
@@ -125,4 +127,4 @@ const style = {
   },
 };
 
-export default Login;
+export default withContent(Login);
