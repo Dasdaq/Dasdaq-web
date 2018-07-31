@@ -70,10 +70,11 @@ class Login extends React.Component {
                   type="info"
                   iconType="key"
                   showIcon
+                  style={{marginBottom: "1rem"}}
                 />
               <Button.Group>
-                <Button icon="download" size="large">使用 MetaMask 签名登录</Button>
-                <Button icon="download" size="large">使用 Scatter 签名登录</Button>
+                <Button size="large"><i className="iconfont icon-metamask" /> 使用 MetaMask 签名登录</Button>
+                <Button size="large"><i className="iconfont icon-scatter" />  使用 Scatter 签名登录</Button>
               </Button.Group>
             </Card>
           </Col>
