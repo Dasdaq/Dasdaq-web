@@ -43,9 +43,9 @@ function FooterComponent() {
                     <h2>关于</h2>
                     <ul>
                         <li>
-                            <a href="#" target="_blank" >External Link</a> 
+                            <a href="" target="_blank" >External Link</a> 
                         </li>
-                        <li><Link to="#"> Internal Link </Link></li>
+                        <li><Link to="/"> Internal Link </Link></li>
                     </ul>
                 </Col>
             </Row>
