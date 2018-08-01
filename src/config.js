@@ -1,3 +1,3 @@
 export default {
-    sitename: 'DasDaq Market Data'
+    sitename: 'DasDaq'
 }

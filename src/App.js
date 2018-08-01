@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
 import { getMyInfo } from "./api/auth";
 import { userLogin } from "./actions";
 import intl from 'react-intl-universal';
@@ -18,6 +17,7 @@ import { Market, Home } from "./pages/asyncRenderWrapper";
 
 // Pages
 import SimpleMarket from "./components/crypto/SimpleMarketView";
+import Footer from "./components/Footer";
 import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
 // Dapp Store
@@ -25,10 +25,7 @@ import Dapp from "./pages/DappStore/Dapp";
 import withContent from "./pages/ContentWrapper";
 import Detail from "./pages/DappStore/DappDetail";
 
-
-import config from './config'
 import './App.css';
-const { Footer } = Layout;
 
 
 class App extends Component {
@@ -55,40 +52,41 @@ class App extends Component {
     return this.state.i18nLoaded && (
       <div className="App">
         <Router basename="/">
-          <div className="container" style={{ minHeight: 'calc(100vh - 70px)' }}>
+        <div className="container" >
+          <div style={{ minHeight: 'calc(100vh - 70px)' }}>
             <Header />
             <div className="router-view" >
-              <Switch>
-                <Route exact path="/" component={Home} />
-                {/* Routes Account Part */}
-                {/* <Route path="/account" >
-                  <Switch>
-                    <Route path="/account/info" component={User} />
-                    <Route path="/account/login" component={Login} />
-                    <Route path="/account/register" component={Register} />
-                    <Route component={PageNotFound} />
-                  </Switch>
-                </Route> */}
-                {/* Test here */}
-                <Route path="/account" >
-                  <Switch>
-                    { acctTestRoutes.map(route => <Route key={route.path} {...route} />) }
-                  </Switch>
-                </Route>
-                {/* Routes Dapp Store Part */}
-                <Route path="/dapp" component={withContent(Dapp)} />
-                {/* Routes Market Data Part */}
-                <Route path="/market" component={withContent(Market)} />
-                <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
-                <Route path="/detail" component={Detail} />
-                <Route component={PageNotFound} />
-              </Switch>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  {/* Routes Account Part */}
+                  {/* <Route path="/account" >
+                    <Switch>
+                      <Route path="/account/info" component={User} />
+                      <Route path="/account/login" component={Login} />
+                      <Route path="/account/register" component={Register} />
+                      <Route component={PageNotFound} />
+                    </Switch>
+                  </Route> */}
+                  {/* Test here */}
+                  <Route path="/account" >
+                    <Switch>
+                      { acctTestRoutes.map(route => <Route key={route.path} {...route} />) }
+                    </Switch>
+                  </Route>
+                  {/* Routes Dapp Store Part */}
+                  <Route path="/dapp" component={withContent(Dapp)} />
+                  {/* Routes Market Data Part */}
+                  <Route path="/market" component={withContent(Market)} />
+                  <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
+                  <Route path="/detail" component={Detail} />
+                  <Route component={PageNotFound} />
+                </Switch>
+              </div>
             </div>
+            <Footer/>
           </div>
+
         </Router>
-        <Footer style={{ textAlign: 'center' }}>
-          {config.sitename} ©2018
-        </Footer>
       </div>
     );
   }
