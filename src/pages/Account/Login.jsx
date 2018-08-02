@@ -29,13 +29,14 @@ class Login extends React.Component {
   }
 
   async componentDidMount() {
-    document.addEventListener('scatterLoaded', () => this.handleScatter())
+    document.addEventListener('scatterLoaded', () => { this.handleScatter() })
   }
 
   handleScatter() {
+    console.info('We loaded Scatter')
     this.scatter = window.scatter
     const isLoadedPlugin = {}
-    isLoadedPlugin.scatter = true
+    isLoadedPlugin['scatter'] = true
     this.setState({ isLoadedPlugin })
   }
 
