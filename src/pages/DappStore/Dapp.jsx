@@ -4,20 +4,91 @@ import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
+import { Table , Tag , Icon } from 'antd';
+/* <img alt="活动 24h" src="https://dappradar-activity.s3.amazonaws.com/449.png"> */
 const CoinPrices = [
-    {name:"Bit",USD:"3333783.0000",CNY:"33335533.0000",JPY:"333333273.0000"},
-    {name:"Eth",USD:"3334433.0000",CNY:"33773333.0000",JPY:"333354533.0000"},
-    {name:"EOS",USD:"3223333.0000",CNY:"33354333.0000",JPY:"3333353434.0000"},
+{   key: "1", 
+    name: "隐秘世界", 
+    coin: "eth",// not used
+    type: "game",
+    balance: 118.06, 
+    userperday: {value: 94, change: 2.6}, 
+    chargeperday: {value: 292.34, change: -1.36}, 
+    chargeperweek: 1706.03, 
+    transperday: 3586, 
+    transperweek: 23704, 
+    chart: 0 },
 ]
-const ListStyle = {
-    listStyle: 'none',
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: "96%",
-    borderBottom: '1px',
-    borderBottomStyle: 'solid',
-    marginLeft: '2%'
-};
+const columns = [{
+    title: '名称',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text, record) => (
+        <span class="icon-ethereum">
+          <a>{record.name}</a>
+        </span>
+    ),
+}, {
+    title: "类型",
+    dataIndex: 'type',
+    key: 'type',
+    sorter: (a, b) => a.localeCompare(b),
+    render: (text, record) => {
+        if (record.type === "game"){
+            return (<Tag color="red">游戏</Tag>)
+        }
+    },
+}, {
+    title: "余额",
+    dataIndex: 'balance',
+    key: 'balance',
+    sorter: (a, b) => parseInt(a.balance, 10) - parseInt(b.balance, 10),
+    render: (text,record) => (<span><Icon type="bank"/>{record.balance}</span>),
+    //icon is going to change to eth, nas, or eos
+}, {
+    title: "用户 24小时",
+    dataIndex: 'userperday',
+    key: 'userperday',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => parseInt(a.userperday.value, 10) - parseInt(b.userperday.value, 10),
+    render: (text, record) => ( <div>
+                                    <div>{record.userperday.value}</div>
+                                    <div style={ record.userperday.change > 0 ? {color: "#f50"} : {color: "#87d068"} }>
+                                        {(record.userperday.change > 0 ? "+" : "") + record.userperday.change}
+                                    </div>
+                                </div>),
+}, {
+    title: "成交量 24小时",
+    dataIndex: 'chargeperday',
+    key: 'chargeperday',
+    sorter: (a, b) => parseInt(a.chargeperday.value, 10) - parseInt(b.chargeperday.value, 10),
+    render: (text, record) => ( <div>
+        <div><Icon type="bank"/>{record.chargeperday.value}</div>
+        <div style={ record.chargeperday.change > 0 ? {color: "#f50"} : {color: "#87d068"} }>
+            {(record.chargeperday.change > 0 ? "+" : "") + record.chargeperday.change}
+        </div>
+    </div>),
+}, {
+    title: "成交量 7天" ,
+    dataIndex: 'chargeperweek',
+    key: 'chargeperweek',
+    sorter: (a, b) => parseInt(a.chargeperweek, 10) - parseInt(b.chargeperweek, 10),
+}, {
+    title: "交易 24小时" ,
+    dataIndex: 'transperday',
+    key: 'transperday',
+    sorter: (a, b) => parseInt(a.transperday, 10) - parseInt(b.transperday, 10),
+}, {
+    title: "交易 7天" ,
+    dataIndex: 'transperweek',
+    key: 'transperweek',
+    sorter: (a, b) => parseInt(a.transperweek, 10) - parseInt(b.transperweek, 10),
+}, {
+    title: "活动 7天" ,
+    // dataIndex: 'transperweek',
+    // key: 'transperweek',
+    render: (text, record) => (<img alt="actimg" src="/165.png"></img>),
+}];
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
@@ -154,27 +225,11 @@ class MarketPage extends Component {
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
-
                            <div>
-                        <ul style ={ListStyle}>
-                            <li>name</li>
-                            <li>USD</li>
-                            <li>JPY</li>
-                            <li>CNY</li>
-                        </ul>
-                        {CoinPrices.map((Prices) => {
-                        return (
-                            <ul style ={ListStyle}>
-                              <li>{Prices.name}</li>
-                              <li>{Prices.USD}</li>
-                              <li>{Prices.JPY}</li>
-                              <li>{Prices.CNY}</li>
-                           </ul>
-          )
-        })}
-
+                        <div>
+                            <Table dataSource={CoinPrices} columns={columns} />
+                        </div>
                     </div>
-
                 </div>
             </div>
         )
