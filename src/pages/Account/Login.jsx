@@ -6,6 +6,7 @@ import { recover } from "eosjs-ecc";
 import { login, getMyInfo } from "../../api/auth";
 import IconFont from "../../components/IconFont";
 import withContent from "../ContentWrapper";
+import { sign, getMyAddr } from "../../apieth"
 const i18n = (name) => intl.get(`user.login.${name}`)
 
 
@@ -104,6 +105,13 @@ class Login extends React.Component {
     this.setState(obj);
   }
 
+  async signByMetaMask() {
+    const account = await getMyAddr()
+    const signature = await sign("dasdaqtest")
+    console.log(account)
+    console.log(signature)
+  }
+
   render() {
     const { user } = this.props
     const { isLoadedPlugin } = this.state
@@ -132,7 +140,7 @@ class Login extends React.Component {
                 style={{ marginBottom: "1rem" }}
               />
               <Button.Group>
-                <Button size="large" disabled={!isLoadedPlugin.metamask}>
+                <Button size="large" onClick={this.signByMetaMask}>
                   <IconFont name="metamask" /> MetaMask 签名登录</Button>
                 <Button size="large" disabled={!isLoadedPlugin.scatter}
                   onClick={e => this.requestIdAndSignWithScatter(e)}>
