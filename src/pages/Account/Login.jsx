@@ -64,6 +64,9 @@ class Login extends React.Component {
 
   async getSignatureWithScatter() {
     const { scatter } = this
+    if (!this.state.identity) {
+      return null;
+    }
     const { publicKey } = this.state.identity
     const signMsg = "By Signing, you will bind your Scatter identity with your account 1145141919XXOO"
 
