@@ -27,13 +27,22 @@ import Detail from "./pages/DappStore/DappDetail";
 
 import './App.css';
 
+import { ScatterProvider } from "./scatterContext";
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      i18nLoaded: false
+      i18nLoaded: false,
+      scatter: null
     }
+  }
+  componentWillMount() {
+    // Listen to Scatter Loading
+    document.addEventListener('scatterLoaded', () => {
+      const scatter = window.scatter
+      this.setState({ scatter })
+    })
   }
   async componentDidMount() {
     const { lang, saveUserData } = this.props
@@ -50,16 +59,17 @@ class App extends Component {
   }
   render() {
     return this.state.i18nLoaded && (
-      <div className="App">
-        <Router basename="/">
-        <div className="container" >
-          <div style={{ minHeight: 'calc(100vh - 70px)' }}>
-            <Header />
-            <div className="router-view" >
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  {/* Routes Account Part */}
-                  {/* <Route path="/account" >
+      <ScatterProvider value={this.state.scatter}>
+        <div className="App">
+          <Router basename="/">
+            <div className="container" >
+              <div style={{ minHeight: 'calc(100vh - 70px)' }}>
+                <Header />
+                <div className="router-view" >
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    {/* Routes Account Part */}
+                    {/* <Route path="/account" >
                     <Switch>
                       <Route path="/account/info" component={User} />
                       <Route path="/account/login" component={Login} />
@@ -67,27 +77,28 @@ class App extends Component {
                       <Route component={PageNotFound} />
                     </Switch>
                   </Route> */}
-                  {/* Test here */}
-                  <Route path="/account" >
-                    <Switch>
-                      { acctTestRoutes.map(route => <Route key={route.path} {...route} />) }
-                    </Switch>
-                  </Route>
-                  {/* Routes Dapp Store Part */}
-                  <Route path="/dapp" component={withContent(Dapp)} />
-                  {/* Routes Market Data Part */}
-                  <Route path="/market" component={withContent(Market)} />
-                  <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
-                  <Route path="/detail" component={Detail} />
-                  <Route component={PageNotFound} />
-                </Switch>
+                    {/* Test here */}
+                    <Route path="/account" >
+                      <Switch>
+                        {acctTestRoutes.map(route => <Route key={route.path} {...route} />)}
+                      </Switch>
+                    </Route>
+                    {/* Routes Dapp Store Part */}
+                    <Route path="/dapp" component={withContent(Dapp)} />
+                    {/* Routes Market Data Part */}
+                    <Route path="/market" component={withContent(Market)} />
+                    <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
+                    <Route path="/detail" component={Detail} />
+                    <Route component={PageNotFound} />
+                  </Switch>
+                </div>
               </div>
+              <Footer />
             </div>
-            <Footer/>
-          </div>
 
-        </Router>
-      </div>
+          </Router>
+        </div>
+      </ScatterProvider>
     );
   }
 }
