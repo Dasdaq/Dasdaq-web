@@ -1,5 +1,4 @@
 import web3 from './web3'
-import sigUtil from 'eth-sig-util'
 // import request from 'superagent'
 
 export const sign = async (word) => {
@@ -30,13 +29,6 @@ export const getMyAddr = async () => {
   })
 }
 
-export const decodeSignData = (msgParams, result) => {
-  const recovered = sigUtil.recoverTypedSignature({
-    data: msgParams,
-    sig: result.result
-  })
-  return recovered
-}
 
 export const signData = async (msgParams, from) => {
   return new Promise((resolve, reject) => {

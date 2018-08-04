@@ -6,7 +6,9 @@ import { recover } from "eosjs-ecc";
 import { login, getMyInfo, loginByMetaMask } from "../../api/auth";
 import IconFont from "../../components/IconFont";
 import withContent from "../ContentWrapper";
-import { sign, getMyAddr } from "../../apieth"
+import { sign } from "../../apieth"
+import { compose } from "ramda";
+import { withScatter } from "../../scatterContext";
 const i18n = (name) => intl.get(`user.login.${name}`)
 
 
@@ -30,8 +32,11 @@ class Login extends React.Component {
   }
 
   async componentDidMount() {
-    document.addEventListener('scatterLoaded', () => { this.handleScatter() })
+    this.scatter = this.props.scatter
+    // document.addEventListener('scatterLoaded', () => { this.handleScatter() })
   }
+
+
 
   handleScatter() {
     console.info('We loaded Scatter')
@@ -54,7 +59,7 @@ class Login extends React.Component {
   }
 
   async requestIdentity() {
-    const { scatter } = this
+    const { scatter } = this.props
     try {
       const identity = await scatter.getIdentity()
       this.setState({ identity })
@@ -64,7 +69,10 @@ class Login extends React.Component {
   }
 
   async getSignatureWithScatter() {
-    const { scatter } = this
+    const { scatter } = this.props
+    if (!this.state.identity) {
+      return null;
+    }
     const { publicKey } = this.state.identity
     const signMsg = "By Signing, you will bind your Scatter identity with your account 1145141919XXOO"
 
@@ -106,12 +114,12 @@ class Login extends React.Component {
   }
 
   async signByMetaMask() {
-    const account = await getMyAddr()
+    // const account = await getMyAddr()
     const signature = await sign("dasdaq")
     // console.log(account)
     console.log(signature)
     try {
-    const result = await loginByMetaMask({signature: signature.result })
+      const result = await loginByMetaMask({ signature: signature.result })
       alert(result)
     } catch (error) {
       notification.error({
@@ -122,7 +130,7 @@ class Login extends React.Component {
 
   render() {
     const { user } = this.props
-    const { isLoadedPlugin } = this.state
+    // const { isLoadedPlugin } = this.state
     if (user !== null) {
       return (
         <div className="notification">
@@ -150,7 +158,7 @@ class Login extends React.Component {
               <Button.Group>
                 <Button size="large" onClick={this.signByMetaMask}>
                   <IconFont name="metamask" /> MetaMask 签名登录</Button>
-                <Button size="large" disabled={!isLoadedPlugin.scatter}
+                <Button size="large" disabled={!this.props.scatter}
                   onClick={e => this.requestIdAndSignWithScatter(e)}>
                   <IconFont name="scatter" /> Scatter 签名登录</Button>
               </Button.Group>
@@ -203,4 +211,7 @@ const style = {
   },
 };
 
-export default withContent(Login);
+export default compose(
+  withContent,
+  withScatter
+)(Login);
