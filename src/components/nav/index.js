@@ -1,5 +1,5 @@
 import React from "react";
-import intl from "react-intl-universal";
+// import intl from "react-intl-universal";
 import { NavLink } from 'react-router-dom';
 import { Menu, Icon, Modal, Select } from "antd";
 import menus from "./menus";
@@ -15,9 +15,6 @@ const langList = {
 
 const Option = Select.Option;
 
-
-const { SubMenu } = Menu
-const navbarI18n = (name) => intl.get(`navbar.${name}`)
 
 const MenuItem = ({ path, name, icon, float = 'left' }) => {
     const smartIconStyle = name ?  {} : { marginRight: 0 }

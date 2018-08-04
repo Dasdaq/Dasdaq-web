@@ -6,7 +6,7 @@ import { recover } from "eosjs-ecc";
 import { login, getMyInfo, loginByMetaMask } from "../../api/auth";
 import IconFont from "../../components/IconFont";
 import withContent from "../ContentWrapper";
-import { sign, getMyAddr } from "../../apieth"
+import { sign } from "../../apieth"
 import { compose } from "ramda";
 import { withScatter } from "../../scatterContext";
 const i18n = (name) => intl.get(`user.login.${name}`)
@@ -114,7 +114,7 @@ class Login extends React.Component {
   }
 
   async signByMetaMask() {
-    const account = await getMyAddr()
+    // const account = await getMyAddr()
     const signature = await sign("dasdaq")
     // console.log(account)
     console.log(signature)
@@ -130,7 +130,7 @@ class Login extends React.Component {
 
   render() {
     const { user } = this.props
-    const { isLoadedPlugin } = this.state
+    // const { isLoadedPlugin } = this.state
     if (user !== null) {
       return (
         <div className="notification">
