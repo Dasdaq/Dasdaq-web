@@ -9,7 +9,6 @@
     "bizcharts": "^3.1.10",
     "bizcharts-plugin-slider": "^2.0.3",
     "eosjs-ecc": "^4.0.2",
-    "eth-sig-util": "^2.0.1",
     "js-cookie": "^2.2.0",
     "material-ui": "^0.20.1",
     "ramda": "^0.25.0",
