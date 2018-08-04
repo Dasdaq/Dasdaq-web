@@ -52,7 +52,7 @@ export default function Navbar(props) {
                 navigationMenus.map(MenuItem)
             }
 
-            <Menu.Item style={'right'} onClick={() => setSettingVisible(true)}>
+            <Menu.Item style={{ float: 'right' }} onClick={() => setSettingVisible(true)}>
                 设置
             </Menu.Item>
 
