@@ -44,3 +44,15 @@ export async function getMyInfo() {
         return data.user_info
     }
 }
+
+export async function loginByMetaMask({ signature }) {
+    const path = getAPIPath('login')
+    const result = await axios.post(path, {
+        signature, "login_type":1
+    })
+    if (result.data.err_code !== 0) {
+        const { err_msg } = result.data;
+        throw new Error(err_msg)
+    }
+    return result
+}
