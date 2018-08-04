@@ -3,7 +3,7 @@ import { Form, Icon, Input, Button, Checkbox, Modal, notification, Card, Row, Co
 import { NavLink } from "react-router-dom";
 import intl from "react-intl-universal";
 import { recover } from "eosjs-ecc";
-import { login, getMyInfo } from "../../api/auth";
+import { login, getMyInfo, loginByMetaMask } from "../../api/auth";
 import IconFont from "../../components/IconFont";
 import withContent from "../ContentWrapper";
 import { sign, getMyAddr } from "../../apieth"
@@ -107,9 +107,17 @@ class Login extends React.Component {
 
   async signByMetaMask() {
     const account = await getMyAddr()
-    const signature = await sign("dasdaqtest")
-    console.log(account)
+    const signature = await sign("dasdaq")
+    // console.log(account)
     console.log(signature)
+    try {
+    const result = await loginByMetaMask({signature: signature.result })
+      alert(result)
+    } catch (error) {
+      notification.error({
+        message: error.message
+      })
+    }
   }
 
   render() {
