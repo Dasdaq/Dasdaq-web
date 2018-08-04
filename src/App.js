@@ -42,6 +42,9 @@ class App extends Component {
     document.addEventListener('scatterLoaded', () => {
       const scatter = window.scatter
       this.setState({ scatter })
+      // It is good practice to take this off the window 
+      // once you have a reference to it. @GetScatter Team
+      window.scatter = null
     })
   }
   async componentDidMount() {
