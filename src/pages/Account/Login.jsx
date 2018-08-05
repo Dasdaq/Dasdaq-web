@@ -8,7 +8,7 @@ import IconFont from "../../components/IconFont";
 import withContent from "../ContentWrapper";
 import { sign } from "../../apieth"
 import { compose } from "ramda";
-import { withScatter } from "../../scatterContext";
+import { withScatter } from "../../scatter";
 const i18n = (name) => intl.get(`user.login.${name}`)
 
 
