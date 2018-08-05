@@ -56,3 +56,27 @@ export async function loginByMetaMask({ signature }) {
     }
     return result
 }
+
+export async function bindMetaMask({ eth_address, metamask_signature }) {
+    const path = getAPIPath('update_profile')
+    const result = await axios.post(path, {
+        eth_address, metamask_signature
+    })
+    if (result.data.err_code !== 0) {
+        const { err_msg } = result.data;
+        throw new Error(err_msg)
+    }
+    return result
+}
+
+export async function changePassword({ old_password, new_password }) {
+    const path = getAPIPath('change_password')
+    const result = await axios.post(path, {
+        old_password, new_password
+    })
+    if (result.data.err_code !== 0) {
+        const { err_msg } = result.data;
+        throw new Error(err_msg)
+    }
+    return result
+}

@@ -113,14 +113,18 @@ class Login extends React.Component {
     this.setState(obj);
   }
 
-  async signByMetaMask() {
-    // const account = await getMyAddr()
+  signByMetaMask = async (e) => {
+    const { saveUser } = this.props
     const signature = await sign("dasdaq")
-    // console.log(account)
     console.log(signature)
     try {
       const result = await loginByMetaMask({ signature: signature.result })
-      alert(result)
+      // console.log(result)
+      saveUser(result)
+      notification.success({
+        message: 'Login successfully',
+        description: 'We will redirect to previous page in no time.'
+      })
     } catch (error) {
       notification.error({
         message: error.message
