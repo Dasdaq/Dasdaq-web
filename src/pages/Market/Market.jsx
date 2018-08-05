@@ -19,7 +19,7 @@ const columns = [{
     title: '兑换为BTC',
     dataIndex: 'BTC',
     key: 'BTC',
-    defaultSortOrder: 'descend',
+    sortOrder: 'ascend',
     sorter: (a, b) => parseInt(a.BTC, 10) - parseInt(b.BTC, 10),
 }, {
     title: '兑换为ETH',
@@ -131,7 +131,7 @@ class MarketPage extends Component {
             'min': { alias: '最低价' },
             'range': { alias: '股票价格' }
         }
-        const {coinPrice} = this.state;
+        const {coinPrice,historyData} = this.state;
         return (
             <div className="market">
                 <Chart height={window.innerHeight / 2 - 50} animate={false} padding={[10, 40, 40, 40]} data={dv} scale={cols} forceFit>
