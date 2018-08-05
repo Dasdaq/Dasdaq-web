@@ -27,26 +27,15 @@ import Detail from "./pages/DappStore/DappDetail";
 
 import './App.css';
 
-import { ScatterProvider } from "./scatterContext";
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      i18nLoaded: false,
-      scatter: null
+      i18nLoaded: false
     }
   }
-  componentWillMount() {
-    // Listen to Scatter Loading
-    document.addEventListener('scatterLoaded', () => {
-      const scatter = window.scatter
-      this.setState({ scatter })
-      // It is good practice to take this off the window 
-      // once you have a reference to it. @GetScatter Team
-      window.scatter = null
-    })
-  }
+  
   async componentDidMount() {
     const { lang, saveUserData } = this.props
     console.info(`用户语言为: ${lang}`)
@@ -62,7 +51,6 @@ class App extends Component {
   }
   render() {
     return this.state.i18nLoaded && (
-      <ScatterProvider value={this.state.scatter}>
         <div className="App">
           <Router basename="/">
             <div className="container" >
@@ -101,7 +89,6 @@ class App extends Component {
 
           </Router>
         </div>
-      </ScatterProvider>
     );
   }
 }

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import './index.css';
 import App from './App';
+import { ScatterProvider } from "./scatter";
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers'
 
@@ -14,7 +15,9 @@ const store = createStore(
 
 render(
     <Provider store={store}>
-        <App />
+        <ScatterProvider>
+            {providerState => <App {...providerState} /> } 
+        </ScatterProvider>
     </Provider>
     , document.getElementById('root'));
 
