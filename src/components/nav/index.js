@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // import intl from "react-intl-universal";
 import { NavLink } from 'react-router-dom';
 import { Menu, Icon, Modal, Select } from "antd";
@@ -17,7 +17,7 @@ const Option = Select.Option;
 
 
 const MenuItem = ({ path, name, icon, float = 'left' }) => {
-    const smartIconStyle = name ?  {} : { marginRight: 0 }
+    const smartIconStyle = name ? {} : { marginRight: 0 }
     return (
         <Menu.Item key={path} style={{ float }} >
             <NavLink to={path}>
@@ -28,60 +28,76 @@ const MenuItem = ({ path, name, icon, float = 'left' }) => {
     )
 }
 
-export default function Navbar(props) {
-    const { location, lang, theme, crypto, user, settingVisible } = props
-    const { setCrypto, setLanguage, setTheme, setSettingVisible } = props
-    // Each Time Render read the menus and the navbar color
-    const logined = user !== null
-    const navigationMenus = menus({ logined })
-    const { otherColor } = smartNavbarColor({ location, theme })
-    const menuStyle = {
-        lineHeight: '64px',
-        background: otherColor,
-        borderBottomColor: otherColor,
+class NavbarComponent extends Component {
+    constructor() {
+        super()
+        this.state = {
+            settingVisible: false
+        }
     }
-    return (
-        <Menu
-            theme={theme} mode="horizontal" defaultSelectedKeys={['/']}
-            selectedKeys={[location.pathname]} style={menuStyle}>
-            {
-                // all magics happened right here
-                navigationMenus.map(MenuItem)
-            }
 
-            <Menu.Item style={{ float: 'right' }} onClick={() => setSettingVisible(true)}>
-                设置
+    setSettingVisible(settingVisible) {
+        this.setState({ settingVisible })
+    }
+
+    render() {
+        const { settingVisible } = this.state
+        const { location, lang, theme, crypto, user } = this.props
+        const { setCrypto, setLanguage, setTheme } = this.props
+        // Each Time Render read the menus and the navbar color
+        const logined = user !== null
+        const navigationMenus = menus({ logined })
+        const { otherColor } = smartNavbarColor({ location, theme })
+        const menuStyle = {
+            lineHeight: '64px',
+            background: otherColor,
+            borderBottomColor: otherColor,
+        }
+        return (
+            <Menu
+                theme={theme} mode="horizontal" defaultSelectedKeys={['/']}
+                selectedKeys={[location.pathname]} style={menuStyle}>
+                {
+                    // all magics happened right here
+                    navigationMenus.map(MenuItem)
+                }
+
+                <Menu.Item style={{ float: 'right' }} onClick={() => this.setSettingVisible(true)}>
+                    设置
             </Menu.Item>
 
-            <Modal
-              title="设置"
-              visible={settingVisible}
-              onOk={() => setSettingVisible(false)}
-              onCancel={() => setSettingVisible(false)}
-            >
-                选择单位：
+                <Modal
+                    title="设置"
+                    visible={settingVisible}
+                    onOk={() => this.setSettingVisible(false)}
+                    onCancel={() => this.setSettingVisible(false)}
+                >
+                    选择单位：
                 <Select defaultValue={crypto} style={{ width: 120 }} onChange={(value) => setCrypto(value)}>
-                  <Option value="BTC">Bitcoin</Option>
-                  <Option value="ETH">Ethereum</Option>
-                  <Option value="EOS">EOS</Option>
-                </Select>
-                <br />
-                <br />
-                选择语言：
+                        <Option value="BTC">Bitcoin</Option>
+                        <Option value="ETH">Ethereum</Option>
+                        <Option value="EOS">EOS</Option>
+                    </Select>
+                    <br />
+                    <br />
+                    选择语言：
                 <Select defaultValue={langList[lang]} style={{ width: 120 }} onChange={(value) => setLanguage(value)}>
-                  <Option value="SWITCH_TO_CHINESE">中文</Option>
-                  <Option value="SWITCH_TO_ENGLISH">English</Option>
-                  <Option value="SWITCH_TO_JAPANESE">日本語</Option>
-                  <Option value="SWITCH_TO_KOREAN">한국말</Option>
-                </Select>
-                <br />
-                <br />
-                主题色：
+                        <Option value="SWITCH_TO_CHINESE">中文</Option>
+                        <Option value="SWITCH_TO_ENGLISH">English</Option>
+                        <Option value="SWITCH_TO_JAPANESE">日本語</Option>
+                        <Option value="SWITCH_TO_KOREAN">한국말</Option>
+                    </Select>
+                    <br />
+                    <br />
+                    主题色：
                 <Select defaultValue={theme} style={{ width: 120 }} onChange={(value) => setTheme(value)}>
-                  <Option value="SWITCH_TO_DARK">DARK</Option>
-                  <Option value="SWITCH_TO_LIGHT">LIGHT</Option>
-                </Select>
-            </Modal>
-        </Menu>
-    )
+                        <Option value="SWITCH_TO_DARK">DARK</Option>
+                        <Option value="SWITCH_TO_LIGHT">LIGHT</Option>
+                    </Select>
+                </Modal>
+            </Menu>
+        )
+    }
 }
+
+export default NavbarComponent
