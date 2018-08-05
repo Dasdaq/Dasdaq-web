@@ -14,8 +14,3 @@ const defaultSetterAction = (type) => ({ type })
 export const setTheme = defaultSetterAction
 
 export const setCrypto = defaultSetterAction
-
-export const setSettingVisible = (b) => ({
-    type: "setSettingVisible",
-    b
-})
