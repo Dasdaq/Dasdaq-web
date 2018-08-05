@@ -19,10 +19,10 @@ export async function register({ username, password, inviter = '' }) {
     }
 }
 
-export async function login({ username, password }) {
+export async function login({ username, password, login_type }) {
     const path = getAPIPath('login')
     const result = await axios.post(path, {
-        username, password
+        username, password, login_type
     })
     if (result.data.err_code !== 0) {
         const { err_msg } = result.data;
