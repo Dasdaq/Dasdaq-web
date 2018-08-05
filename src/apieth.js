@@ -16,7 +16,8 @@ export const sign = async (word) => {
 
 export const getMyAddr = async () => {
   if (!window.web3) {
-    throw Error('NO_METAMASK')
+    // throw Error('NO_METAMASK')
+    alert("请安装MetaMask")
   }
   return new Promise((resolve, reject) => {
     web3.eth.getAccounts((err, accounts) => {
@@ -24,7 +25,8 @@ export const getMyAddr = async () => {
       if (address) {
         return resolve(address)
       }
-      return reject(err)
+      // return reject(err)
+      alert("请登录MetaMask")
     })
   })
 }
