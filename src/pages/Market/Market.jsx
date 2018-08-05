@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
-import axios from "axios";
+import axios from "axios-jsonp-pro";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
 import { Table } from 'antd';
 
-const CoinPrices = [
+/*const CoinPrices = [
     { key: "1", name: "USD", BTC: "3333783.0000", ETH: "33335533.0000", EOS: "333333273.0000" },
     { key: "2", name: "CNY", BTC: "3334433.0000", ETH: "33773333.0000", EOS: "333354533.0000" },
     { key: "3", name: "JPY", BTC: "3223333.0000", ETH: "33354333.0000", EOS: "3333353434.0000" },
-]
+]*/
 const columns = [{
     title: '名称',
     dataIndex: 'name',
@@ -73,7 +73,8 @@ class MarketPage extends Component {
     constructor() {
         super()
         this.state = {
-            historyData: []
+            historyData: [],
+            coinPrice:[]
         }
     }
 
@@ -96,6 +97,21 @@ class MarketPage extends Component {
         })
         console.info(data)
         this.setState({ historyData: data })
+        var thiz = this;
+        const url = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,EOS&tsyms=USD,CNY,JPY";
+         axios.get(url)
+             .then(function (resp) {
+                 let data =resp.data;
+             let values= [
+                     { key: "1", name: "USD", BTC: data.BTC.USD, ETH: data.ETH.USD, EOS: data.EOS.USD },
+                     { key: "2", name: "CNY", BTC: data.BTC.CNY, ETH: data.ETH.CNY, EOS: data.EOS.CNY },
+                     { key: "3", name: "JPY", BTC: data.BTC.JPY, ETH: data.ETH.JPY, EOS: data.EOS.JPY },
+                 ]
+                 thiz.setState({coinPrice:values});
+             })
+             .catch(function (err) {
+                 console.info(err)
+             })
     }
 
     render() {
@@ -115,6 +131,7 @@ class MarketPage extends Component {
             'min': { alias: '最低价' },
             'range': { alias: '股票价格' }
         }
+        const {coinPrice} = this.state;
         return (
             <div className="market">
                 <Chart height={window.innerHeight / 2 - 50} animate={false} padding={[10, 40, 40, 40]} data={dv} scale={cols} forceFit>
@@ -182,7 +199,7 @@ class MarketPage extends Component {
                         onChange={this.onChange.bind(this)}
                     />
                     <div>
-                        <Table dataSource={CoinPrices} columns={columns} />
+                        <Table dataSource={coinPrice} columns={columns} />
                     </div>
 
                 </div>
