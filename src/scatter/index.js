@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import commonNetwork from "./commonNetwork.json";
+
+export const eosNetwork = commonNetwork
 
 const { Consumer, Provider } = React.createContext(null);
 
