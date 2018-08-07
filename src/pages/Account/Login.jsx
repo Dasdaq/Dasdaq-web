@@ -2,7 +2,6 @@ import React from "react"
 import { Form, Icon, Input, Button, Checkbox, Modal, notification, Card, Row, Col, Alert } from 'antd';
 import { NavLink } from "react-router-dom";
 import intl from "react-intl-universal";
-import { recover } from "eosjs-ecc";
 import { login, getMyInfo, loginByMetaMask, loginByScatter } from "../../api/auth";
 import IconFont from "../../components/IconFont";
 import withContent from "../ContentWrapper";
@@ -18,6 +17,17 @@ const IconFactory = (type) => (
   <Icon type={type} style={{ color: 'rgba(0,0,0,.25)' }} />
 )
 
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 0 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
+};
+
 class Login extends React.Component {
   constructor() {
     super()
@@ -32,8 +42,18 @@ class Login extends React.Component {
   }
 
   async componentDidMount() {
+    if (this.props.user !== null) {
+      notification.info(
+        {
+          duration: 3000, message: 'You have logined already.',
+          description: 'We will redirect to the page in 3 seconds.'
+        }
+      )
+      setTimeout(() => {
+        this.props.history.push("/account/info");
+      }, 3000)
+    }
     this.scatter = this.props.scatter
-    // document.addEventListener('scatterLoaded', () => { this.handleScatter() })
   }
 
 
@@ -41,9 +61,6 @@ class Login extends React.Component {
   handleScatter() {
     console.info('We loaded Scatter')
     this.scatter = window.scatter
-    const isLoadedPlugin = {}
-    isLoadedPlugin['scatter'] = true
-    this.setState({ isLoadedPlugin })
   }
 
   async requestIdAndSignWithScatter() {
@@ -121,7 +138,6 @@ class Login extends React.Component {
     console.log(signature)
     try {
       const result = await loginByMetaMask({ signature: signature.result })
-      // console.log(result)
       saveUser(result)
       notification.success({
         message: 'Login successfully',
@@ -136,11 +152,10 @@ class Login extends React.Component {
 
   render() {
     const { user } = this.props
-    // const { isLoadedPlugin } = this.state
     if (user !== null) {
       return (
-        <div className="notification">
-          <Card title="欢迎回来">
+        <div className="login-ok">
+          <Card title="使用钱包签名快速登录">
             你已登录，请打开 <Button size="large"><NavLink to="/account/info"> 我的账户 </NavLink></Button>
           </Card>
         </div>
@@ -155,10 +170,8 @@ class Login extends React.Component {
                   <div> 使用 <IconFont name="metamask" /> MetaMask
                     或 <IconFont name="scatter" /> Scatter 钱包签名登录 </div>
                 }
-                description="无需输入账户密码，体验安全快捷、无需密码的登录方式！"
-                type="info"
-                iconType="key"
-                showIcon
+                type="info" description="无需输入账户密码，体验安全快捷、无需密码的登录方式！"
+                showIcon iconType="key"
                 style={{ marginBottom: "1rem" }}
               />
               <Button.Group>
@@ -174,13 +187,13 @@ class Login extends React.Component {
             <Form onSubmit={this.handleSubmit} className="login-form" style={style.container}>
               <h2> {i18n('user login')}</h2>
               <br />
-              <FormItem label={i18n('username')}>
+              <FormItem label={i18n('username')} {...formItemLayout}>
                 <Input prefix={IconFactory('user')}
                   onChange={(e) => this.handleChange(e, 'username')}
                   onBlur={(e) => this.handleChange(e, 'username')}
                   placeholder={i18n('username')} />
               </FormItem>
-              <FormItem label={i18n('password')}>
+              <FormItem label={i18n('password')} {...formItemLayout}>
                 <Input prefix={IconFactory("lock")}
                   onChange={(e) => this.handleChange(e, 'password')}
                   onBlur={(e) => this.handleChange(e, 'password')}
@@ -191,7 +204,7 @@ class Login extends React.Component {
                 <a className="login-form-forgot" href="">{i18n('forgot password')}</a>
               </FormItem>
               <FormItem>
-                <Button type="primary" htmlType="submit" className="login-form-button" size="large">
+                <Button type="primary" htmlType="submit" style={{ width: '100%' }} size="large">
                   {i18n('login')}
                 </Button>
               </FormItem>
@@ -210,7 +223,7 @@ class Login extends React.Component {
 
 const style = {
   container: {
-    maxWidth: '300px',
+    // maxWidth: '36rem',
     padding: '30px',
     marginLeft: 'auto',
     marginRight: 'auto',
