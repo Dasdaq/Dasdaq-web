@@ -48,7 +48,7 @@ export async function getMyInfo() {
 export async function loginByMetaMask({ signature }) {
     const path = getAPIPath('login')
     const result = await axios.post(path, {
-        signature, "login_type":1
+        signature, "login_type": 1
     })
     if (result.data.err_code !== 0) {
         const { err_msg } = result.data;
@@ -57,16 +57,34 @@ export async function loginByMetaMask({ signature }) {
     return result
 }
 
-export async function bindMetaMask({ eth_address, metamask_signature }) {
-    const path = getAPIPath('update_profile')
+export async function loginByScatter({ signature }) {
+    const path = getAPIPath('login')
     const result = await axios.post(path, {
-        eth_address, metamask_signature
+        signature, "login_type": 2
     })
     if (result.data.err_code !== 0) {
         const { err_msg } = result.data;
         throw new Error(err_msg)
     }
     return result
+}
+
+export async function update_profile(data) {
+    const path = getAPIPath('update_profile')
+    const result = await axios.post(path, data)
+    if (result.data.err_code !== 0) {
+        const { err_msg } = result.data;
+        throw new Error(err_msg)
+    }
+    return result
+}
+
+export async function bindMetaMask({ eth_address, metamask_signature }) {
+    return update_profile({ eth_address, metamask_signature })
+}
+
+export async function bindScatter({ eos_address, scatter_signature }) {
+    return update_profile({ eos_address, scatter_signature })
 }
 
 export async function changePassword({ old_password, new_password }) {
