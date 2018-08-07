@@ -72,9 +72,6 @@ class InfoUser extends Component {
         return (
             <div>
                 <Row>
-                    <Col span={4}>
-                        <Left />
-                    </Col>
                     <Col span={20}>
                         { this.renderPassword() }
                     </Col>
