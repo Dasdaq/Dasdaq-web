@@ -43,16 +43,18 @@ class Login extends React.Component {
 
   async componentDidMount() {
     if (this.props.user !== null) {
-      notification.info(
-        {
-          duration: 3000, message: 'You have logined already.',
-          description: 'We will redirect to the page in 3 seconds.'
-        }
-      )
-      setTimeout(() => {
-        this.props.history.push("/account/info");
-      }, 3000)
+      this.jumpToUserPanel()
     }
+  }
+
+  async componentDidUpdate() {
+    if (this.props.user !== null) {
+      this.jumpToUserPanel()
+    }
+  }
+
+  jumpToUserPanel() {
+      this.props.history.push("/account/info");
   }
 
   async requestIdAndSignWithScatter() {
