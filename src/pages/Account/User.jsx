@@ -46,11 +46,17 @@ class User extends React.Component {
   }
   async requestIdAndSignWithScatter() {
     await this.requestIdentity()
-    let signature = await this.getSignatureWithScatter()
-    if (signature) {
-      const eosAddress = this.state.identity.accounts[0].name
+    try {
+      const scatter_signature = await this.getSignatureWithScatter()
+      console.info('eos_signature' + scatter_signature)
+      const eos_address = this.state.identity.accounts[0].name
+      await bindScatter({ eos_address, scatter_signature })
       notification.success({
-        message: `Scatter EOS 身份绑定成功, 你的 EOS 账户名: ${eosAddress}`
+        message: `Scatter EOS 身份绑定成功, 你的 EOS 账户名: ${eos_address}`
+      })
+    } catch (error) {
+      notification.error({
+        message: error.message
       })
     }
   }
@@ -71,15 +77,10 @@ class User extends React.Component {
       return null;
     }
     const { publicKey } = this.state.identity
-    const signMsg = "By Signing, you will bind your Scatter identity with your account 1145141919XXOO"
+    const signMsg = "By Signing, you will bind your Scatter identity with your account."
 
-    try {
-      const sign = await scatter.getArbitrarySignature(
-        publicKey, signMsg, 'Login Authentication', false)
-      return sign
-    } catch (error) {
-      console.error(error.message)
-    }
+    return scatter.getArbitrarySignature(
+      publicKey, signMsg, 'Login Authentication', false)
   }
 
   handlePasswordChange(event, pwtype) {
