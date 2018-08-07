@@ -53,14 +53,6 @@ class Login extends React.Component {
         this.props.history.push("/account/info");
       }, 3000)
     }
-    this.scatter = this.props.scatter
-  }
-
-
-
-  handleScatter() {
-    console.info('We loaded Scatter')
-    this.scatter = window.scatter
   }
 
   async requestIdAndSignWithScatter() {
