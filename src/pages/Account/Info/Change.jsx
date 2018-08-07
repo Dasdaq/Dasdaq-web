@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Col, Row, Form, Icon, Input, Button, notification} from 'antd';
-import Left from "./Left";
 import { changePassword} from "../../../api/auth";
 
 const FormItem = Form.Item;
@@ -73,9 +72,6 @@ class InfoUser extends Component {
         return (
             <div>
                 <Row>
-                    <Col span={4}>
-                        <Left />
-                    </Col>
                     <Col span={20}>
                         { this.renderPassword() }
                     </Col>

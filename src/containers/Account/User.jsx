@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from "react-router-dom";
 import { compose } from "ramda";
-import User from "../../pages/Account/Info/User";
+import User from "../../pages/Account/User";
 import withContent from "../../pages/ContentWrapper";
 
 const mapStateToProps =
