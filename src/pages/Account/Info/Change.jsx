@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Col, Row, Form, Icon, Input, Button, notification} from 'antd';
-import Left from "./Left";
 import { changePassword} from "../../../api/auth";
 
 const FormItem = Form.Item;

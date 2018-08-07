@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Col, Row} from 'antd';
-import Left from "./Left";
 
 class InfoUser extends Component {
     constructor() {

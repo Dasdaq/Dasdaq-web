@@ -1,9 +1,17 @@
 import React from "react"
 import { Form, Icon, Input, Button, Col, Menu, Row, Card, Alert, notification } from 'antd';
+import {
+  BrowserRouter as Router,
+  Switch, Route, Link
+} from 'react-router-dom'
 import IconFont from "../../components/IconFont";
 import { sign, getMyAddr } from "../../apieth"
 import { changePassword, bindMetaMask, bindScatter } from "../../api/auth";
 import { withScatter, eosNetwork } from "../../scatter";
+
+import BindAccount from './Info/BindAccount'
+import BindWallet from './Info/BindWallet'
+import Change from './Info/Change'
 
 const FormItem = Form.Item;
 const {
@@ -102,7 +110,7 @@ class User extends React.Component {
         notification.success({
           message: '密码修改成功'
         })
-        result.toString();
+        // result.toString();
       } catch (error) {
         notification.error({
           message: error.message
@@ -202,10 +210,18 @@ class User extends React.Component {
               mode="inline"
             >
               <ItemGroup key="g1">
-                <Menu.Item key="0">个人信息</Menu.Item>
-                <Menu.Item key="1">修改密码</Menu.Item>
-                <Menu.Item key="2">绑定第三方钱包</Menu.Item>
-                <Menu.Item key="3">绑定第三方账户</Menu.Item>
+                <Menu.Item key="0">
+                  <Link to='/account/info/user'>个人信息</Link >
+                </Menu.Item>
+                <Menu.Item key="1">
+                  <Link to='/account/info/change'>修改密码</Link >
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link to='/account/info/bindWallet'>绑定第三方钱包</Link >
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <Link to='/account/info/bindAccount'>绑定第三方账户</Link >
+                </Menu.Item>
               </ItemGroup>
               <ItemGroup key="g2">
                 <Menu.Item key="5">退出登录</Menu.Item>
@@ -213,9 +229,17 @@ class User extends React.Component {
             </Menu>
           </Col>
           <Col span={20}>
-            {this.renderInfo()}
+            {/* {this.renderInfo()}
             {this.renderPassword()}
-            {this.renderWallet()}
+            {this.renderWallet()} */}
+            <Router>
+              <Switch>
+                <Route path='/account/info/change' component={Change} />
+                <Route path='/account/info/bindAccount' component={BindAccount} />
+                <Route path='/account/info/bindWallet' component={BindWallet} />
+                <Route component={() => <div> 404 </div>} />
+              </Switch>
+            </Router>
           </Col>
         </Row>
       </div>

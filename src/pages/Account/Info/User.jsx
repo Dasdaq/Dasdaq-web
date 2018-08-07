@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import {Col, Row, Form, Icon, Input, Button} from 'antd';
-import Left from "./Left";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom'
+
 
 const FormItem = Form.Item;
 
@@ -35,7 +41,9 @@ class InfoUser extends Component {
                         <Left />
                     </Col>
                     <Col span={20}>
-                        { this.renderInfo() }
+
+                        {/* { this.renderInfo() } */}
+                        
                     </Col>
                 </Row>
             </div>
