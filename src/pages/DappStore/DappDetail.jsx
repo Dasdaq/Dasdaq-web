@@ -8,6 +8,19 @@ import Slider from "bizcharts-plugin-slider";
 
 const TabPane = Tabs.TabPane;
 
+const projInfo = 
+{   key: "1", 
+    name: "隐秘世界", 
+    coin: "eth",// not used
+    type: "game",
+    balance: 118.06, 
+    userperday: {value: 94, change: 2.6}, 
+    chargeperday: {value: 292.34, change: -1.36}, 
+    chargeperweek: 1706.03, 
+    transperday: 3586, 
+    transperweek: 23704, 
+    chart: 0 }
+
 const CoinPrices = [
     {name:"Bit",USD:"3333783.0000",CNY:"33335533.0000",JPY:"333333273.0000"},
     {name:"Eth",USD:"3334433.0000",CNY:"33773333.0000",JPY:"333354533.0000"},
@@ -223,8 +236,10 @@ class DappDetail extends React.Component {
                 </Col>
                 <Col span={18} style={style.content}>
                   <Tabs defaultActiveKey="1" onChange={this.callback}>
-                    <TabPane tab="关于" key="1">about the btc</TabPane>
-                    <TabPane tab="Token" key="2">{this.renderContent()}</TabPane>
+                    <TabPane tab="关于" key="1">项目信息</TabPane>
+                    <TabPane tab="人员" key="2">参与人员详情</TabPane>
+                    <TabPane tab="应用" key="3">对接第一方的应用（水浒、签名、隐秘世界）</TabPane>
+                    <TabPane tab="K线图" key="4">{this.renderContent()}</TabPane>
                   </Tabs>
                 </Col>
               </Row>
