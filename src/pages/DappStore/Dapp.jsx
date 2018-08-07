@@ -19,12 +19,13 @@ const CoinPrices = [
     transperweek: 23704, 
     chart: 0 },
 ]
+
 const columns = [{
     title: '名称',
     dataIndex: 'name',
     key: 'name',
     render: (text, record) => (
-        <span class="icon-ethereum">
+        <span className="icon-ethereum">
           <a>{record.name}</a>
         </span>
     ),
@@ -227,7 +228,12 @@ class MarketPage extends Component {
                     />
                            <div>
                         <div>
-                            <Table dataSource={CoinPrices} columns={columns} />
+                            <Table dataSource={CoinPrices} columns={columns} 
+                            onRow={(record) => {
+                                return {
+                                  onClick: () => { { this.props.history.push({pathname: '/detail'}) } },       // 点击行
+                                };
+                              }}/>
                         </div>
                     </div>
                 </div>
