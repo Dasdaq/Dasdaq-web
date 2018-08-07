@@ -63,8 +63,9 @@ class NavbarComponent extends Component {
                 }
 
                 <Menu.Item style={{ float: 'right' }} onClick={() => this.setSettingVisible(true)}>
+                    <Icon type="setting" />
                     设置
-            </Menu.Item>
+                </Menu.Item>
 
                 <Modal
                     title="设置"

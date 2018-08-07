@@ -3,7 +3,7 @@ import { Form, Icon, Input, Button, Checkbox, Modal, notification, Card, Row, Co
 import { NavLink } from "react-router-dom";
 import intl from "react-intl-universal";
 import { recover } from "eosjs-ecc";
-import { login, getMyInfo, loginByMetaMask } from "../../api/auth";
+import { login, getMyInfo, loginByMetaMask, loginByScatter } from "../../api/auth";
 import IconFont from "../../components/IconFont";
 import withContent from "../ContentWrapper";
 import { sign } from "../../apieth"
@@ -48,13 +48,20 @@ class Login extends React.Component {
 
   async requestIdAndSignWithScatter() {
     await this.requestIdentity()
-    let signature = await this.getSignatureWithScatter()
-    if (signature) {
-      // @todo: send signature to backend
-      // local recover pubkey for now
-      const signMsg = "By Signing, you will bind your Scatter identity with your account 1145141919XXOO"
-      const recoveredPubKey = recover(signature, signMsg)
-      console.info(`recovered signer: ${recoveredPubKey} by signature: ${signature}`)
+    try {
+      const signature = await this.getSignatureWithScatter()
+      console.info('signature ' + signature)
+      const result = await loginByScatter({ signature })
+      // console.log(result)
+      this.props.saveUser(result)
+      notification.success({
+        message: 'Login successfully',
+        description: 'We will redirect to previous page in no time.'
+      })
+    } catch (error) {
+      notification.error({
+        message: error.message
+      })
     }
   }
 
@@ -74,15 +81,10 @@ class Login extends React.Component {
       return null;
     }
     const { publicKey } = this.state.identity
-    const signMsg = "By Signing, you will bind your Scatter identity with your account 1145141919XXOO"
+    const signMsg = "By Signing, you will bind your Scatter identity with your account."
+    return scatter.getArbitrarySignature(
+      publicKey, signMsg, 'Login Authentication', false)
 
-    try {
-      const sign = await scatter.getArbitrarySignature(
-        publicKey, signMsg, 'Login Authentication', false)
-      return sign
-    } catch (error) {
-      console.error(error.message)
-    }
   }
 
   handleSubmit = async (e) => {
@@ -92,7 +94,7 @@ class Login extends React.Component {
     console.info(username, password)
     e.preventDefault();
     try {
-      await login({ username, password, "login_type":0 })
+      await login({ username, password, "login_type": 0 })
       const result = await getMyInfo()
       saveUser(result)
       notification.success({
