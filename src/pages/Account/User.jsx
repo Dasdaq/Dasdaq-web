@@ -102,6 +102,7 @@ class User extends React.Component {
         notification.success({
           message: '密码修改成功'
         })
+        result.toString();
       } catch (error) {
         notification.error({
           message: error.message
