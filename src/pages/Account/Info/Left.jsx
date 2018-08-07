@@ -9,6 +9,7 @@ import {
   Menu
 } from 'antd';
 import User from './User'
+import Change from './Change'
 
 const {
   ItemGroup,
@@ -18,7 +19,10 @@ const LeftComponent = () => {
     return (
       <div>
         <Router>
-          <Route path="/account/info/user" component={User}/>
+          <div>
+            <Route path="/account/info/user" component={User}/>
+            <Route path="/account/info/change" component={Change}/>
+          </div>
         </Router>
         <Menu
           // onClick={this.menuClicked.bind(this)}
@@ -31,9 +35,15 @@ const LeftComponent = () => {
               <Menu.Item key="0">
                 <Link to='/account/info/user'>个人信息</Link >
               </Menu.Item>
-              <Menu.Item key="1">修改密码</Menu.Item>
-              <Menu.Item key="2">绑定第三方钱包</Menu.Item>
-              <Menu.Item key="3">绑定第三方账户</Menu.Item>
+              <Menu.Item key="1">
+                <Link to='/account/info/change'>修改密码</Link >
+              </Menu.Item>
+              <Menu.Item key="2">
+                绑定第三方钱包
+              </Menu.Item>
+              <Menu.Item key="3">
+                绑定第三方账户
+              </Menu.Item>
             </ItemGroup>
             <ItemGroup key="g2">
               <Menu.Item key="5">退出登录</Menu.Item>
