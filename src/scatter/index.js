@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 
 const { Consumer, Provider } = React.createContext(null);
 
-export const withScatter = (Component) => (props) => (
-    <Consumer>
-        {
-            scatter => <Component {...props} scatter={scatter} />
-        }
-    </Consumer>
-)
+export const withScatter = (Component) => {
+    // Avoid Unknown Component by assign a name for it
+    const ScatterConsumer = (props) => (
+        <Consumer>
+            {
+                scatter => 
+                    (<Component {...props} scatter={scatter} />)
+            }
+        </Consumer>
+    )
+    return ScatterConsumer
+} 
 
 export class ScatterProvider extends Component {
     // We do all those scatter dirty job here
