@@ -132,6 +132,7 @@ class MarketPage extends Component {
             'range': { alias: '股票价格' }
         }
         const {coinPrice,historyData} = this.state;
+        historyData.toString();
         return (
             <div className="market">
                 <Chart height={window.innerHeight / 2 - 50} animate={false} padding={[10, 40, 40, 40]} data={dv} scale={cols} forceFit>

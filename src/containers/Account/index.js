@@ -10,6 +10,7 @@ export const Login = Loadable({
 });
 
 export const User = Loadable({
+  // loader: () => import('./User'),
   loader: () => import('./User'),
   loading: () => LoadingMessage('User')
 });
