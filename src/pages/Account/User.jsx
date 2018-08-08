@@ -225,17 +225,19 @@ class User extends React.Component {
                 </Menu.Item>
               </ItemGroup>
               <ItemGroup key="g2">
-                <Menu.Item key="5">退出登录</Menu.Item>
+                <Menu.Item key="5">
+                  <Link to='/account/logout'>退出登录</Link >
+                </Menu.Item>
               </ItemGroup>
             </Menu>
           </Col>
           <Col span={20}>
-              <Switch>
-                <Route path='/account/info/change' component={Change} />
-                <Route path='/account/info/bindAccount' component={BindAccount} />
-                <Route path='/account/info/bindWallet' component={BindWallet} />
-                <Route component={() => <div> 404 </div>} />
-              </Switch>
+            <Switch>
+              <Route path='/account/info/change' component={Change} />
+              <Route path='/account/info/bindAccount' component={BindAccount} />
+              <Route path='/account/info/bindWallet' component={BindWallet} />
+              <Route component={() => <div> 404 </div>} />
+            </Switch>
           </Col>
         </Row>
       </div>
