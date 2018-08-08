@@ -1,19 +1,9 @@
 import React, { Component } from "react";
-import {Col, Row, Form, Icon, Input, Button} from 'antd';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from 'react-router-dom'
-
+import { Form, Icon, Input, Button} from 'antd';
 
 const FormItem = Form.Item;
 
 class InfoUser extends Component {
-    constructor() {
-        super()
-    }
 
     renderInfo() {
         return <Form style={ style.container }>
@@ -36,16 +26,7 @@ class InfoUser extends Component {
     render() {
         return (
             <div>
-                <Row>
-                    <Col span={4}>
-                        <Left />
-                    </Col>
-                    <Col span={20}>
-
-                        {/* { this.renderInfo() } */}
-                        
-                    </Col>
-                </Row>
+                { this.renderInfo() }
             </div>
         )
     }
