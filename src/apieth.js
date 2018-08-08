@@ -43,8 +43,3 @@ export const signData = async (msgParams, from) => {
   })
 }
 
-// export const uploadToServer = async (signature) => {
-//   signature = signature.result
-//   return request.put('http://localhost:8000/updateAvatar')
-//     .set({ Authorization: `Bearer ${signature}` })
-// }

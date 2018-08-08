@@ -4,20 +4,22 @@ import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
-import { Table , Tag , Icon } from 'antd';
+import { Table, Tag, Icon } from 'antd';
 /* <img alt="活动 24h" src="https://dappradar-activity.s3.amazonaws.com/449.png"> */
 const CoinPrices = [
-{   key: "1", 
-    name: "隐秘世界", 
-    coin: "eth",// not used
-    type: "game",
-    balance: 118.06, 
-    userperday: {value: 94, change: 2.6}, 
-    chargeperday: {value: 292.34, change: -1.36}, 
-    chargeperweek: 1706.03, 
-    transperday: 3586, 
-    transperweek: 23704, 
-    chart: 0 },
+    {
+        key: "1",
+        name: "隐秘世界",
+        coin: "eth",// not used
+        type: "game",
+        balance: 118.06,
+        userperday: { value: 94, change: 2.6 },
+        chargeperday: { value: 292.34, change: -1.36 },
+        chargeperweek: 1706.03,
+        transperday: 3586,
+        transperweek: 23704,
+        chart: 0
+    },
 ]
 
 const columns = [{
@@ -26,7 +28,7 @@ const columns = [{
     key: 'name',
     render: (text, record) => (
         <span className="icon-ethereum">
-          <a>{record.name}</a>
+            <a>{record.name}</a>
         </span>
     ),
 }, {
@@ -35,7 +37,7 @@ const columns = [{
     key: 'type',
     sorter: (a, b) => a.localeCompare(b),
     render: (text, record) => {
-        if (record.type === "game"){
+        if (record.type === "game") {
             return (<Tag color="red">游戏</Tag>)
         }
     },
@@ -44,7 +46,7 @@ const columns = [{
     dataIndex: 'balance',
     key: 'balance',
     sorter: (a, b) => parseInt(a.balance, 10) - parseInt(b.balance, 10),
-    render: (text,record) => (<span><Icon type="bank"/>{record.balance}</span>),
+    render: (text, record) => (<span><Icon type="bank" />{record.balance}</span>),
     //icon is going to change to eth, nas, or eos
 }, {
     title: "用户 24小时",
@@ -52,40 +54,40 @@ const columns = [{
     key: 'userperday',
     defaultSortOrder: 'descend',
     sorter: (a, b) => parseInt(a.userperday.value, 10) - parseInt(b.userperday.value, 10),
-    render: (text, record) => ( <div>
-                                    <div>{record.userperday.value}</div>
-                                    <div style={ record.userperday.change > 0 ? {color: "#f50"} : {color: "#87d068"} }>
-                                        {(record.userperday.change > 0 ? "+" : "") + record.userperday.change}
-                                    </div>
-                                </div>),
+    render: (text, record) => (<div>
+        <div>{record.userperday.value}</div>
+        <div style={record.userperday.change > 0 ? { color: "#f50" } : { color: "#87d068" }}>
+            {(record.userperday.change > 0 ? "+" : "") + record.userperday.change}
+        </div>
+    </div>),
 }, {
     title: "成交量 24小时",
     dataIndex: 'chargeperday',
     key: 'chargeperday',
     sorter: (a, b) => parseInt(a.chargeperday.value, 10) - parseInt(b.chargeperday.value, 10),
-    render: (text, record) => ( <div>
-        <div><Icon type="bank"/>{record.chargeperday.value}</div>
-        <div style={ record.chargeperday.change > 0 ? {color: "#f50"} : {color: "#87d068"} }>
+    render: (text, record) => (<div>
+        <div><Icon type="bank" />{record.chargeperday.value}</div>
+        <div style={record.chargeperday.change > 0 ? { color: "#f50" } : { color: "#87d068" }}>
             {(record.chargeperday.change > 0 ? "+" : "") + record.chargeperday.change}
         </div>
     </div>),
 }, {
-    title: "成交量 7天" ,
+    title: "成交量 7天",
     dataIndex: 'chargeperweek',
     key: 'chargeperweek',
     sorter: (a, b) => parseInt(a.chargeperweek, 10) - parseInt(b.chargeperweek, 10),
 }, {
-    title: "交易 24小时" ,
+    title: "交易 24小时",
     dataIndex: 'transperday',
     key: 'transperday',
     sorter: (a, b) => parseInt(a.transperday, 10) - parseInt(b.transperday, 10),
 }, {
-    title: "交易 7天" ,
+    title: "交易 7天",
     dataIndex: 'transperweek',
     key: 'transperweek',
     sorter: (a, b) => parseInt(a.transperweek, 10) - parseInt(b.transperweek, 10),
 }, {
-    title: "活动 7天" ,
+    title: "活动 7天",
     // dataIndex: 'transperweek',
     // key: 'transperweek',
     render: (text, record) => (<img alt="actimg" src="/165.png"></img>),
@@ -162,9 +164,11 @@ class MarketPage extends Component {
         }
         return (
             <div>
-                <Chart height={window.innerHeight / 2 - 50} animate={false} padding={[10, 40, 40, 40]} data={dv} scale={cols} forceFit>
+                <Chart height={window.innerHeight / 2 - 50} 
+                animate={false} padding={[10, 40, 40, 40]} data={dv} scale={cols} forceFit>
                     <Legend offset={20} />
-                    <Tooltip showTitle={false} itemTpl='<li data-index={index}><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}{value}</li>' />
+                    <Tooltip showTitle={false} 
+                    itemTpl='<li data-index={index}><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}{value}</li>' />
                     <View end={{ x: 1, y: 0.5 }} data={dv}>
                         <Axis name="time" />
                         <Axis name="range" />
@@ -226,14 +230,13 @@ class MarketPage extends Component {
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
-                           <div>
+                    <div>
                         <div>
-                            <Table dataSource={CoinPrices} columns={columns} 
-                            onRow={(record) => {
-                                return {
-                                  onClick: () => { { this.props.history.push({pathname: '/detail'}) } },       // 点击行
-                                };
-                              }}/>
+                            <Table dataSource={CoinPrices} columns={columns}
+                                onRow={(record) => ({
+                                    onClick: () => { this.props.history.push({ pathname: '/detail' }) },       // 点击行
+                                })
+                                } />
                         </div>
                     </div>
                 </div>

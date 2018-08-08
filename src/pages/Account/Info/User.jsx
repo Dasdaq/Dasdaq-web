@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button} from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
 class InfoUser extends Component {
 
-    renderInfo() {
-        return <Form style={ style.container }>
+    render() {
+        return (
+            <Form style={style.container}>
                 <h2>个人信息</h2>
                 <br />
                 <FormItem>
@@ -16,28 +17,22 @@ class InfoUser extends Component {
                     <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="邮箱" />
                 </FormItem>
                 <FormItem>
-                  <Button type="primary" htmlType="submit" className="login-form-button">
-                    确认修改
+                    <Button type="primary" htmlType="submit" className="login-form-button">
+                        确认修改
                   </Button>
                 </FormItem>
-              </Form>
-    }
-
-    render() {
-        return (
-            <div>
-                { this.renderInfo() }
-            </div>
+            </Form>
         )
     }
+
 }
 
 const style = {
     container: {
-      maxWidth: '300px',
-      padding: '30px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
+        maxWidth: '300px',
+        padding: '30px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     }
 }
 

@@ -32,8 +32,8 @@ class User extends React.Component {
               mode="inline"
             >
               <ItemGroup key="g1">
-                <Menu.Item key={`${match.url}/user`}>
-                  <Link to={`${match.url}/user`}>个人信息</Link >
+                <Menu.Item key={`${match.url}`}>
+                  <Link to={`${match.url}`}>个人信息</Link >
                 </Menu.Item>
                 <Menu.Item key={`${match.url}/change`}>
                   <Link to={`${match.url}/change`}>修改密码</Link >
@@ -46,13 +46,15 @@ class User extends React.Component {
                 </Menu.Item>
               </ItemGroup>
               <ItemGroup key="g2">
-                <Menu.Item key="5">退出登录</Menu.Item>
+                <Menu.Item key="5">
+                  <Link to='/account/logout'>退出登录</Link >
+                </Menu.Item>
               </ItemGroup>
             </Menu>
           </Col>
           <Col span={20}>
               <Switch>
-                <Route path='/account/info/user' component={InfoUser} />
+                <Route exact path='/account/info/' component={InfoUser} />
                 <Route path='/account/info/change' component={Change} />
                 <Route path='/account/info/bindAccount' component={BindAccount} />
                 <Route path='/account/info/bindWallet' component={BindWallet} />
