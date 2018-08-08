@@ -198,6 +198,7 @@ class User extends React.Component {
   }
 
   render() {
+    const { match } = this.props
     return (
       <div>
         <Row>
@@ -214,7 +215,7 @@ class User extends React.Component {
                   <Link to='/account/info/user'>个人信息</Link >
                 </Menu.Item>
                 <Menu.Item key="1">
-                  <Link to='/account/info/change'>修改密码</Link >
+                  <Link to={`${match.url}/change`}>修改密码</Link >
                 </Menu.Item>
                 <Menu.Item key="2">
                   <Link to='/account/info/bindWallet'>绑定第三方钱包</Link >
@@ -229,17 +230,12 @@ class User extends React.Component {
             </Menu>
           </Col>
           <Col span={20}>
-            {/* {this.renderInfo()}
-            {this.renderPassword()}
-            {this.renderWallet()} */}
-            <Router>
               <Switch>
                 <Route path='/account/info/change' component={Change} />
                 <Route path='/account/info/bindAccount' component={BindAccount} />
                 <Route path='/account/info/bindWallet' component={BindWallet} />
                 <Route component={() => <div> 404 </div>} />
               </Switch>
-            </Router>
           </Col>
         </Row>
       </div>
