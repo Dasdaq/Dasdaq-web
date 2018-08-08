@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {Form, Icon, Input, Button, notification} from 'antd';
-import { changePassword} from "../../../api/auth";
+import { Form, Icon, Input, Button, notification } from 'antd';
+import { changePassword } from "../../../api/auth";
 
 const FormItem = Form.Item;
 
@@ -29,8 +29,8 @@ class InfoUser extends Component {
             })
         } else {
             try {
-                await changePassword({ old_password:oldPassword, new_password:newPassword })
-                    notification.success({
+                await changePassword({ old_password: oldPassword, new_password: newPassword })
+                notification.success({
                     message: '密码修改成功'
                 })
             } catch (error) {
@@ -41,48 +41,43 @@ class InfoUser extends Component {
         }
     }
 
-    renderPassword() {
-        return <Form style={ style.container }>
+    render() {
+        return (
+            <Form style={style.container}>
                 <h2>修改密码</h2>
                 <br />
                 <FormItem>
-                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="旧密码" 
-                    value={this.state.oldPassword}
-                    onChange={(e) => this.handlePasswordChange(e, 'oldPassword')}/>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="旧密码"
+                        value={this.state.oldPassword}
+                        onChange={(e) => this.handlePasswordChange(e, 'oldPassword')} />
                 </FormItem>
                 <FormItem>
-                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="新密码" 
-                    value={this.state.newPassword}
-                    onChange={(e) => this.handlePasswordChange(e, 'newPassword')}/>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="新密码"
+                        value={this.state.newPassword}
+                        onChange={(e) => this.handlePasswordChange(e, 'newPassword')} />
                 </FormItem>
                 <FormItem>
-                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="确认新密码" 
-                    value={this.state.confirmNewPassword}
-                    onChange={(e) => this.handlePasswordChange(e, 'confirmNewPassword')}/>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="确认新密码"
+                        value={this.state.confirmNewPassword}
+                        onChange={(e) => this.handlePasswordChange(e, 'confirmNewPassword')} />
                 </FormItem>
                 <FormItem>
-                  <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.changePassword}>
-                    确认修改
+                    <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.changePassword}>
+                        确认修改
                   </Button>
                 </FormItem>
-              </Form>
-    }
-
-    render() {
-        return (
-            <div>
-                { this.renderPassword() }
-            </div>
+            </Form>
         )
     }
+
 }
 
 const style = {
     container: {
-      maxWidth: '300px',
-      padding: '30px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
+        maxWidth: '300px',
+        padding: '30px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     }
 }
 
