@@ -7,14 +7,6 @@ import withContent from "../../pages/ContentWrapper";
 const mapStateToProps =
     ({ user }) => ({ user })
 
-
-// export default withRouter(
-//     connect(
-//         mapStateToProps,
-//         // mapDispatchToProps
-//     )
-//     (withContent(User))
-// )
 export default compose(
     withRouter,
     connect(mapStateToProps),
