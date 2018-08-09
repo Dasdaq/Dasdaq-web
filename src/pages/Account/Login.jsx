@@ -20,11 +20,11 @@ const IconFactory = (type) => (
 const formItemLayout = {
   labelCol: {
     xs: { span: 0 },
-    sm: { span: 8 },
+    sm: { span: 2 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
+    sm: { span: 22 },
   },
 };
 
@@ -157,7 +157,7 @@ class Login extends React.Component {
     } else {
       return (
         <Row>
-          <Col span={12}>
+          <Col md={12} xs={24}>
             <Card title="使用钱包签名快速登录" style={{ margin: "1rem" }}>
               <Alert
                 message={
@@ -177,7 +177,7 @@ class Login extends React.Component {
               </Button.Group>
             </Card>
           </Col>
-          <Col span={12}>
+          <Col md={12} xs={24}>
             <Form onSubmit={this.handleSubmit} className="login-form" style={style.container}>
               <h2> {i18n('user login')}</h2>
               <br />
