@@ -35,18 +35,18 @@ class User extends React.Component {
                 onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
               >
                 <div className="logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+                <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
                   <ItemGroup key="g1">
-                    <Menu.Item key={`${match.url}`}>
+                    <Menu.Item key="1">
                       <Link to={`${match.url}`}>个人信息</Link >
                     </Menu.Item>
-                    <Menu.Item key={`${match.url}/change`}>
+                    <Menu.Item key="2">
                       <Link to={`${match.url}/change`}>修改密码</Link >
                     </Menu.Item>
-                    <Menu.Item key={`${match.url}/bindWallet`}>
+                    <Menu.Item key="3">
                       <Link to={`${match.url}/bindWallet`}>绑定第三方钱包</Link >
                     </Menu.Item>
-                    <Menu.Item key={`${match.url}/bindAccount`}>
+                    <Menu.Item key="4">
                       <Link to={`${match.url}/bindAccount`}>绑定第三方账户</Link >
                     </Menu.Item>
                   </ItemGroup>
