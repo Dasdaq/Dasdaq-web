@@ -75,9 +75,9 @@ class App extends Component {
                       </Switch>
                     </Route>
                     {/* Routes Dapp Store Part */}
-                    <Route path="/dapp" component={withContent(Dapp)} />
+                    {/* <Route path="/dapp" component={withContent(Dapp)} /> */}
                     {/* Routes Market Data Part */}
-                    <Route path="/market" component={withContent(Market)} />
+                    {/* <Route path="/market" component={withContent(Market)} />*/}
                     <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
                     <Route path="/detail" component={Detail} />
                     <Route component={PageNotFound} />

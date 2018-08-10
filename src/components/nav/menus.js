@@ -9,16 +9,6 @@ export const menus = ({logined}) => ([
         name: i18n('home')
     },
     {
-        path: '/market',
-        icon: 'area-chart',
-        name: i18n('market')
-    },
-    {
-        path: '/dapp',
-        icon: 'appstore',
-        name: i18n('app store')
-    },
-    {
         path: '/account/info',
         icon: 'user',
         name: i18n('my account'),
