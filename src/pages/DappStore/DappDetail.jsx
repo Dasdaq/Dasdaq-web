@@ -204,29 +204,31 @@ class DappDetail extends React.Component {
     render() {
         return (
             <div>
-              <Row style={style.topheader}>
-                <Col span={5} style={style.toptext}>
+                <div style={{width:'100%', height:'3px', background:'#E0E0E0'}}></div>
+              <Row>
+                <Col xs={8}  sm={8} md={5} style={style.toptext}>
                   BTC
                 </Col>
-                <Col span={5} style={style.toptext}>
+                <Col xs={8} sm={8} md={5} style={style.toptext}>
                   最近价格<br />$0000.00
                 </Col>
-                <Col span={9} style={style.toptext}>
+                <Col xs={8} sm={8} md={5} style={style.toptext}>
                   交易总额<br/>$0000.00
                 </Col>
-                <Col span={1} style={style.topbtn}>
+                <Col xs={12} sm={12} md={1} style={style.topbtn}>
                   <Button type="primary" htmlType="submit" className="login-form-button" size="large">
                     卖入
                   </Button>
                 </Col>
-                <Col span={4} style={style.topbtn}>
+                <Col xs={12} sm={12} md={5} style={style.topbtn}>
                   <Button type="primary" htmlType="submit" className="login-form-button" size="large">
                     卖出
                   </Button>
                 </Col>
               </Row>
+                <div style={{width:'100%', height:'1px', background:'#E0E0E0'}}></div>
               <Row>
-                <Col span={6} style={style.content}>
+                <Col md={6} sm={24} style={style.content}>
                   <img src="https://tva2.sinaimg.cn/crop.0.0.613.613.180/48a8af64jw8eyfl22ibj2j20h10h1ju3.jpg" 
                   alt="User Avatar" style={style.avatar}></img>
                   <br />
@@ -234,7 +236,7 @@ class DappDetail extends React.Component {
                   <br />
                   <h3>BTC~~</h3>
                 </Col>
-                <Col span={18} style={style.content}>
+                <Col md={18} sm={24} style={style.content}>
                   <Tabs defaultActiveKey="1" onChange={this.callback}>
                     <TabPane tab="关于" key="1">项目信息</TabPane>
                     <TabPane tab="人员" key="2">参与人员详情</TabPane>
@@ -250,17 +252,21 @@ class DappDetail extends React.Component {
 
 const style = {
   topheader: {
-    height: '100px',
+    height: '300px',
     backgroundColor: '#ebebeb',
     position: 'relative',
   },
   topbtn: {
-    top: '50%',
-    transform: 'translateY(-50%)',
+    marginTop: '30px',
+    marginBottom: '30px'
+    // top: '50%',
+    // transform: 'translateY(-50%)',
   },
   toptext: {
-    top: '50%',
-    transform: 'translateY(-50%)',
+    marginTop: '30px',
+    marginBottom: '30px'
+    // top: '50%',
+    // transform: 'translateY(-50%)',
   },
   content: {
     padding: '20px'
