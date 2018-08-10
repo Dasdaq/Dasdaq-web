@@ -19,13 +19,13 @@ function FooterComponent() {
     return (
         <Footer style={{ textAlign: 'left' }}>
             <Row>
-                <Col span={6}>
+                <Col md={6} xs={24}>
                     <h1>{config.sitename}</h1>
                     <h3> Slogan Here. </h3>
                     <br/>
                     <p> © 2018 {config.sitename} All Right Reserved. </p>
                 </Col>
-                <Col span={6}>
+                <Col md={6} xs={24}>
                     <h2>加入我们的社群</h2>
                     <SocialItem name='telegram' />
                     <SocialItem name='youtube' />
@@ -33,13 +33,13 @@ function FooterComponent() {
                     <SocialItem name='weibo' />
                     <SocialItem name='facebook' />
                 </Col>
-                <Col span={6}>
+                <Col md={6} xs={24}>
                     <h2>条款说明</h2>
                     <ul style={{listStyleType: "none"}}>
                         <li><Link to="/tos"> 服务条款 </Link></li>
                     </ul>
                 </Col>
-                <Col span={6}>
+                <Col md={6} xs={24}>
                     <h2>关于</h2>
                     <ul>
                         <li>
