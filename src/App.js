@@ -13,17 +13,18 @@ import locales from "./locale";
 
 // Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
 import acctTestRoutes from "./containers/Account";
-import { Market, Home } from "./pages/asyncRenderWrapper";
+import { Market, Dapp, Home } from "./pages/asyncRenderWrapper";
 
-// Pages
-import SimpleMarket from "./components/crypto/SimpleMarketView";
+// Page
 import Footer from "./components/Footer";
 import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
-// Dapp Store
-import Dapp from "./pages/DappStore/Dapp";
+// Content
 import withContent from "./pages/ContentWrapper";
-import Detail from "./pages/DappStore/DappDetail";
+// Dapp Store
+import DappDetail from "./pages/DappStore/DappDetail";
+// Market
+import MarketDetail from "./pages/Market/MarketDetail";
 
 import './App.css';
 
@@ -76,10 +77,10 @@ class App extends Component {
                     </Route>
                     {/* Routes Dapp Store Part */}
                     <Route path="/dapp" component={withContent(Dapp)} />
+                    <Route path="/dapp/:symbol" component={DappDetail} />
                     {/* Routes Market Data Part */}
                     <Route path="/market" component={withContent(Market)} />
-                    <Route path="/coin/:symbol/:fiat" component={SimpleMarket} />
-                    <Route path="/detail" component={Detail} />
+                    <Route path="/market/:symbol" component={MarketDetail} />
                     <Route component={PageNotFound} />
                   </Switch>
                 </div>
