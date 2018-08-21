@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Col , Row, Tabs } from 'antd';
+import { Button, Col, Row, Tabs, Card } from 'antd';
 import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
@@ -150,82 +150,97 @@ class MarketDetail extends React.Component {
     }
 
     callback(key) {
-      console.log(key);
+        console.log(key);
     }
 
     render() {
         return (
             <div>
-                <div style={{width:'100%', height:'3px', background:'#E0E0E0'}}></div>
-              <Row>
-                <Col xs={8}  sm={8} md={5} style={style.toptext}>
-                  BTC
-                </Col>
-                <Col xs={8} sm={8} md={5} style={style.toptext}>
-                  最近价格<br />$0000.00
-                </Col>
-                <Col xs={8} sm={8} md={5} style={style.toptext}>
-                  交易总额<br/>$0000.00
-                </Col>
-                <Col xs={12} sm={12} md={1} style={style.topbtn}>
-                  <Button type="primary" htmlType="submit" className="login-form-button" size="large">
-                    卖入
-                  </Button>
-                </Col>
-                <Col xs={12} sm={12} md={5} style={style.topbtn}>
-                  <Button type="primary" htmlType="submit" className="login-form-button" size="large">
-                    卖出
-                  </Button>
-                </Col>
-              </Row>
-                <div style={{width:'100%', height:'1px', background:'#E0E0E0'}}></div>
-              <Row>
-                <Col md={6} sm={24} style={style.content}>
-                  <img src="https://tva2.sinaimg.cn/crop.0.0.613.613.180/48a8af64jw8eyfl22ibj2j20h10h1ju3.jpg" 
-                  alt="User Avatar" style={style.avatar}></img>
-                  <br />
-                  <br />
-                  <br />
-                  <h3>BTC~~</h3>
-                </Col>
-                <Col md={18} sm={24} style={style.content}>
-                  <Tabs defaultActiveKey="1" onChange={this.callback}>
+                <Card style={{ marginRight: '20px', marginLeft: '20px', boxShadow: '3px 3px 6px #00000030', verticalAlign: 'middle' }}>
+                    <Col md={4} sm={24}>
+                        <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                            <img alt="logo" style={{ height: '32px', marginRight: '16px' }} src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
+                        </div>
+                        <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                            <div>btc</div>
+                            <div>统统二十块</div>
+                        </div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>btc</div>
+                        <div>统统二十块</div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>btc</div>
+                        <div>统统二十块</div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>btc</div>
+                        <div>统统二十块</div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>btc</div>
+                        <div>统统二十块</div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>btc</div>
+                        <div>统统二十块</div>
+                    </Col>
+                </Card>
+                <Row>
+                    <Col md={6} sm={24} style={style.content}>
+                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                            啥也没
+                        </Card>
+                    </Col>
+                    <Col md={12} sm={24} style={style.content}>
+                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                            {this.renderContent()}
+                        </Card>
+                    </Col>
+                    <Col md={6} sm={24} style={style.content}>
+                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                            啥也没
+                        </Card>
+                    </Col>
+                    {/* <Col md={18} sm={24} style={style.content}> */}
+                        {/* <Tabs defaultActiveKey="1" onChange={this.callback}>
                     <TabPane tab="关于" key="1">项目信息</TabPane>
                     <TabPane tab="人员" key="2">参与人员详情</TabPane>
                     <TabPane tab="应用" key="3">对接第一方的应用（水浒、签名、隐秘世界）</TabPane>
                     <TabPane tab="K线图" key="4">{this.renderContent()}</TabPane>
-                  </Tabs>
-                </Col>
-              </Row>
+                  </Tabs> */}
+                    {/* </Col> */}
+                </Row>
             </div>
         )
     }
 }
 
 const style = {
-  topheader: {
-    height: '300px',
-    backgroundColor: '#ebebeb',
-    position: 'relative',
-  },
-  topbtn: {
-    marginTop: '30px',
-    marginBottom: '30px'
-    // top: '50%',
-    // transform: 'translateY(-50%)',
-  },
-  toptext: {
-    marginTop: '30px',
-    marginBottom: '30px'
-    // top: '50%',
-    // transform: 'translateY(-50%)',
-  },
-  content: {
-    padding: '20px'
-  },
-  avatar: {
-    borderRadius: '50%'
-  }
+    topheader: {
+        height: '300px',
+        backgroundColor: '#ebebeb',
+        position: 'relative',
+    },
+    topbtn: {
+        marginTop: '30px',
+        marginBottom: '30px'
+        // top: '50%',
+        // transform: 'translateY(-50%)',
+    },
+    toptext: {
+        marginTop: '30px',
+        marginBottom: '30px'
+        // top: '50%',
+        // transform: 'translateY(-50%)',
+    },
+    content: {
+        padding: '20px'
+    },
+    avatar: {
+        borderRadius: '50%'
+    }
 };
 
 export default MarketDetail;
