@@ -6,21 +6,7 @@ import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
 import { Table, Tag, Icon } from 'antd';
 /* <img alt="活动 24h" src="https://dappradar-activity.s3.amazonaws.com/449.png"> */
-const CoinPrices = [
-    {
-        key: "1",
-        name: "隐秘世界",
-        coin: "eth",// not used
-        type: "game",
-        balance: 118.06,
-        userperday: { value: 94, change: 2.6 },
-        chargeperday: { value: 292.34, change: -1.36 },
-        chargeperweek: 1706.03,
-        transperday: 3586,
-        transperweek: 23704,
-        chart: 0
-    },
-]
+const CoinPrices = require('./Dapps.json');
 
 const columns = [{
     title: '名称',

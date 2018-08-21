@@ -8,19 +8,6 @@ import Slider from "bizcharts-plugin-slider";
 
 const TabPane = Tabs.TabPane;
 
-const projInfo = 
-{   key: "1", 
-    name: "隐秘世界", 
-    coin: "eth",// not used
-    type: "game",
-    balance: 118.06, 
-    userperday: {value: 94, change: 2.6}, 
-    chargeperday: {value: 292.34, change: -1.36}, 
-    chargeperweek: 1706.03, 
-    transperday: 3586, 
-    transperweek: 23704, 
-    chart: 0 }
-
 const CoinPrices = [
     {name:"Bit",USD:"3333783.0000",CNY:"33335533.0000",JPY:"333333273.0000"},
     {name:"Eth",USD:"3334433.0000",CNY:"33773333.0000",JPY:"333354533.0000"},

@@ -77,10 +77,10 @@ class App extends Component {
                     </Route>
                     {/* Routes Dapp Store Part */}
                     <Route path="/dapp" component={withContent(Dapp)} />
-                    <Route path="/dapp/:symbol" component={DappDetail} />
+                    <Route path="/dappdetail/:symbol" component={DappDetail} />
                     {/* Routes Market Data Part */}
                     <Route path="/market" component={withContent(Market)} />
-                    <Route path="/market/:symbol" component={MarketDetail} />
+                    <Route path="/marketdetail/:symbol" component={MarketDetail} />
                     <Route component={PageNotFound} />
                   </Switch>
                 </div>

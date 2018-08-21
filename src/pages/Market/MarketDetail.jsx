@@ -8,33 +8,6 @@ import Slider from "bizcharts-plugin-slider";
 
 const TabPane = Tabs.TabPane;
 
-const projInfo = 
-{   key: "1", 
-    name: "隐秘世界", 
-    coin: "eth",// not used
-    type: "game",
-    balance: 118.06, 
-    userperday: {value: 94, change: 2.6}, 
-    chargeperday: {value: 292.34, change: -1.36}, 
-    chargeperweek: 1706.03, 
-    transperday: 3586, 
-    transperweek: 23704, 
-    chart: 0 }
-
-const CoinPrices = [
-    {name:"Bit",USD:"3333783.0000",CNY:"33335533.0000",JPY:"333333273.0000"},
-    {name:"Eth",USD:"3334433.0000",CNY:"33773333.0000",JPY:"333354533.0000"},
-    {name:"EOS",USD:"3223333.0000",CNY:"33354333.0000",JPY:"3333353434.0000"},
-]
-const ListStyle = {
-    listStyle: 'none',
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: "96%",
-    borderBottom: '1px',
-    borderBottomStyle: 'solid',
-    marginLeft: '2%'
-};
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
@@ -171,27 +144,6 @@ class MarketDetail extends React.Component {
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
-
-                           <div>
-                        <ul style ={ListStyle}>
-                            <li>name</li>
-                            <li>USD</li>
-                            <li>JPY</li>
-                            <li>CNY</li>
-                        </ul>
-                        {CoinPrices.map((Prices) => {
-                        return (
-                            <ul style ={ListStyle}>
-                              <li>{Prices.name}</li>
-                              <li>{Prices.USD}</li>
-                              <li>{Prices.JPY}</li>
-                              <li>{Prices.CNY}</li>
-                           </ul>
-          )
-        })}
-
-                    </div>
-
                 </div>
             </div>
         )
