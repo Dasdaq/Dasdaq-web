@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Col, Row, Tabs, Card ,Table } from 'antd';
+import { Col, Row, Card ,Table } from 'antd';
 import { Chart, Geom, Axis, Tooltip, Legend, View} from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
@@ -7,7 +7,6 @@ import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
 import coinPrice from "./CoinPrices.json";
 
-const TabPane = Tabs.TabPane;
 const data20 = data.slice(0,20);
 const ds = new DataSet({
     state: {
@@ -24,7 +23,7 @@ const columns = [{
     dataIndex: 'USD',
     key: 'USD',
     sortOrder: 'ascend',
-    sorter: (a, b) => parseInt(a.BTC, 10) - parseInt(b.BTC, 10),
+    sorter: (a, b) => parseInt(a.USD, 10) - parseInt(b.USD, 10),
 }];
 const dv = ds.createView();
 dv.source(data)
@@ -49,6 +48,8 @@ class MarketDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            symbolname: '',
+            exchangename: '',
             historyData: [],
             coinPrice:[]
         }
@@ -60,6 +61,9 @@ class MarketDetail extends React.Component {
     }
 
     async componentDidMount() {
+        var {symbol, exchange} = this.props.match.params
+        if (exchange == null || exchange === '') exchange = 'BTC';//默认为BTC
+        this.setState({ symbolname:symbol , exchangename:exchange})
         const api = 'https://min-api.cryptocompare.com/data/histominute?&'
         const { data } = await axios.get(api, {
             params: {
@@ -175,7 +179,7 @@ class MarketDetail extends React.Component {
                             <img alt="logo" style={{ height: '32px', marginRight: '16px' }} src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
                         </div>
                         <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                            <div>btc</div>
+                            <div>{this.state.symbolname}/{this.state.exchangename}</div>
                             <div>比特币</div>
                         </div>
                     </Col>
@@ -240,7 +244,12 @@ class MarketDetail extends React.Component {
                     </Col>
                     <Col md={6} sm={24} style={style.content}>
                         <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
-                            <Table dataSource={coinPrice} columns={columns} />
+                            <Table dataSource={coinPrice} columns={columns} 
+                                onRow={(record) => {
+                                return {
+                                    onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
+                                };
+                            }}/>
                         </Card>
                     </Col>
                 </Row>

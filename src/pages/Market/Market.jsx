@@ -30,15 +30,6 @@ const columns = [{
     sorter: (a, b) => parseInt(a.EOS, 10) - parseInt(b.EOS, 10),
 }];
 
-// const ListStyle = {
-//     listStyle: 'none',
-//     display: 'flex',
-//     justifyContent: 'space-around',
-//     width: "96%",
-//     borderBottom: '1px',
-//     borderBottomStyle: 'solid',
-//     marginLeft: '2%'
-// };
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
@@ -195,7 +186,12 @@ class MarketPage extends Component {
                         onChange={this.onChange.bind(this)}
                     />
                     <div>
-                        <Table dataSource={coinPrice} columns={columns} />
+                        <Table dataSource={coinPrice} columns={columns} 
+                        onRow={(record) => {
+                            return {
+                                onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
+                            };
+                        }}/>
                     </div>
 
                 </div>

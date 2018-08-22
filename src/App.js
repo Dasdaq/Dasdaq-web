@@ -77,7 +77,7 @@ class App extends Component {
                     </Route>
                     {/* Routes Dapp Store Part */}
                     <Route path="/dapp" component={withContent(Dapp)} />
-                    <Route path="/dappdetail/:symbol" component={DappDetail} />
+                    <Route path="/dappdetail/:symbol/:exchange" component={DappDetail} />
                     {/* Routes Market Data Part */}
                     <Route path="/market" component={withContent(Market)} />
                     <Route path="/marketdetail/:symbol" component={MarketDetail} />
