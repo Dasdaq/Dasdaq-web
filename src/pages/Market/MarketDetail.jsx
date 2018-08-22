@@ -1,33 +1,30 @@
 import React from "react"
-import { Button, Col , Row, Tabs } from 'antd';
-import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
+import { Col, Row, Card ,Table } from 'antd';
+import { Chart, Geom, Axis, Tooltip, Legend, View} from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
+import coinPrice from "./CoinPrices.json";
 
-const TabPane = Tabs.TabPane;
-
-const CoinPrices = [
-    {name:"Bit",USD:"3333783.0000",CNY:"33335533.0000",JPY:"333333273.0000"},
-    {name:"Eth",USD:"3334433.0000",CNY:"33773333.0000",JPY:"333354533.0000"},
-    {name:"EOS",USD:"3223333.0000",CNY:"33354333.0000",JPY:"3333353434.0000"},
-]
-const ListStyle = {
-    listStyle: 'none',
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: "96%",
-    borderBottom: '1px',
-    borderBottomStyle: 'solid',
-    marginLeft: '2%'
-};
+const data20 = data.slice(0,20);
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
         end: '2015-07-28'
     }
 });
+const columns = [{
+    title: '名称',
+    dataIndex: 'name',
+    key: 'name',
+}, {
+    title: '价格',
+    dataIndex: 'USD',
+    key: 'USD',
+    sortOrder: 'ascend',
+    sorter: (a, b) => parseInt(a.USD, 10) - parseInt(b.USD, 10),
+}];
 const dv = ds.createView();
 dv.source(data)
     .transform({
@@ -46,12 +43,15 @@ dv.source(data)
         }
     });
 
-class DappDetail extends React.Component {
+class MarketDetail extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            historyData: []
+            symbolname: '',
+            exchangename: '',
+            historyData: [],
+            coinPrice:[]
         }
     }
     onChange(obj) {
@@ -61,6 +61,9 @@ class DappDetail extends React.Component {
     }
 
     async componentDidMount() {
+        var {symbol, exchange} = this.props.match.params
+        if (exchange == null || exchange === '') exchange = 'BTC';//默认为BTC
+        this.setState({ symbolname:symbol , exchangename:exchange})
         const api = 'https://min-api.cryptocompare.com/data/histominute?&'
         const { data } = await axios.get(api, {
             params: {
@@ -158,109 +161,127 @@ class DappDetail extends React.Component {
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
-
-                           <div>
-                        <ul style ={ListStyle}>
-                            <li>name</li>
-                            <li>USD</li>
-                            <li>JPY</li>
-                            <li>CNY</li>
-                        </ul>
-                        {CoinPrices.map((Prices) => {
-                        return (
-                            <ul style ={ListStyle}>
-                              <li>{Prices.name}</li>
-                              <li>{Prices.USD}</li>
-                              <li>{Prices.JPY}</li>
-                              <li>{Prices.CNY}</li>
-                           </ul>
-          )
-        })}
-
-                    </div>
-
                 </div>
             </div>
         )
     }
 
     callback(key) {
-      console.log(key);
+        console.log(key);
     }
 
     render() {
         return (
             <div>
-                <div style={{width:'100%', height:'3px', background:'#E0E0E0'}}></div>
-              <Row>
-                <Col xs={8}  sm={8} md={5} style={style.toptext}>
-                  BTC
-                </Col>
-                <Col xs={8} sm={8} md={5} style={style.toptext}>
-                  最近价格<br />$0000.00
-                </Col>
-                <Col xs={8} sm={8} md={5} style={style.toptext}>
-                  交易总额<br/>$0000.00
-                </Col>
-                <Col xs={12} sm={12} md={1} style={style.topbtn}>
-                  <Button type="primary" htmlType="submit" className="login-form-button" size="large">
-                    卖入
-                  </Button>
-                </Col>
-                <Col xs={12} sm={12} md={5} style={style.topbtn}>
-                  <Button type="primary" htmlType="submit" className="login-form-button" size="large">
-                    卖出
-                  </Button>
-                </Col>
-              </Row>
-                <div style={{width:'100%', height:'1px', background:'#E0E0E0'}}></div>
-              <Row>
-                <Col md={6} sm={24} style={style.content}>
-                  <img src="https://tva2.sinaimg.cn/crop.0.0.613.613.180/48a8af64jw8eyfl22ibj2j20h10h1ju3.jpg" 
-                  alt="User Avatar" style={style.avatar}></img>
-                  <br />
-                  <br />
-                  <br />
-                  <h3>BTC~~</h3>
-                </Col>
-                <Col md={18} sm={24} style={style.content}>
-                  <Tabs defaultActiveKey="1" onChange={this.callback}>
-                    <TabPane tab="关于" key="1">项目信息</TabPane>
-                    <TabPane tab="人员" key="2">参与人员详情</TabPane>
-                    <TabPane tab="应用" key="3">对接第一方的应用（水浒、签名、隐秘世界）</TabPane>
-                    <TabPane tab="K线图" key="4">{this.renderContent()}</TabPane>
-                  </Tabs>
-                </Col>
-              </Row>
+                <Card style={{ marginRight: '20px', marginLeft: '20px', boxShadow: '3px 3px 6px #00000030', verticalAlign: 'middle' }}>
+                    <Col md={4} sm={24}>
+                        <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                            <img alt="logo" style={{ height: '32px', marginRight: '16px' }} src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
+                        </div>
+                        <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                            <div>{this.state.symbolname}/{this.state.exchangename}</div>
+                            <div>比特币</div>
+                        </div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>Last Price</div>
+                        <div style={data[0].change> 0 ? { color: "#f50" } : { color: "#87d068" }}>
+                            {data[0].money}
+                        </div> 
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>24H Change</div>
+                        <div style={data[0].change> 0 ? { color: "#f50" } : { color: "#87d068" }}>
+                            {(data[0].change > 0 ? "+" : "") + data[0].change + "%"}
+                        </div> 
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>24H High</div>
+                        <div>{data[0].max}</div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>24H Low</div>
+                        <div>{data[0].min}</div>
+                    </Col>
+                    <Col md={4} sm={24}>
+                        <div>24H Volume</div>
+                        <div>{data[0].volumn}</div>
+                    </Col>
+                </Card>
+                <Row>
+                    <Col md={6} sm={24} style={style.content}>
+                        <Card title="价格表" style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                            <Col md={8} sm={24}>
+                                <p>日期</p>
+                                {data20.map((Prices) => {
+                                    return (
+                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.time.slice(5,10)}</p>
+                                    )
+                                })}
+                            </Col>
+                            <Col md={8} sm={24}>
+                                <p>start</p>
+                                {data20.map((Prices) => {
+                                    return (
+                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.start}</p>
+                                    )
+                                })}
+                            </Col>
+                            <Col md={8} sm={24}>
+                                <p>end</p>
+                                {data20.map((Prices) => {
+                                    return (
+                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.end}</p>
+                                    )
+                                })}
+                            </Col>
+                        </Card>
+                    </Col>
+                    <Col md={12} sm={24} style={style.content}>
+                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                            {this.renderContent()}
+                        </Card>
+                    </Col>
+                    <Col md={6} sm={24} style={style.content}>
+                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                            <Table dataSource={coinPrice} columns={columns} 
+                                onRow={(record) => {
+                                return {
+                                    onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
+                                };
+                            }}/>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         )
     }
 }
 
 const style = {
-  topheader: {
-    height: '300px',
-    backgroundColor: '#ebebeb',
-    position: 'relative',
-  },
-  topbtn: {
-    marginTop: '30px',
-    marginBottom: '30px'
-    // top: '50%',
-    // transform: 'translateY(-50%)',
-  },
-  toptext: {
-    marginTop: '30px',
-    marginBottom: '30px'
-    // top: '50%',
-    // transform: 'translateY(-50%)',
-  },
-  content: {
-    padding: '20px'
-  },
-  avatar: {
-    borderRadius: '50%'
-  }
+    topheader: {
+        height: '300px',
+        backgroundColor: '#ebebeb',
+        position: 'relative',
+    },
+    topbtn: {
+        marginTop: '30px',
+        marginBottom: '30px'
+        // top: '50%',
+        // transform: 'translateY(-50%)',
+    },
+    toptext: {
+        marginTop: '30px',
+        marginBottom: '30px'
+        // top: '50%',
+        // transform: 'translateY(-50%)',
+    },
+    content: {
+        padding: '20px'
+    },
+    avatar: {
+        borderRadius: '50%'
+    }
 };
 
-export default DappDetail;
+export default MarketDetail;

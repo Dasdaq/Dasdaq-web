@@ -8,6 +8,11 @@ export const Market = Loadable({
   loading: () => LoadingMessage('Market')
 });
 
+export const Dapp = Loadable({
+  loader: () => import('./DappStore/Dapp'),
+  loading: () => LoadingMessage('DappStore')
+});
+
 export const Home = Loadable({
   loader: () => import('./Home'),
   loading: () => LoadingMessage('Home')

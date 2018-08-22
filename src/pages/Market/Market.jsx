@@ -6,11 +6,6 @@ import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
 import { Table } from 'antd';
 
-/*const CoinPrices = [
-    { key: "1", name: "USD", BTC: "3333783.0000", ETH: "33335533.0000", EOS: "333333273.0000" },
-    { key: "2", name: "CNY", BTC: "3334433.0000", ETH: "33773333.0000", EOS: "333354533.0000" },
-    { key: "3", name: "JPY", BTC: "3223333.0000", ETH: "33354333.0000", EOS: "3333353434.0000" },
-]*/
 const columns = [{
     title: '名称',
     dataIndex: 'name',
@@ -35,15 +30,6 @@ const columns = [{
     sorter: (a, b) => parseInt(a.EOS, 10) - parseInt(b.EOS, 10),
 }];
 
-// const ListStyle = {
-//     listStyle: 'none',
-//     display: 'flex',
-//     justifyContent: 'space-around',
-//     width: "96%",
-//     borderBottom: '1px',
-//     borderBottomStyle: 'solid',
-//     marginLeft: '2%'
-// };
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
@@ -200,7 +186,12 @@ class MarketPage extends Component {
                         onChange={this.onChange.bind(this)}
                     />
                     <div>
-                        <Table dataSource={coinPrice} columns={columns} />
+                        <Table dataSource={coinPrice} columns={columns} 
+                        onRow={(record) => {
+                            return {
+                                onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
+                            };
+                        }}/>
                     </div>
 
                 </div>
