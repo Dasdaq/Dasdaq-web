@@ -1,19 +1,31 @@
 import React from "react"
-import { Button, Col, Row, Tabs, Card } from 'antd';
-import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
+import { Button, Col, Row, Tabs, Card ,Table } from 'antd';
+import { Chart, Geom, Axis, Tooltip, Legend, View} from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
+import coinPrice from "./CoinPrices.json";
 
 const TabPane = Tabs.TabPane;
-
+const data20 = data.slice(0,20);
 const ds = new DataSet({
     state: {
         start: '2015-04-07',
         end: '2015-07-28'
     }
 });
+const columns = [{
+    title: '名称',
+    dataIndex: 'name',
+    key: 'name',
+}, {
+    title: '价格',
+    dataIndex: 'USD',
+    key: 'USD',
+    sortOrder: 'ascend',
+    sorter: (a, b) => parseInt(a.BTC, 10) - parseInt(b.BTC, 10),
+}];
 const dv = ds.createView();
 dv.source(data)
     .transform({
@@ -37,7 +49,8 @@ class MarketDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            historyData: []
+            historyData: [],
+            coinPrice:[]
         }
     }
     onChange(obj) {
@@ -163,34 +176,61 @@ class MarketDetail extends React.Component {
                         </div>
                         <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                             <div>btc</div>
-                            <div>统统二十块</div>
+                            <div>比特币</div>
                         </div>
                     </Col>
                     <Col md={4} sm={24}>
-                        <div>btc</div>
-                        <div>统统二十块</div>
+                        <div>Last Price</div>
+                        <div style={data[0].change> 0 ? { color: "#f50" } : { color: "#87d068" }}>
+                            {data[0].money}
+                        </div> 
                     </Col>
                     <Col md={4} sm={24}>
-                        <div>btc</div>
-                        <div>统统二十块</div>
+                        <div>24H Change</div>
+                        <div style={data[0].change> 0 ? { color: "#f50" } : { color: "#87d068" }}>
+                            {(data[0].change > 0 ? "+" : "") + data[0].change + "%"}
+                        </div> 
                     </Col>
                     <Col md={4} sm={24}>
-                        <div>btc</div>
-                        <div>统统二十块</div>
+                        <div>24H High</div>
+                        <div>{data[0].max}</div>
                     </Col>
                     <Col md={4} sm={24}>
-                        <div>btc</div>
-                        <div>统统二十块</div>
+                        <div>24H Low</div>
+                        <div>{data[0].min}</div>
                     </Col>
                     <Col md={4} sm={24}>
-                        <div>btc</div>
-                        <div>统统二十块</div>
+                        <div>24H Volume</div>
+                        <div>{data[0].volumn}</div>
                     </Col>
                 </Card>
                 <Row>
                     <Col md={6} sm={24} style={style.content}>
-                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
-                            啥也没
+                        <Card title="价格表" style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                            <Col md={8} sm={24}>
+                                <p>日期</p>
+                                {data20.map((Prices) => {
+                                    return (
+                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.time.slice(5,10)}</p>
+                                    )
+                                })}
+                            </Col>
+                            <Col md={8} sm={24}>
+                                <p>start</p>
+                                {data20.map((Prices) => {
+                                    return (
+                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.start}</p>
+                                    )
+                                })}
+                            </Col>
+                            <Col md={8} sm={24}>
+                                <p>end</p>
+                                {data20.map((Prices) => {
+                                    return (
+                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.end}</p>
+                                    )
+                                })}
+                            </Col>
                         </Card>
                     </Col>
                     <Col md={12} sm={24} style={style.content}>
@@ -200,17 +240,9 @@ class MarketDetail extends React.Component {
                     </Col>
                     <Col md={6} sm={24} style={style.content}>
                         <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
-                            啥也没
+                            <Table dataSource={coinPrice} columns={columns} />
                         </Card>
                     </Col>
-                    {/* <Col md={18} sm={24} style={style.content}> */}
-                        {/* <Tabs defaultActiveKey="1" onChange={this.callback}>
-                    <TabPane tab="关于" key="1">项目信息</TabPane>
-                    <TabPane tab="人员" key="2">参与人员详情</TabPane>
-                    <TabPane tab="应用" key="3">对接第一方的应用（水浒、签名、隐秘世界）</TabPane>
-                    <TabPane tab="K线图" key="4">{this.renderContent()}</TabPane>
-                  </Tabs> */}
-                    {/* </Col> */}
                 </Row>
             </div>
         )

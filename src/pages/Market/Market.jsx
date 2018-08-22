@@ -6,11 +6,6 @@ import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
 import { Table } from 'antd';
 
-/*const CoinPrices = [
-    { key: "1", name: "USD", BTC: "3333783.0000", ETH: "33335533.0000", EOS: "333333273.0000" },
-    { key: "2", name: "CNY", BTC: "3334433.0000", ETH: "33773333.0000", EOS: "333354533.0000" },
-    { key: "3", name: "JPY", BTC: "3223333.0000", ETH: "33354333.0000", EOS: "3333353434.0000" },
-]*/
 const columns = [{
     title: '名称',
     dataIndex: 'name',
