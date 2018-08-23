@@ -5,23 +5,22 @@ const LoadingMessage = (name) => (<div> Loading {name} modules, Please wait</div
 
 // 😄 Magic Happened! Dynamic import and Async Load Components
 export const Login = Loadable({
-  loader: () => import('./Login'),
+  loader: () => import(/* webpackChunkName: "userLogin" */ './Login'),
   loading: () => LoadingMessage('Login')
 });
 
 export const User = Loadable({
-  // loader: () => import('./User'),
-  loader: () => import('./User'),
+  loader: () => import(/* webpackChunkName: "userPanel" */ './User'),
   loading: () => LoadingMessage('User')
 });
 
 export const Register = Loadable({
-  loader: () => import('./Register'),
+  loader: () => import(/* webpackChunkName: "userRegister" */ './Register'),
   loading: () => LoadingMessage('Register')
 });
 
 export const Logout = Loadable({
-  loader: () => import('./Logout'),
+  loader: () => import(/* webpackChunkName: "logout" */ './Logout'),
   loading: () => LoadingMessage('Logout')
 });
 
