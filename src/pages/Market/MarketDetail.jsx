@@ -4,7 +4,7 @@ import { Chart, Geom, Axis, Tooltip, Legend, View} from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
-// import Slider from "bizcharts-plugin-slider";
+import ChartSlider from "bizcharts-plugin-slider";
 import coinPrice from "./CoinPrices.json";
 import TransferHigh from "./TransferHigh.json";
 import TransferLow from "./TransferLow.json";
@@ -166,7 +166,7 @@ class MarketDetail extends React.Component {
                     </View>
                 </Chart>
                 <div>
-                    <Slider padding={[20, 40, 20, 40]} width='auto' height={26} start={ds.state.start} end={ds.state.end}
+                    <ChartSlider padding={[20, 40, 20, 40]} width='auto' height={26} start={ds.state.start} end={ds.state.end}
                         xAxis="time" yAxis='volumn' scales={{ time: { type: 'timeCat', nice: false, } }} data={data}
                         onChange={this.onChange.bind(this)}
                     />
