@@ -1,14 +1,15 @@
 import React from "react"
-import { Col, Row, Card, Table, Tabs, Input, Slider, Button } from 'antd';
+import { Col, Row, Card, Table, Tabs, Input, Slider, Button, Divider} from 'antd';
 import { Chart, Geom, Axis, Tooltip, Legend, View} from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
 // import Slider from "bizcharts-plugin-slider";
 import coinPrice from "./CoinPrices.json";
+import TransferHigh from "./TransferHigh.json";
+import TransferLow from "./TransferLow.json";
 
 const TabPane = Tabs.TabPane;
-const data20 = data.slice(0,20);
 const slidermarks = {
     0: '0%',
     25: '25%',
@@ -186,7 +187,7 @@ class MarketDetail extends React.Component {
                         <div style={style.showmid}>
                             <img alt="logo" style={{ height: '32px', marginRight: '16px' }} src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
                         </div>
-                        <div style={style.showmid}>>
+                        <div style={style.showmid}>
                             <div>{this.state.symbolname}/{this.state.exchangename}</div>
                             <div>比特币</div>
                         </div>
@@ -218,30 +219,28 @@ class MarketDetail extends React.Component {
                 </Card>
                 <Row>
                     <Col md={6} sm={24} style={style.content}>
-                        <Card title="价格表" style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                        <Card title="挂单情况" style={{ boxShadow: '3px 3px 6px #00000030' }}>
                             <Col md={8} sm={24}>
-                                <p>日期</p>
-                                {data20.map((Prices) => {
-                                    return (
-                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.time.slice(5,10)}</p>
-                                    )
-                                })}
+                                <p>价格</p>
+                                {TransferHigh.map((Prices) => {return (<p style={{ color: "#f50" }}>{Prices.value}</p>)})}
                             </Col>
                             <Col md={8} sm={24}>
-                                <p>start</p>
-                                {data20.map((Prices) => {
-                                    return (
-                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.start}</p>
-                                    )
-                                })}
+                                <p>数量</p>
+                                {TransferHigh.map((Prices) => {return (<p>{Prices.amount}</p>)})}
                             </Col>
                             <Col md={8} sm={24}>
-                                <p>end</p>
-                                {data20.map((Prices) => {
-                                    return (
-                                        <p style={Prices.end > Prices.start ? { color: "#f50" } : { color: "#87d068" }}>{Prices.end}</p>
-                                    )
-                                })}
+                                <p>成交额</p>
+                                {TransferHigh.map((Prices) => {return (<p>{Prices.total}</p>)})}
+                            </Col>
+                            <Divider>平均价格</Divider>
+                            <Col md={8} sm={24}>
+                                {TransferLow.map((Prices) => {return (<p style={{ color: "#87d068" }}>{Prices.value}</p>)})}
+                            </Col>
+                            <Col md={8} sm={24}>
+                                {TransferLow.map((Prices) => {return (<p>{Prices.amount}</p>)})}
+                            </Col>
+                            <Col md={8} sm={24}>
+                                {TransferLow.map((Prices) => {return (<p>{Prices.total}</p>)})}
                             </Col>
                         </Card>
                     </Col>
