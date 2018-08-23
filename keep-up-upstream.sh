@@ -4,3 +4,5 @@
 git fetch upstream
 
 git merge upstream/testing
+
+yarn
