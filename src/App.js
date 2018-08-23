@@ -13,7 +13,8 @@ import locales from "./locale";
 
 // Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
 import acctTestRoutes from "./containers/Account";
-import { Market, Dapp, Home } from "./pages/asyncRenderWrapper";
+import { Dapp, Home } from "./pages/asyncRenderWrapper";
+import Market from "./pages/Market";
 
 // Page
 import Footer from "./components/Footer";
@@ -24,7 +25,7 @@ import withContent from "./pages/ContentWrapper";
 // Dapp Store
 import DappDetail from "./pages/DappStore/DappDetail";
 // Market
-import MarketDetail from "./pages/Market/MarketDetail";
+// import MarketDetail from "./pages/Market/MarketDetail";
 
 import './App.css';
 
@@ -61,15 +62,6 @@ class App extends Component {
                   <Switch>
                     <Route exact path="/" component={Home} />
                     {/* Routes Account Part */}
-                    {/* <Route path="/account" >
-                    <Switch>
-                      <Route path="/account/info" component={User} />
-                      <Route path="/account/login" component={Login} />
-                      <Route path="/account/register" component={Register} />
-                      <Route component={PageNotFound} />
-                    </Switch>
-                  </Route> */}
-                    {/* Test here */}
                     <Route path="/account" >
                       <Switch>
                         {acctTestRoutes.map(route => <Route key={route.path} {...route} />)}
@@ -79,8 +71,7 @@ class App extends Component {
                     <Route path="/dapp" component={withContent(Dapp)} />
                     <Route path="/dappdetail/:symbol/:exchange" component={DappDetail} />
                     {/* Routes Market Data Part */}
-                    <Route path="/market" component={withContent(Market)} />
-                    <Route path="/marketdetail/:symbol" component={MarketDetail} />
+                    <Route path="/market" component={Market} />
                     <Route component={PageNotFound} />
                   </Switch>
                 </div>
