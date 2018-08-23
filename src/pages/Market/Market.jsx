@@ -60,7 +60,7 @@ class MarketPage extends Component {
         super()
         this.state = {
             historyData: [],
-            coinPrice:[]
+            coinPrice: []
         }
     }
 
@@ -85,19 +85,19 @@ class MarketPage extends Component {
         this.setState({ historyData: data })
         var thiz = this;
         const url = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,EOS&tsyms=USD,CNY,JPY";
-         axios.get(url)
-             .then(function (resp) {
-                 let data =resp.data;
-             let values= [
-                     { key: "1", name: "USD", BTC: data.BTC.USD, ETH: data.ETH.USD, EOS: data.EOS.USD },
-                     { key: "2", name: "CNY", BTC: data.BTC.CNY, ETH: data.ETH.CNY, EOS: data.EOS.CNY },
-                     { key: "3", name: "JPY", BTC: data.BTC.JPY, ETH: data.ETH.JPY, EOS: data.EOS.JPY },
-                 ]
-                 thiz.setState({coinPrice:values});
-             })
-             .catch(function (err) {
-                 console.info(err)
-             })
+        axios.get(url)
+            .then(function (resp) {
+                let data = resp.data;
+                let values = [
+                    { key: "1", name: "USD", BTC: data.BTC.USD, ETH: data.ETH.USD, EOS: data.EOS.USD },
+                    { key: "2", name: "CNY", BTC: data.BTC.CNY, ETH: data.ETH.CNY, EOS: data.EOS.CNY },
+                    { key: "3", name: "JPY", BTC: data.BTC.JPY, ETH: data.ETH.JPY, EOS: data.EOS.JPY },
+                ]
+                thiz.setState({ coinPrice: values });
+            })
+            .catch(function (err) {
+                console.info(err)
+            })
     }
 
     render() {
@@ -117,7 +117,7 @@ class MarketPage extends Component {
             'min': { alias: '最低价' },
             'range': { alias: '股票价格' }
         }
-        const {coinPrice,historyData} = this.state;
+        const { coinPrice, historyData } = this.state;
         historyData.toString();
         return (
             <div className="market">
@@ -186,12 +186,14 @@ class MarketPage extends Component {
                         onChange={this.onChange.bind(this)}
                     />
                     <div>
-                        <Table dataSource={coinPrice} columns={columns} 
-                        onRow={(record) => {
-                            return {
-                                onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
-                            };
-                        }}/>
+                        <Table dataSource={coinPrice} columns={columns}
+                            onRow={(record) =>
+                                ({
+                                    onClick: () => {
+                                        this.props.history.push(`/market/detail/${record.name}`)
+                                    }
+                                })
+                            } />
                     </div>
 
                 </div>
