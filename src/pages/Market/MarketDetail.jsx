@@ -1,5 +1,5 @@
 import React from "react"
-import { Col, Row, Card ,Table } from 'antd';
+import { Col, Row, Card, Table, Tabs } from 'antd';
 import { Chart, Geom, Axis, Tooltip, Legend, View} from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
@@ -7,6 +7,7 @@ import data from "./fakeData.json";
 import Slider from "bizcharts-plugin-slider";
 import coinPrice from "./CoinPrices.json";
 
+const TabPane = Tabs.TabPane;
 const data20 = data.slice(0,20);
 const ds = new DataSet({
     state: {
@@ -237,20 +238,34 @@ class MarketDetail extends React.Component {
                             </Col>
                         </Card>
                     </Col>
-                    <Col md={12} sm={24} style={style.content}>
-                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
-                            {this.renderContent()}
-                        </Card>
-                    </Col>
-                    <Col md={6} sm={24} style={style.content}>
-                        <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
-                            <Table dataSource={coinPrice} columns={columns} 
-                                onRow={(record) => {
-                                return {
-                                    onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
-                                };
-                            }}/>
-                        </Card>
+                    <Col md={18} sm={24}>
+                        <Col md={16} sm={24} style={{paddingTop: '20px', paddingBottom: '20px'}}>
+                            <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                                {this.renderContent()}
+                            </Card>
+                        </Col>
+                        <Col md={8} sm={24} style={style.content}>
+                            <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                                <Table dataSource={coinPrice} columns={columns} 
+                                    onRow={(record) => {
+                                    return {
+                                        onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
+                                    };
+                                }}/>
+                            </Card>
+                        </Col>
+                        <Col md={24} sm={24} style={{paddingRight: '20px'}}>
+                            <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                                <Tabs defaultActiveKey="1" type="card">
+                                    <TabPane tab="限价交易" key="1">
+                                        
+                                    </TabPane>
+                                    <TabPane tab="市价交易" key="2">
+
+                                    </TabPane>
+                                </Tabs>
+                            </Card>
+                        </Col>
                     </Col>
                 </Row>
             </div>
