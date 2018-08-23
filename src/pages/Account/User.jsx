@@ -1,5 +1,5 @@
 import React from "react"
-import { Col, Menu, Row, Button, Icon, Layout} from 'antd';
+import { Col, Menu, Row, Layout} from 'antd';
 import {
   Switch, Route, Link
 } from 'react-router-dom'
@@ -13,14 +13,14 @@ import InfoUser from './Info/User'
 const {
   ItemGroup,
 } = Menu
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 class User extends React.Component {
 
   eosNetwork = eosNetwork['mainnet']
 
   render() {
-    const { match , location } = this.props
+    const { match } = this.props
     return (
       <div>
         <Row>
