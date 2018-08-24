@@ -19,7 +19,14 @@
             "register new account": "Register new account",
             "or": "or",
             "username": "Username",
-            "password": "Password"
+            "password": "Password",
+            "usesign": "quick login by signature",
+            "signor": "or",
+            "walletsign": "Sign in",
+            "signin": "Sign in",
+            "islogin": "You are logged in,please open",
+            "myaccount": "account",
+            "dontusepw": "Safe, fast, password-free login without entering password."
         }
     },
     "navbar": {
@@ -46,5 +53,17 @@
     "Construction": {
         "in custruction": "Is in custruction",
         "checkout later": "Please Checkout Later"
+    },
+    "setting":{
+        "setting":"setting",
+        "setunit":"unit：",
+        "setlang":"language：",
+        "setcolor":"color："
+    },
+    "footer":{
+        "joinus":"Join us",
+        "explain":"Conditions",
+        "about":"About",
+        "service":"Clasuses of service"
     }
 }

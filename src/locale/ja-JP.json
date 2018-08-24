@@ -19,7 +19,14 @@
             "register new account": "新規取得",
             "or": "or",
             "username": "ID番号",
-            "password": "パスワード"
+            "password": "パスワード",
+            "usesign": "クイックログイン",
+            "signor": "と",
+            "walletsign": "サインイン",
+            "signin": "サインイン",
+            "islogin": "ログインしています。",
+            "myaccount": "アカウント",
+            "dontusepw": "パスワードを入力する必要はなく、安全で便利なログイン方法を体験してください！"
         }
     },
     "navbar": {
@@ -27,7 +34,7 @@
         "app store": "DApp ストア",
         "theme": "着せかえ",
         "home": "トップ",
-        "my account": "My アカウント",
+        "my account": "アカウント",
         "unit": "単位"
     },
     "theme": {
@@ -46,5 +53,17 @@
     "Construction": {
         "in custruction": "ただ今作成中",
         "checkout later": "ご会計、少々お待ちしてください"
+    },
+    "setting":{
+        "setting":"設定",
+        "setunit":"単位：",
+        "setlang":"言語：",
+        "setcolor":"カラー："
+    },
+    "footer":{
+        "joinus":"メンバー募集",
+        "explain":"説明",
+        "about":"Dasdaqについて",
+        "service":"利用規約"
     }
 }
