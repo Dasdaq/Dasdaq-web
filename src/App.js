@@ -12,19 +12,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import locales from "./locale";
 
 // Async Load Pages using react-loadable(https://github.com/jamiebuilds/react-loadable)
-import acctTestRoutes from "./containers/Account";
-import { Market, Dapp, Home } from "./pages/asyncRenderWrapper";
+import accountRoutes from "./containers/Account";
+import { Home } from "./pages/asyncRenderWrapper";
+import Market from "./pages/Market";
+import Dapp from "./pages/DappStore";
 
 // Page
 import Footer from "./components/Footer";
 import Header from "./containers/VisiableHeader";
 import PageNotFound from "./pages/PageNotFound";
-// Content
-import withContent from "./pages/ContentWrapper";
-// Dapp Store
-import DappDetail from "./pages/DappStore/DappDetail";
-// Market
-import MarketDetail from "./pages/Market/MarketDetail";
 
 import './App.css';
 
@@ -61,26 +57,15 @@ class App extends Component {
                   <Switch>
                     <Route exact path="/" component={Home} />
                     {/* Routes Account Part */}
-                    {/* <Route path="/account" >
-                    <Switch>
-                      <Route path="/account/info" component={User} />
-                      <Route path="/account/login" component={Login} />
-                      <Route path="/account/register" component={Register} />
-                      <Route component={PageNotFound} />
-                    </Switch>
-                  </Route> */}
-                    {/* Test here */}
                     <Route path="/account" >
                       <Switch>
-                        {acctTestRoutes.map(route => <Route key={route.path} {...route} />)}
+                        {accountRoutes.map(route => <Route key={route.path} {...route} />)}
                       </Switch>
                     </Route>
                     {/* Routes Dapp Store Part */}
-                    <Route path="/dapp" component={withContent(Dapp)} />
-                    <Route path="/dappdetail/:symbol/:exchange" component={DappDetail} />
+                    <Route path="/dapp" component={Dapp} />
                     {/* Routes Market Data Part */}
-                    <Route path="/market" component={withContent(Market)} />
-                    <Route path="/marketdetail/:symbol" component={MarketDetail} />
+                    <Route path="/market" component={Market} />
                     <Route component={PageNotFound} />
                   </Switch>
                 </div>

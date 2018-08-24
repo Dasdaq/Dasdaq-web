@@ -220,7 +220,7 @@ class MarketPage extends Component {
                         <div>
                             <Table dataSource={CoinPrices} columns={columns}
                                 onRow={(record) => ({
-                                    onClick: () => { this.props.history.push({ pathname: '/detail' }) },       // 点击行
+                                    onClick: () => { this.props.history.push({ pathname: `dapp/${record.name}/:exchange` }) },       // 点击行
                                 })
                                 } />
                         </div>

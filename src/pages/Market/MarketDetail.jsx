@@ -1,6 +1,6 @@
 import React from "react"
-import { Col, Row, Card, Table, Tabs, Input, Slider, Button, Divider} from 'antd';
-import { Chart, Geom, Axis, Tooltip, Legend, View} from "bizcharts";
+import { Col, Row, Card, Table, Tabs, Input, Slider, Button, Divider } from 'antd';
+import { Chart, Geom, Axis, Tooltip, Legend, View } from "bizcharts";
 import axios from "axios";
 import DataSet from "@antv/data-set";
 import data from "./fakeData.json";
@@ -60,7 +60,7 @@ class MarketDetail extends React.Component {
             symbolname: '',
             exchangename: '',
             historyData: [],
-            coinPrice:[]
+            coinPrice: []
         }
     }
     onChange(obj) {
@@ -70,9 +70,9 @@ class MarketDetail extends React.Component {
     }
 
     async componentDidMount() {
-        var {symbol, exchange} = this.props.match.params
+        var { symbol, exchange } = this.props.match.params
         if (exchange == null || exchange === '') exchange = 'BTC';//默认为BTC
-        this.setState({ symbolname:symbol , exchangename:exchange})
+        this.setState({ symbolname: symbol, exchangename: exchange })
         const api = 'https://min-api.cryptocompare.com/data/histominute?&'
         const { data } = await axios.get(api, {
             params: {
@@ -182,7 +182,7 @@ class MarketDetail extends React.Component {
     render() {
         return (
             <div>
-                <Card style={{ marginRight: '20px', marginLeft: '20px', boxShadow: '3px 3px 6px #00000030'}}>
+                <Card style={{ marginRight: '20px', marginLeft: '20px', boxShadow: '3px 3px 6px #00000030' }}>
                     <Col md={4} sm={24}>
                         <div style={style.showmid}>
                             <img alt="logo" style={{ height: '32px', marginRight: '16px' }} src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
@@ -194,15 +194,15 @@ class MarketDetail extends React.Component {
                     </Col>
                     <Col md={4} sm={24}>
                         <div>Last Price</div>
-                        <div style={data[0].change> 0 ? { color: "#f50" } : { color: "#87d068" }}>
+                        <div style={data[0].change > 0 ? { color: "#f50" } : { color: "#87d068" }}>
                             {data[0].money}
-                        </div> 
+                        </div>
                     </Col>
                     <Col md={4} sm={24}>
                         <div>24H Change</div>
-                        <div style={data[0].change> 0 ? { color: "#f50" } : { color: "#87d068" }}>
+                        <div style={data[0].change > 0 ? { color: "#f50" } : { color: "#87d068" }}>
                             {(data[0].change > 0 ? "+" : "") + data[0].change + "%"}
-                        </div> 
+                        </div>
                     </Col>
                     <Col md={4} sm={24}>
                         <div>24H High</div>
@@ -222,53 +222,55 @@ class MarketDetail extends React.Component {
                         <Card title="挂单情况" style={{ boxShadow: '3px 3px 6px #00000030' }}>
                             <Col md={8} sm={24}>
                                 <p>价格</p>
-                                {TransferHigh.map((Prices) => {return (<p style={{ color: "#f50" }}>{Prices.value}</p>)})}
+                                {TransferHigh.map((Prices) => { return (<p style={{ color: "#f50" }}>{Prices.value}</p>) })}
                             </Col>
                             <Col md={8} sm={24}>
                                 <p>数量</p>
-                                {TransferHigh.map((Prices) => {return (<p>{Prices.amount}</p>)})}
+                                {TransferHigh.map((Prices) => { return (<p>{Prices.amount}</p>) })}
                             </Col>
                             <Col md={8} sm={24}>
                                 <p>成交额</p>
-                                {TransferHigh.map((Prices) => {return (<p>{Prices.total}</p>)})}
+                                {TransferHigh.map((Prices) => { return (<p>{Prices.total}</p>) })}
                             </Col>
                             <Divider>平均价格</Divider>
                             <Col md={8} sm={24}>
-                                {TransferLow.map((Prices) => {return (<p style={{ color: "#87d068" }}>{Prices.value}</p>)})}
+                                {TransferLow.map((Prices) => { return (<p style={{ color: "#87d068" }}>{Prices.value}</p>) })}
                             </Col>
                             <Col md={8} sm={24}>
-                                {TransferLow.map((Prices) => {return (<p>{Prices.amount}</p>)})}
+                                {TransferLow.map((Prices) => { return (<p>{Prices.amount}</p>) })}
                             </Col>
                             <Col md={8} sm={24}>
-                                {TransferLow.map((Prices) => {return (<p>{Prices.total}</p>)})}
+                                {TransferLow.map((Prices) => { return (<p>{Prices.total}</p>) })}
                             </Col>
                         </Card>
                     </Col>
                     <Col md={18} sm={24}>
-                        <Col md={16} sm={24} style={{paddingTop: '20px', paddingBottom: '20px'}}>
+                        <Col md={16} sm={24} style={{ paddingTop: '20px', paddingBottom: '20px' }}>
                             <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
                                 {this.renderContent()}
                             </Card>
                         </Col>
                         <Col md={8} sm={24} style={style.content}>
                             <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
-                                <Table dataSource={coinPrice} columns={columns} 
-                                    onRow={(record) => {
-                                    return {
-                                        onClick: () => {window.location.href="/marketdetail/"+record.name},       // 点击行
-                                    };
-                                }}/>
+                                <Table dataSource={coinPrice} columns={columns}
+                                    onRow={(record) =>
+                                        ({
+                                            onClick: () => {
+                                                this.props.history.push(`/market/detail/${record.name}`)
+                                            }
+                                        })
+                                    } />
                             </Card>
                         </Col>
-                        <Col md={24} sm={24} style={{paddingRight: '20px', paddingBottom: '20px'}}>
-                            <Card style={{ boxShadow: '3px 3px 6px #00000030'}}>
-                                <Tabs defaultActiveKey="1" type="card" style={{textAlign:'left'}}>
+                        <Col md={24} sm={24} style={{ paddingRight: '20px', paddingBottom: '20px' }}>
+                            <Card style={{ boxShadow: '3px 3px 6px #00000030' }}>
+                                <Tabs defaultActiveKey="1" type="card" style={{ textAlign: 'left' }}>
                                     <TabPane tab="限价交易" key="1">
                                         <Col md={12} sm={24} style={style.content}>
                                             <div>
-                                                <div style={{float:'left', color: "#f50"}}>买入</div>
-                                                <div style={{float:'right'}}>余额：0.0000 EOS</div>
-                                                <br/>
+                                                <div style={{ float: 'left', color: "#f50" }}>买入</div>
+                                                <div style={{ float: 'right' }}>余额：0.0000 EOS</div>
+                                                <br />
                                                 <div style={style.buyselltext}>买入价</div>
                                                 <div style={style.buysellinput}><Input size="large" /></div>
                                                 <div style={style.buyselltext}>买入量</div>
@@ -279,14 +281,14 @@ class MarketDetail extends React.Component {
                                                 <div style={style.buysellinput}><Input size="large" /></div>
                                                 <div style={style.buyselltext}></div>
                                                 <div style={style.buysellinput}><Button size="large" style={style.buysellbutton}>买入{this.state.symbolname}</Button></div>
-                                                <div style={{float:'right'}}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
+                                                <div style={{ float: 'right' }}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
                                             </div>
                                         </Col>
                                         <Col md={12} sm={24} style={style.content}>
                                             <div>
-                                                <span style={{float:'left', color: "#87d068"}}>卖出</span>
-                                                <span style={{float:'right'}}>余额：0.0000 EOS</span>
-                                                <br/>
+                                                <span style={{ float: 'left', color: "#87d068" }}>卖出</span>
+                                                <span style={{ float: 'right' }}>余额：0.0000 EOS</span>
+                                                <br />
                                                 <div style={style.buyselltext}>卖出价</div>
                                                 <div style={style.buysellinput}><Input size="large" /></div>
                                                 <div style={style.buyselltext}>卖出量</div>
@@ -297,41 +299,41 @@ class MarketDetail extends React.Component {
                                                 <div style={style.buysellinput}><Input size="large" /></div>
                                                 <div style={style.buyselltext}></div>
                                                 <div style={style.buysellinput}><Button size="large" style={style.buysellbutton}>卖出{this.state.symbolname}</Button></div>
-                                                <div style={{float:'right'}}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
+                                                <div style={{ float: 'right' }}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
                                             </div>
                                         </Col>
                                     </TabPane>
                                     <TabPane tab="市价交易" key="2">
-                                    <Col md={12} sm={24} style={style.content}>
+                                        <Col md={12} sm={24} style={style.content}>
                                             <div>
-                                                <div style={{float:'left', color: "#f50"}}>买入</div>
-                                                <div style={{float:'right'}}>余额：0.0000 EOS</div>
-                                                <br/>
+                                                <div style={{ float: 'left', color: "#f50" }}>买入</div>
+                                                <div style={{ float: 'right' }}>余额：0.0000 EOS</div>
+                                                <br />
                                                 <div style={style.buyselltext}>买入价</div>
-                                                <div style={style.buysellinput}><Input size="large" disabled="true" value="按照市场最优价格买入"/></div>
+                                                <div style={style.buysellinput}><Input size="large" disabled="true" value="按照市场最优价格买入" /></div>
                                                 <div style={style.buyselltext}>买入量</div>
                                                 <div style={style.buysellinput}><Input size="large" /></div>
                                                 <div style={style.buyselltext}></div>
                                                 <div style={style.buysellinput}><Slider marks={slidermarks} step={25} defaultValue={0} /></div>
                                                 <div style={style.buyselltext}></div>
                                                 <div style={style.buysellinput}><Button size="large" style={style.buysellbutton}>买入{this.state.symbolname}</Button></div>
-                                                <div style={{float:'right'}}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
+                                                <div style={{ float: 'right' }}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
                                             </div>
                                         </Col>
                                         <Col md={12} sm={24} style={style.content}>
                                             <div>
-                                                <span style={{float:'left', color: "#87d068"}}>卖出</span>
-                                                <span style={{float:'right'}}>余额：0.0000 EOS</span>
-                                                <br/>
+                                                <span style={{ float: 'left', color: "#87d068" }}>卖出</span>
+                                                <span style={{ float: 'right' }}>余额：0.0000 EOS</span>
+                                                <br />
                                                 <div style={style.buyselltext}>卖出价</div>
-                                                <div style={style.buysellinput}><Input size="large" disabled="true" value="按照市场最优价格卖出"/></div>
+                                                <div style={style.buysellinput}><Input size="large" disabled="true" value="按照市场最优价格卖出" /></div>
                                                 <div style={style.buyselltext}>卖出量</div>
                                                 <div style={style.buysellinput}><Input size="large" /></div>
                                                 <div style={style.buyselltext}></div>
                                                 <div style={style.buysellinput}><Slider marks={slidermarks} step={25} defaultValue={0} /></div>
                                                 <div style={style.buyselltext}></div>
                                                 <div style={style.buysellinput}><Button size="large" style={style.buysellbutton}>卖出{this.state.symbolname}</Button></div>
-                                                <div style={{float:'right'}}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
+                                                <div style={{ float: 'right' }}>{this.state.symbolname}项目方将收取0.1%转账费用</div>
                                             </div>
                                         </Col>
                                     </TabPane>
@@ -370,25 +372,25 @@ const style = {
         borderRadius: '50%'
     },
     showmid: {
-        display: 'inline-block', 
+        display: 'inline-block',
         verticalAlign: 'middle'
     },
-    buyselltext:{  
+    buyselltext: {
         paddingTop: '8px',
         paddingBottom: '8px',
-        display: 'inline-block', 
+        display: 'inline-block',
         verticalAlign: 'middle',
-        width:'20%'
+        width: '20%'
     },
-    buysellinput:{
+    buysellinput: {
         paddingTop: '8px',
         paddingBottom: '8px',
-        display: 'inline-block', 
+        display: 'inline-block',
         verticalAlign: 'middle',
-        width:'80%'
+        width: '80%'
     },
-    buysellbutton:{
-        width:'100%'
+    buysellbutton: {
+        width: '100%'
     }
 };
 
