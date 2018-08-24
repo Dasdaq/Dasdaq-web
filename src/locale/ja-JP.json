@@ -59,5 +59,11 @@
         "setunit":"単位：",
         "setlang":"言語：",
         "setcolor":"カラー："
+    },
+    "footer":{
+        "joinus":"メンバー募集",
+        "explain":"説明",
+        "about":"Dasdaqについて",
+        "service":"利用規約"
     }
 }

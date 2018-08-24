@@ -60,5 +60,11 @@
         "setunit":"选择单位：",
         "setlang":"选择语言：",
         "setcolor":"主题色："
+    },
+    "footer":{
+        "joinus":"加入我们的社群",
+        "explain":"条款说明",
+        "about":"关于",
+        "service":"服务条款"
     }
 }

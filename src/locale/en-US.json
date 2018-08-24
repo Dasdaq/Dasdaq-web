@@ -59,5 +59,11 @@
         "setunit":"unit：",
         "setlang":"language：",
         "setcolor":"color："
+    },
+    "footer":{
+        "joinus":"Join us",
+        "explain":"Conditions",
+        "about":"About",
+        "service":"Clasuses of service"
     }
 }

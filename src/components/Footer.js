@@ -2,6 +2,9 @@ import React from "react";
 import { Layout, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import config from '../config'
+import intl from "react-intl-universal";
+
+const i18n = (name) => intl.get(`footer.${name}`)
 
 const { Footer } = Layout;
 
@@ -26,7 +29,7 @@ function FooterComponent() {
                     <p> © 2018 {config.sitename} All Right Reserved. </p>
                 </Col>
                 <Col md={6} xs={24}>
-                    <h2>加入我们的社群</h2>
+                    <h2>{i18n("joinus")}</h2>
                     <SocialItem name='telegram' />
                     <SocialItem name='youtube' />
                     <SocialItem name='twitter' />
@@ -34,13 +37,13 @@ function FooterComponent() {
                     <SocialItem name='facebook' />
                 </Col>
                 <Col md={6} xs={24}>
-                    <h2>条款说明</h2>
+                    <h2>{i18n("explain")}</h2>
                     <ul style={{listStyleType: "none"}}>
-                        <li><Link to="/tos"> 服务条款 </Link></li>
+                        <li><Link to="/tos"> {i18n("service")} </Link></li>
                     </ul>
                 </Col>
                 <Col md={6} xs={24}>
-                    <h2>关于</h2>
+                    <h2>{i18n("about")}</h2>
                     <ul>
                         <li>
                             <a href="" target="_blank" >External Link</a> 
