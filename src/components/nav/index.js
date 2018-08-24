@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Menu, Icon, Modal, Select } from "antd";
 import menus from "./menus";
 import smartNavbarColor from "./smartColor";
+import intl from "react-intl-universal";
 
 
 const langList = {
@@ -64,16 +65,16 @@ class NavbarComponent extends Component {
 
                 <Menu.Item style={{ float: 'right' }} onClick={() => this.setSettingVisible(true)}>
                     <Icon type="setting" />
-                    设置
+                    {intl.get('setting.setting')}
                 </Menu.Item>
 
                 <Modal
-                    title="设置"
+                    title={intl.get('setting.setting')}
                     visible={settingVisible}
                     onOk={() => this.setSettingVisible(false)}
                     onCancel={() => this.setSettingVisible(false)}
                 >
-                    选择单位：
+                    {intl.get('setting.setunit')}
                 <Select defaultValue={crypto} style={{ width: 120 }} onChange={(value) => setCrypto(value)}>
                         <Option value="BTC">Bitcoin</Option>
                         <Option value="ETH">Ethereum</Option>
@@ -81,7 +82,7 @@ class NavbarComponent extends Component {
                     </Select>
                     <br />
                     <br />
-                    选择语言：
+                    {intl.get('setting.setlang')}
                 <Select defaultValue={langList[lang]} style={{ width: 120 }} onChange={(value) => setLanguage(value)}>
                         <Option value="SWITCH_TO_CHINESE">中文</Option>
                         <Option value="SWITCH_TO_ENGLISH">English</Option>
@@ -90,7 +91,7 @@ class NavbarComponent extends Component {
                     </Select>
                     <br />
                     <br />
-                    主题色：
+                    {intl.get('setting.setcolor')}
                 <Select defaultValue={theme} style={{ width: 120 }} onChange={(value) => setTheme(value)}>
                         <Option value="SWITCH_TO_DARK">DARK</Option>
                         <Option value="SWITCH_TO_LIGHT">LIGHT</Option>

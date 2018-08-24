@@ -8,6 +8,7 @@ import withContent from "../ContentWrapper";
 import { sign } from "../../apieth"
 import { compose } from "ramda";
 import { withScatter } from "../../scatter";
+
 const i18n = (name) => intl.get(`user.login.${name}`)
 
 
@@ -149,8 +150,8 @@ class Login extends React.Component {
     if (user !== null) {
       return (
         <div className="login-ok">
-          <Card title="使用钱包签名快速登录">
-            你已登录，请打开 <Button size="large"><NavLink to="/account/info"> 我的账户 </NavLink></Button>
+          <Card title={i18n("usesign")}>
+            {i18n("islogin")} <Button size="large"><NavLink to="/account/info"> {i18n("myaccount")} </NavLink></Button>
           </Card>
         </div>
       )
@@ -158,22 +159,22 @@ class Login extends React.Component {
       return (
         <Row>
           <Col md={12} xs={24}>
-            <Card title="使用钱包签名快速登录" style={{ margin: "1rem" }}>
+            <Card title={i18n("usesign")} style={{ margin: "1rem" }}>
               <Alert
                 message={
-                  <div> 使用 <IconFont name="metamask" /> MetaMask
-                    或 <IconFont name="scatter" /> Scatter 钱包签名登录 </div>
+                  <div> <IconFont name="metamask" /> MetaMask
+                    {i18n("signor")} <IconFont name="scatter" /> Scatter {i18n("walletsign")} </div>
                 }
-                type="info" description="无需输入账户密码，体验安全快捷、无需密码的登录方式！"
+                type="info" description={i18n("dontusepw")}
                 showIcon iconType="key"
                 style={{ marginBottom: "1rem" }}
               />
               <Button.Group>
                 <Button size="large" onClick={this.signByMetaMask}>
-                  <IconFont name="metamask" /> MetaMask 签名登录</Button>
+                  <IconFont name="metamask" /> MetaMask {i18n("signin")}</Button>
                 <Button size="large" disabled={!this.props.scatter}
                   onClick={e => this.requestIdAndSignWithScatter(e)}>
-                  <IconFont name="scatter" /> Scatter 签名登录</Button>
+                  <IconFont name="scatter" /> Scatter {i18n("signin")}</Button>
               </Button.Group>
             </Card>
           </Col>

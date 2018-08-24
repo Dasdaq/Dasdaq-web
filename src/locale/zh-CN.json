@@ -19,7 +19,14 @@
             "register new account": "注册新账号",
             "or": "or",
             "username": "账户",
-            "password": "密码"
+            "password": "密码",
+            "usesign": "使用钱包签名快速登录",
+            "signor": "或",
+            "walletsign": "钱包签名登录",
+            "signin": "签名登录",
+            "islogin": "你已登录，请打开",
+            "myaccount": "我的账户",
+            "dontusepw": "无需输入账户密码，体验安全快捷、无需密码的登录方式！"
         }
     },
     "navbar": {
@@ -47,5 +54,11 @@
     "Construction": {
         "in custruction": "页面构筑",
         "checkout later": "Please Checkout Later"
+    },
+    "setting":{
+        "setting":"设置",
+        "setunit":"选择单位：",
+        "setlang":"选择语言：",
+        "setcolor":"主题色："
     }
 }
