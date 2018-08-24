@@ -21,11 +21,11 @@ const IconFactory = (type) => (
 const formItemLayout = {
   labelCol: {
     xs: { span: 0 },
-    sm: { span: 2 },
+    sm: { span: 4 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 22 },
+    sm: { span: 20 },
   },
 };
 
